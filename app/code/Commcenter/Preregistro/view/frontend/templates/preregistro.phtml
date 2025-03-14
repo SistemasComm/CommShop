@@ -1,0 +1,78 @@
+<?php
+/**
+ * @category   Commcenter
+ * @package    Commcenter_Preregistro
+ * @author     yurirneves@gmail.com
+ */
+?>
+<div class="img-full">
+    <img src="https://commshop.com.br/media/wysiwyg/1600x605_LP_Desk_v2.jpg">
+</div>
+<div class="container">
+
+<form class="" action="<?php echo $block->getBaseUrl().'preregistro/index/save'; ?>" style="padding-top:35px" id="commcenter-preregistro-form" method="post" data-mage-init='{"validation": {}}'>
+    <fieldset class="fieldset">
+        <!-- Campo Nome -->
+        <div class="field name">
+            <label class="label" for="name"><span>Nome</span></label>
+            <div class="control">
+                <input name="name" id="name" title="Nome" class="input-text" type="text" data-validate="{required:true}">
+            </div>
+        </div>
+
+        <!-- Campo Email -->
+        <div class="field email">
+            <label class="label" for="email"><span>Email</span></label>
+            <div class="control">
+                <input name="email" id="email" title="Email" class="input-text" type="email" data-validate="{required:true}">
+            </div>
+        </div>
+
+        <!-- Campo CPF -->
+        <div class="field cpf">
+            <label class="label" for="cpf"><span>CPF</span></label>
+            <div class="control">
+                <input name="cpf" id="cpf" title="CPF" class="input-text" type="text" data-validate="{required:true}">
+            </div>
+        </div>
+
+        <!-- Campo Telefone -->
+        <div class="field phone">
+            <label class="label" for="phone"><span>Telefone</span></label>
+            <div class="control">
+                <input name="phone" id="phone" title="Telefone" class="input-text" type="text" data-validate="{required:true}">
+            </div>
+        </div>
+
+        <!-- Campo Operadora -->
+        <div class="field operadora">
+            <label class="label" for="operadora"><span>Operadora</span></label>
+            <div class="control">
+                <select name="operadora" id="operadora" class="input-select" data-validate="{required:true}">
+                    <option value="Vivo">Vivo</option>
+                    <option value="Claro">Claro</option>
+                    <option value="Tim">Tim</option>
+                    <option value="Outras">Outras</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Checkbox de Termos -->
+        <div class="field terms">
+            <label class="label" for="terms">
+                <input name="terms" id="terms" title="Termos Aceitos" type="checkbox" data-validate="{required:true}">
+                <span>Declaro que li e aceito os termos de privacidade.</span>
+            </label>
+        </div>
+    </fieldset>
+
+    <!-- Botão de Enviar -->
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" title="Enviar" class="action submit primary">
+                <span>Enviar</span>
+            </button>
+        </div>
+    </div>
+</form>
+</div>

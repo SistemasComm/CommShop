@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author      Mestre Magento
+ * @copyright   2018 MestreMage (https://mestremage.com.br)
+ * @license     https://mestremage.com.br Copyright
+ *
+ * @link        https://mestremage.com.br/
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+<system>
+    <tab id="mestremage" translate="label" sortOrder="700"  class="mestre-magento-tab">
+        <label>Mestre magento</label>
+    </tab>
+    <section id="priceInstallment" translate="label" sortOrder="500" showInDefault="1" showInWebsite="1" showInStore="1">
+        <class>separator-top</class>
+        <label>Price Installment</label>
+        <tab>mestremage</tab>
+        <resource>MestreMage_PriceInstallment::config</resource>
+        <group id="geral" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>General</label>
+            <field id="ativarmodulo" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Enable</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+            <field id="active_hash" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Chave de ativação</label>
+            </field>            
+            <field id="log" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Log</label>
+                <comment>Generated in directory [ROOT_MAGENTO]/var/log/priceInstallment.log</comment>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+        </group>
+        <group id="loja" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>settings</label>
+            <field id="mostrartabelaparcela" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>show parcel table</label>
+                <comment>Display a table with the projection of the parcels, month by month, next to the product</comment>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+            <field id="mostrarparcelaunica" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>show single parcel</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+            <field id="mostrartotaldasparcelas" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Exibir Valor Total das parcelas</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+            <field id="titulotabela" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>table title</label>
+            </field>
+            <field id="valorminimoparcela" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>minimum value of plot</label>
+            </field>
+            <field id="valormaximomeses" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>maximum number of months</label>
+            </field>
+            <field id="jurosapartirdaparcela" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>interest from the parcel</label>
+                <comment>Will interest be calculated from which installment / month?</comment>
+            </field>
+            <field id="valorjuros" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>interest amount</label>
+                <comment>ex: 1,99</comment>
+            </field>
+            <field id="padraodotexto" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>text pattern</label>
+                <comment>Enter {parcel} to display the number of parcels, and {price} to display its value</comment>
+            </field>
+            <field id="mostrarsoparcelasemjuros" translate="label" type="select" sortOrder="91" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Exibir apenas sem juros</label>
+                <comment> Irá exibir abaixo do preço apenas as parcelas sem juros.</comment>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+		    <field id="textosemjuros" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>text without interest</label>
+            </field>
+            <field id="textocomjuros" translate="label" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>interest text</label>
+            </field>
+			<field id="padraodotextonatabela" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>table text pattern</label>
+                <comment>{Parcel} is required and will be substituted for the number of parcels in the presentation</comment>
+            </field>
+			 <field id="precoavistanatabela" translate="label" type="select" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>show price on the table?</label>
+                 <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                 <comment>Select Yes if you want to display the displayed price in the table. If no, the table will display from the second plot</comment>
+            </field>
+			<field id="textoprecoavista" translate="label" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>cash price text</label>
+                <comment>The text for single parcel (in view) if displayed</comment>
+            </field>
+            <field id="valor_a_vista_ativarmodulo" translate="label" type="select" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>In cash enable</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+            <field id="desconto" translate="label" type="select" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Discount</label>
+                <source_model>MestreMage\PriceInstallment\Model\Source\Discount</source_model>
+            </field>
+            <field id="valordesconto" translate="label" type="text" sortOrder="170" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Discount Value</label>
+                <comment>ex: 2.00</comment>
+            </field>
+            <field id="frase" translate="label" type="text" sortOrder="180" showInDefault="2" showInWebsite="1" showInStore="1">
+                <label>Phrase that will go below the price</label>
+                <comment>Phrase that will be below the price: cash on the bill with the discount</comment>
+            </field>
+            <field id="showparcelpopup" translate="label" type="select" sortOrder="190" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Mostrar tabela em um popup</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+            <field id="txtlinkpopup" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Texto do link do popup</label>
+            </field>    
+            <field id="loop_tooltip" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Exibir parcelas em tooltip</label>
+                <comment>Deixe o valor 0 para não exibir tooltip.</comment>                
+            </field>                       
+        </group>
+
+    </section>
+</system>
+</config>

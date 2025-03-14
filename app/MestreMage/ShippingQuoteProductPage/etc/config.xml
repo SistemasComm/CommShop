@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <shippingquoteproductpage>
+            <geral>
+                <ativarmodulo>0</ativarmodulo>
+                <log>0</log>
+            </geral>
+            <loja>
+                <pais>1</pais>
+                <estado>1</estado>
+                <cidade>0</cidade>
+                <popup>0</popup>
+                <txtlabeltitle>Zip/Postal Code</txtlabeltitle>
+                <txtlabelink>Estimate Shipping and Tax</txtlabelink>
+                <txtlabel>Zip/Postal Code</txtlabel>
+                <txtprodconf>Select product options</txtprodconf>
+                <txtsearch>Shipping Quote</txtsearch>
+                <txtloading>Waiting...</txtloading>
+                <txterrocep>Could not simulate freight</txterrocep>
+            </loja>
+
+        </shippingquoteproductpage>
+    </default>
+</config>

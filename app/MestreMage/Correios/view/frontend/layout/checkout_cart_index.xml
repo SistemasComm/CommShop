@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!--
+     /**
+ * Mestre Magento
+ * www.modulomagento.com.br
+ *
+ * LICENÇA DE USO
+ * Este arquivo está sujeito ao EULA (contrato de licença para usuário final).
+ * @copyright Copyright (c) Mestre Magento. ( https://www.modulomagento.com.br/ )
+ * @license   https://www.modulomagento.com.br/Mestre-Magento-Licenca.txt
+ *
+ * ##############################################################################
+ * #																			#
+ * #  Nós programadores nos dedicamos muito, da mesma forma que você, então		#
+ * #  valorize sua profissão e não aceite usar esse módulo de forma ilícita.	#
+ * #  Denuncie anônimamente a empresa que utilizar esse módulo de forma ilegal.	#
+ * #  Estamos abertos a parcerias com desenvolvedores ;)						#
+ * #																			#
+ * ##############################################################################
+ *
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="checkout.cart.shipping">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="summary-block-config" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="shipping-rates-validation" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="correios-rates-validation" xsi:type="array">
+                                            <item name="component" xsi:type="string">MestreMage_Correios/js/view/shipping-rates-validation</item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

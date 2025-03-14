@@ -1,0 +1,22 @@
+{
+    "name": "mestremage/module-sigepweb",
+    "description": "Mestre Magento",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "email": "contato@mestremage.com.br",
+            "name": "MestreMage"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "MestreMage\\SigepWeb\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

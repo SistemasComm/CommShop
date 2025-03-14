@@ -1,0 +1,335 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORES;
+$objectManager = $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface');
+$scopeConfig = $objectManager->getValue("opcmestremage/general/type_layout", $storeScope);
+$custom_js = $objectManager->getValue("opcmestremage/general/custom_js", $storeScope);
+$custom_css = $objectManager->getValue("opcmestremage/general/custom_css", $storeScope);
+$shipping_address = $objectManager->getValue("opcmestremage/general/shipping_address", $storeScope);
+$shipping_method = $objectManager->getValue("opcmestremage/general/shipping_method", $storeScope);
+$payment_method = $objectManager->getValue("opcmestremage/general/payment_method", $storeScope);
+$opc_sidebar = $objectManager->getValue("opcmestremage/general/opc_sidebar", $storeScope);
+$authentication_button = $objectManager->getValue("opcmestremage/general/authentication_button", $storeScope);
+$msg_invalid_phone = $objectManager->getValue("opcmestremage/general/msg_invalid_phone", $storeScope);
+$minimum_password_length = $objectManager->getValue("customer/password/minimum_password_length", $storeScope);
+$required_register = $objectManager->getValue("opcmestremage/general/required_register", $storeScope);
+
+?>
+
+<!-- CSS da Estrutura Principal -->
+<link rel='stylesheet' href='<?php echo $block->getViewFileUrl("FCheckout_OneStepCheckout::css/geral.css") ?>' />
+
+<style>
+    /* nome das colunas definidos no painel */
+    .authentication-wrapper button:before { content: "<?= $authentication_button ?>"; text-transform: uppercase !important;}
+    .checkout-shipping-address .step-title.b-title.h3:before { content: "<?= $shipping_address ?>" !important;}
+    .checkout-shipping-method .step-title.b-title.h3:before { content: "<?= $shipping_method ?>" !important;}
+    .payment-group .step-title.b-title.h3:before { content: "<?= $payment_method ?>" !important;}
+    .opc-block-summary>.title:before { content: "<?= $opc_sidebar ?>" !important;}
+    .field[name="shippingAddress.telephone"] div.field-error span::before {content: "<?= $msg_invalid_phone ?> " !important;}
+    .field[name="shippingAddress.fax"] div.field-error span::before { content: "<?= $msg_invalid_phone ?> " !important;}
+</style>
+
+<!-- layout 1 -->
+<?php if ($scopeConfig == 1) : ?>
+<link rel='stylesheet' href='<?php echo $block->getViewFileUrl("FCheckout_OneStepCheckout::css/layout1.css") ?>' />
+<?php endif; ?>
+
+<!-- layout 2 -->
+<?php if ($scopeConfig == 2) : ?>
+<link rel='stylesheet' href='<?php echo $block->getViewFileUrl("FCheckout_OneStepCheckout::css/layout2.css") ?>' />
+<?php endif; ?>
+
+<!-- layout 3 -->
+<?php if ($scopeConfig == 3) : ?>
+<link rel='stylesheet' href='<?php echo $block->getViewFileUrl("FCheckout_OneStepCheckout::css/layout3.css") ?>' />
+<?php endif; ?>
+
+<style>
+    /* CSS personaliazado definido no painel */
+    <?= $custom_css ?>
+</style>
+
+<script>
+    require([
+        "jquery",
+        "jquery/ui"
+    ], function($) {
+        $(document).ready(function() {
+
+            var existCondition = setInterval(function() {
+                var postcode = $('div#shipping-new-address-form [name*="shippingAddress.postcode"] [name*="postcode"]');
+                var vat_id = $('div#shipping-new-address-form [name*="shippingAddress.vat_id"] [name*="vat_id"]');
+                var telephone = $('div#shipping-new-address-form [name*="shippingAddress.telephone"] [name*="telephone"]');
+                var fax = $('div#shipping-new-address-form [name*="shippingAddress.fax"] [name*="fax"]');
+                var street_0 = $('div#shipping-new-address-form [name*="shippingAddress.street.0"]');
+                var street_1 = $('div#shipping-new-address-form [name*="shippingAddress.street.1"]');
+                var street_2 = $('div#shipping-new-address-form [name*="shippingAddress.street.2"]');
+                var street_3 = $('div#shipping-new-address-form [name*="shippingAddress.street.3"]');
+                var city = $('div#shipping-new-address-form [name*="shippingAddress.city"]');
+                var region_id = $('div#shipping-new-address-form [name*="shippingAddress.region_id"]');
+                var country_id = $('div#shipping-new-address-form [name*="shippingAddress.country_id"]');
+
+                var input_street_0 = $('div#shipping-new-address-form [name*="shippingAddress.street.0"] [name*="street[0]"]');
+                var input_street_1 = $('div#shipping-new-address-form [name*="shippingAddress.street.1"] [name*="street[1]"]');
+                var input_street_2 = $('div#shipping-new-address-form [name*="shippingAddress.street.2"] [name*="street[2]"]');
+                var input_street_3 = $('div#shipping-new-address-form [name*="shippingAddress.street.3"] [name*="street[3]"]');
+                var input_city = $('div#shipping-new-address-form [name*="shippingAddress.city"] [name*="city"]');
+
+                if (postcode.length) {
+                    clearInterval(existCondition);
+                    if (!postcode.val()) {
+                        street_0.hide();
+                        street_1.hide();
+                        street_2.hide();
+                        street_3.hide();
+                        city.hide();
+                        region_id.hide();
+                        country_id.hide();
+                    }
+                    postcode.attr('inputmode', 'numeric');
+                    vat_id.attr('inputmode', 'numeric');
+                    telephone.attr('inputmode', 'numeric');
+                    fax.attr('inputmode', 'numeric');
+
+                    postcode.attr('autocomplete', 'off');
+                    input_street_0.attr('autocomplete', 'off');
+                    input_street_1.attr('autocomplete', 'off');
+                    input_street_2.attr('autocomplete', 'off');
+                    input_street_3.attr('autocomplete', 'off');
+                    input_city.attr('autocomplete', 'off');
+
+                    telephone.on('blur', function() {
+                        if ($(this).val().length < 14) {
+                            $(this).val('');
+                            $(this).trigger('change');
+                        }
+                    });
+
+                    fax.on('blur', function() {
+                        if ($(this).val().length < 14) {
+                            $(this).val('');
+                            $(this).trigger('change');
+                        }
+                    });
+
+                    postcode.on('keyup input', function() {
+                        if ($(this).val().length >= 8) {
+                            street_0.show('slow');
+                            street_1.show('slow');
+                            street_2.show('slow');
+                            street_3.show('slow');
+                            city.show('slow');
+                            region_id.show('slow');
+                            country_id.show('slow');
+                        }
+                    });
+                }
+                $('span#block-discount-heading').click(function() {
+                    $('button.action.action-apply').prop('type', '');
+                });
+
+            }, 100);
+
+        });
+
+        <?= $custom_js ?>
+    });
+</script>
+
+
+<script>
+    require([
+            'jquery'
+        ],
+        function($) {
+            $(window).on("load", function() {
+
+                require([
+                    'Magento_Checkout/js/model/cart/cache',
+                    'Magento_Checkout/js/model/cart/totals-processor/default',
+                    'Magento_Checkout/js/model/quote',
+                    "jquery/ui",
+                    'mage/mage',
+                    'mage/calendar'
+                ], function(cartCache, totalsProcessor, quote) {
+
+                    var minimum_password_length = "<?= $minimum_password_length ?>";
+
+                    var required_register = "<?= $required_register ?>";
+
+                    var existCondition = setInterval(function() {
+                        if ($('[name="code-confirm_password"]').length) {
+                            clearInterval(existCondition);
+                            $('[name="code-confirm_password"]').append('<span class="mm-msg-validation-confirm"></span>');
+                            $('[name="code-password"]').append('<span class="mm-msg-validation"></span>');
+
+                            $('[name="code-password"]').change(function() {
+                                var password = $('[name="code-password"] [name="code-password"]');
+                                if (parseInt(password.val().length) < parseInt(minimum_password_length)) {
+                                    password.css("border", "red solid 1px");
+                                    $('.mm-msg-validation').text('A senha precisa de pelo menos ' + minimum_password_length + ' caracteres');
+                                } else {
+                                    password.css("border", "initial");
+                                    $('.mm-msg-validation').text('');
+                                }
+                            });
+
+                            $('[name="code-confirm_password"]').change(function() {
+                                var password = $('[name="code-password"] [name="code-password"]');
+                                var confirm_password = $('[name="code-confirm_password"] [name="code-confirm_password"]');
+                                if (confirm_password.val() != password.val()) {
+                                    confirm_password.css("border", "red solid 1px");
+                                    $('.mm-msg-validation-confirm').text('As senhas não conferem.');
+                                } else {
+                                    confirm_password.css("border", "initial");
+                                    $('.mm-msg-validation-confirm').text('');
+                                }
+                            });
+
+                            var mage_cache_storage = JSON.parse(window.localStorage.getItem('mage-cache-storage').replace("checkout-data", "checkout_data"));
+
+                            if (required_register) {
+                                showInputRegister(required_register);
+                            } else {
+                                if (mage_cache_storage.checkout_data.checkedEmailValue && typeof mage_cache_storage.checkout_data.checkedEmailValue !== 'undefined') {
+                                    $('#customer-email').val(mage_cache_storage.checkout_data.checkedEmailValue);
+                                    showInputLogin();
+                                } else {
+                                    $('#customer-email').val('');
+                                    $('.hidden-fields').hide();
+                                    $('[name="code-password"]').hide();
+                                    $('[name="code-confirm_password"]').hide();
+                                }
+                            }
+
+                        }
+                    }, 100);
+
+                    (function() {
+                        const send = XMLHttpRequest.prototype.send;
+                        XMLHttpRequest.prototype.send = function() {
+                            this.addEventListener('load', function() {
+
+                                if (window.checkoutConfig.quoteData.is_virtual) {
+                                    $('#opc-shipping_method').hide();
+                                    $('#checkout-step-payment hr').hide();
+                                    $('#checkout-step-payment br').hide();
+                                } else if (window.checkoutConfig.quoteData.is_downloadable) {
+                                    $('#opc-shipping_method').hide();
+                                    $('#checkout-step-payment hr').hide();
+                                    $('#checkout-step-payment br').hide();
+                                } else {
+                                    $('#opc-shipping_method').show();
+                                    $('#checkout-step-payment hr').show();
+                                    $('#checkout-step-payment br').show();
+                                }
+
+                                if (this.responseURL.indexOf("sidebar/updateItemQty") != -1 || this.responseURL.indexOf("sidebar/removeItem") != -1) {
+                                    cartCache.clear('cartVersion');
+                                    totalsProcessor.estimateTotals(quote.shippingAddress());
+                                }
+
+                                let total_qty_cart = $('.items-total .count').text();
+
+                                if (this.responseURL.indexOf("totals-information") != -1) {
+                                    if ($('.items-total .count') && isNaN(parseInt(total_qty_cart))) {
+                                        location.reload();
+                                    }
+                                }
+
+                                if (total_qty_cart) {
+                                    $('[data-bind="text: getCartSummaryItemsCount()"]').text(total_qty_cart);
+                                }
+
+                                //ajuste de recalculo das parcelas na troca do frete
+                                if (this.responseURL.indexOf("shipping-information") != -1) {
+                                    //limpa os campos do cartão de crédito para recalculo das parcelas
+                                    $(".table-checkout-shipping-method tbody td input[type='radio']").click(function() {
+                                        //pagseguro
+                                        $('#rm_pagseguro_cc-form #rm_pagseguro_cc_cc_cid').val('');
+                                        $('#rm_pagseguro_cc-form #rm_pagseguro_cc_expiration').val('');
+                                        $('#rm_pagseguro_cc-form #rm_pagseguro_cc_cc_year_visible').val('');
+                                        $('#rm_pagseguro_cc-form #rm_pagseguro_cc_cc_number_visible').val('');
+                                        $("#rm_pagseguro_cc-form #rm_pagseguro_cc_cc_installments").prop("selectedIndex", 0).val();
+                                        //mercadopago
+                                        $('#mercadopago-form #cardNumber').val('');
+                                        $('#mercadopago-form #cardExpirationMonth').prop("selectedIndex", 0).val();
+                                        $('#mercadopago-form #cardExpirationYear').prop("selectedIndex", 0).val();
+                                        $('#mercadopago-form #cardholderName').val('');
+                                        $('#mercadopago-form #securityCode').val('');
+                                        $('#mp-box-installments #installments').prop("selectedIndex", 0).val();
+                                    });
+
+                                }
+
+                                addDatePicker();
+
+                                if (this.responseURL.indexOf("isEmailAvailable") != -1) {
+                                    if (this.responseText == 'true') {
+                                        showInputRegister(required_register);
+                                    } else {
+                                        showInputLogin();
+                                    }
+                                }
+                            });
+                            return send.apply(this, arguments)
+                        }
+                    })();
+
+                    function showInputRegister(required_register) {
+                        $('.hidden-fields').hide();
+                        $('[name="code-password"]').show();
+                        $('[name="code-confirm_password"]').show();
+
+                        if (required_register) {
+                            $('#customer-email-fieldset span.note').text("");
+                        } else {
+                            $('#customer-email-fieldset span.note').text("<?= __('To create an account, enter the password or leave the field blank to end as a guest.') ?>");
+                        }
+                    }
+
+                    function showInputLogin() {
+                        $('.hidden-fields').show();
+                        $('[name="code-password"]').hide();
+                        $('[name="code-confirm_password"]').hide();
+                        $('[name="code-password"] [name="code-password"]').val('');
+                        $('[name="code-confirm_password"] [name="code-confirm_password"]').val('');
+                        $('#customer-email-fieldset span.note').text("<?= __('You already have an account with us. Log in or continue as a guest.') ?>");
+                    }
+
+                    function addDatePicker() {
+
+                        let mmDob = $('[name="mm_dob"]');
+
+                        mmDob.calendar({
+                            dateFormat: 'dd/mm/yy',
+                            changeMonth: true,
+                            changeYear: true,
+                            showMonthAfterYear: false,
+                            yearRange: "-120y:c+nn",
+                            monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                            monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                            dayNames: ['Domingo ', 'Segunda', 'Terça ', 'Quarta', 'Quinta', 'Sexta', 'Sabado'],
+                            dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+                            dayNamesMin: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+                        });
+
+                        mmDob.keyup(function() {
+                            v = $(this).val();
+                            v = v.replace(/\D/g, "");
+                            v = v.replace(/(\d{2})(\d)/, "$1/$2");
+                            v = v.replace(/(\d{2})(\d)/, "$1/$2");
+                            v = v.replace(/(\d{2})(\d{2})$/, "$1$2");
+                            $(this).val(v);
+
+                        });
+
+                        mmDob.attr('maxlength', '10');
+
+                    }
+                });
+
+            });
+        });
+</script>

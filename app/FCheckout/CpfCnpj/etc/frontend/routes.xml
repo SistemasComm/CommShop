@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<!--
+
+/**
+
+ * @copyright   2018 FCheckout (https://mestremage.com.br)
+ * @license     https://mestremage.com.br Copyright
+ * @author Mestre Magento <contato@modulomagento.com.br>
+
+ */
+
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+
+    <router id="standard">
+
+        <route id="fcheckout_cpfcnpj" frontName="fcheckout_cpfcnpj">
+
+            <module name="FCheckout_CpfCnpj"/>
+
+        </route>
+
+    </router>
+
+</config>

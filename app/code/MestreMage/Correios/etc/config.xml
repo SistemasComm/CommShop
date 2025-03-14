@@ -1,0 +1,80 @@
+<?xml version="1.0" ?>
+<!--
+ /**
+ * Mestre Magento
+ * www.modulomagento.com.br
+ *
+ * LICENÇA DE USO
+ * Este arquivo está sujeito ao EULA (contrato de licença para usuário final).
+ * @copyright Copyright (c) Mestre Magento. ( https://www.modulomagento.com.br/ )
+ * @license   https://www.modulomagento.com.br/Mestre-Magento-Licenca.txt
+ *
+ * ##############################################################################
+ * #																			#
+ * #  Nós programadores nos dedicamos muito, da mesma forma que você, então		#
+ * #  valorize sua profissão e não aceite usar esse módulo de forma ilícita.	#
+ * #  Denuncie anônimamente a empresa que utilizar esse módulo de forma ilegal.	#
+ * #  Estamos abertos a parcerias com desenvolvedores ;)						#
+ * #																			#
+ * ##############################################################################
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<carriers>
+			<correios>
+				<active>1</active>
+				<sallowspecific>0</sallowspecific>
+				<model>MestreMage\Correios\Model\Carrier\Correios</model>
+				<name>Correios</name>
+				<title>Correios</title>
+				<specificerrmsg>Cálculo não disponível, por favor verifique a conexão com o webservices e as dimensões e peso dos produtos.</specificerrmsg>
+				<function_mode>3</function_mode>
+				<default_height>2</default_height>
+				<default_width>16</default_width>
+				<default_depth>11</default_depth>
+				<max_height>100</max_height>
+				<max_width>100</max_width>
+				<max_depth>100</max_depth>
+				<weight_type>kg</weight_type>
+				<handling_fee>0</handling_fee>
+				<time_out_cur>5</time_out_cur>
+				<attr_height>mm_correios_altura</attr_height>
+				<attr_width>mm_correios_comprimento</attr_width>
+				<attr_depth>mm_correios_largura</attr_depth>
+				<posting_methods>40010,41106</posting_methods>
+				<posting_freemethod>41106</posting_freemethod>
+				<posting_freemethod_2>41106</posting_freemethod_2>
+				<declared_value_default>21,00</declared_value_default>
+				<show_deliverydays>1</show_deliverydays>
+				<max_packge_weight>50</max_packge_weight>
+				<freeshipping_message>Frete Grátis</freeshipping_message>
+				<deliverydays_message>%s - Em média %d dia(s)</deliverydays_message>
+				<deliverydays_message_ns>%s - Em média %d dia(s) (devido à falta de estoque)</deliverydays_message_ns>
+				<view_method_with_additional_value>1</view_method_with_additional_value>
+				<additional_value>79</additional_value>
+				<dimension_for_additional_value>70</dimension_for_additional_value>
+			</correios>
+		</carriers>
+		<modulo_correios_section>
+			<settings>
+				<methods><![CDATA[{"_1537631079729_729":{"code":"40010","name":"Sedex"},"_1537631089209_209":{"code":"04162","name":"Sedex com contrato"},"_1537631097535_535":{"code":"41106","name":"PAC"},"_1537631104549_549":{"code":"04669","name":"PAC com contrato"},"_1537631113849_849":{"code":"40215","name":"Sedex 10"},"_1537631121853_853":{"code":"40290","name":"Sedex hoje"},"_1537631135489_489":{"code":"40045","name":"Sedex a cobrar"},"_1537631135489_490":{"code":"04227","name":"Mini Envios"}}]]></methods>
+			</settings>
+		</modulo_correios_section>
+		<modulo_correios_tracking_whatsapp>
+			<settings_api_twilio>
+				<input_whatsapp_sucess><![CDATA[    <div class="container" style="width: 333px;margin: 30px 0;">
+    <div class="form-group">
+    <img src="https://web.whatsapp.com/img/favicon/1x/favicon.png" />
+        <label for="whatsapp_tracking"  style="font-size: 16px;">Deseja receber informações sobre seu pedido pelo WhatsApp?</label>
+        <input type="text" class="form-control" id="whatsapp_tracking"  placeholder="ex: (11) 90000-0000" />
+        <small id="whatsapp_help" class="form-text text-muted">Nunca vamos compartilhar seu WhatsApp, com ninguém.</small>
+    </div>
+    <input type="button" class="btn btn-primary" id="btn_whatsapp_tracking" value="Enviar" style="background-color: #0dc143;border: none;color: #fff;border-radius: 4px;padding: 5px 15px;" />
+    </div>]]></input_whatsapp_sucess>
+				<return_whatsapp_sucess><![CDATA[<div class="container" style="margin: 20px 0;font-weight: bold;"><p>Tudo certo! </p> <p>Você será avisado sobre as movimentações do seu pedido.</p></div>]]></return_whatsapp_sucess>
+			</settings_api_twilio>
+		</modulo_correios_tracking_whatsapp>
+	</default>
+</config>

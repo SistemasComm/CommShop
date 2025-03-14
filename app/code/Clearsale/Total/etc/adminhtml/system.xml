@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config>
+    <system>
+        <section id="clearsale_total" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+        	<class>separator-top</class>
+        	<tab>clearsale</tab>
+        	<label>Total</label>
+        	<resource>Clearsale_Total::config</resource>
+            <group id="settings" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Settings</label>
+            	<field id="enabled" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+            		<label>Enable Module?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="mass_order_qty" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Mass create order quantity</label>
+					<source_model>Clearsale\Total\Model\Config\Source\MassOrderQuantity</source_model>
+                    <comment>
+                    <![CDATA[Field to define the number of orders that will be sent for analysis by Clearsale at each job execution (Cron).]]>
+                    </comment>
+                </field>
+                <field id="customer_secondary_document" translate="label comment" type="select" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Customer - Secondary Document</label>
+                    <source_model>Clearsale\Total\Model\Config\Source\CustomerAttributes</source_model>
+                    <comment>
+                    <![CDATA[Magento attribute that represents the client's secondary document, which will be submitted for Clearsale analysis. (Example: National ID Card)]]>
+                    </comment>
+                </field>
+				<field id="minimal_date" translate="label" type="date" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send orders from</label>
+                    <frontend_model>Clearsale\Total\Model\Config\Source\Date</frontend_model>
+                    <comment>
+                    <![CDATA[Field to inform from which date the orders must be analyzed by Clearsale.]]>
+                    </comment>
+                </field>
+            </group>
+
+            <group id="manage_status" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Manage Status</label>
+                <field id="filter_status" translate="label comment" type="multiselect" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Send orders Status Filter</label>
+                    <source_model>Clearsale\Total\Model\Config\Source\OrderStatus</source_model>
+                    <validate>required-entry</validate>
+                    <comment>
+                    <![CDATA[Field to choose which Magento order statuses will be allowed to be sent for analysis.<br> Default setting: Pending, Pending Payment, Processing.]]>
+                    </comment>
+                </field>
+
+                <field id="analyze_status" translate="label comment" type="select" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Status While Analyzing</label>
+                    <source_model>Clearsale\Total\Model\Config\Source\OrderStatus</source_model>
+                    <comment>
+                    <![CDATA[Field to choose what the status of the Magento order will be when it is <strong>being analyzed</strong> at Clearsale.<br> Default setting: 'aprovacao_clearsale'.]]>
+                    </comment>
+                </field>
+
+                <field id="approved_status" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Status after approved</label>
+                    <source_model>Clearsale\Total\Model\Config\Source\OrderStatus</source_model>
+                    <comment>
+                    <![CDATA[Field to choose what the status of the Magento order will be <strong>after automatic approval</strong> in the Clearsale rules.<br> Default setting: 'aprovado_clearsale'.]]>
+                    </comment>
+                </field>
+
+                <field id="manual_approved_status" translate="label comment" type="select" sortOrder="15" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Status after manual approved</label>
+                    <source_model>Clearsale\Total\Model\Config\Source\OrderStatus</source_model>
+                    <comment>
+                    <![CDATA[Field to choose what the Magento order status will be <strong>after manual approval</strong>.<br> Default setting: 'aprovado_clearsale'.]]>
+                    </comment>
+                </field>
+
+                <field id="reproved_status" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Status after reproved</label>
+                    <source_model>Clearsale\Total\Model\Config\Source\OrderStatus</source_model>
+                    <comment>
+                    <![CDATA[Field to choose what the Magento order status will be <strong>after Clearsale disapproval</strong>.<br> Default setting: 'reprovado_clearsale'.]]>
+                    </comment>
+                </field>
+				
+				<field id="review_status" translate="label comment" type="select" sortOrder="22" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Status when containing errors</label>
+                    <source_model>Clearsale\Total\Model\Config\Source\OrderStatus</source_model>
+                    <comment>
+                    <![CDATA[Field to choose what the Magento order status will be <strong>when it contains errors</strong>, which usually occur when there is no required field in the order. <em>Example: Address field not filled</em>.<br> Default setting: 'review_clearsale'.]]>
+                    </comment>
+                </field>
+
+                <field id="cancel_if_reproved" translate="label comment" type="select" sortOrder="25" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Cancel order if status reproved</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                    <![CDATA[Field to choose whether or not the order will be <strong>canceled after Clearsale's disapproval</strong>.<br> This setting depends on the behavior of the payments method. If the Clearsale analysis is configured to be carried out <strong>after payment approval</strong>, this configuration must be set to <strong>NO</strong>. Otherwise, you can enable this setting without any problems.]]>
+                    </comment>
+                </field>
+
+                <field id="generate_invoice" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Automatically generate invoice after approved</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                    <![CDATA[Field to define whether or not the invoice will be <strong>automatically generated after Clearsale approval</strong>.<br> This setting depends on the behavior of the payments method. It can be activated if the payment method <strong>does not have automatic invoice generation</strong>.]]>
+                    </comment>
+                </field>
+            </group>
+
+             <group id="payment_methods" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Payment Methods Mapping</label>
+                <field id="allowed_payment_methods" translate="label comment" type="multiselect" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Allowed payment methods</label>
+                    <source_model>Clearsale\Total\Model\Config\Source\PaymentMethods</source_model>
+                    <comment>
+                    <![CDATA[Field to select which will be the payment methods for the orders that <strong>will be sent for analysis</strong> by Clearsale. IMPORTANT: The methods listed above are the ones that were chosen in the Payment Mapping in CLEARSALE BASE.]]>
+                    </comment>
+                    <validate>required-entry</validate>
+                </field>
+            </group>
+
+            <group id="cron_config" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Cron Settings</label>
+                <field id="frequency" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Frequency</label>
+					<source_model>Clearsale\Total\Model\Config\Source\CronFrequency</source_model>
+                    <backend_model>Clearsale\Total\Model\Config\Source\CronConfig</backend_model>
+                    <comment>
+                    <![CDATA[Field to <strong>change the frequency</strong> of execution of the Cron for sending orders to Clearsale analysis.]]>
+                    </comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,10 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+ $order = $objectManager->create('\Magento\Sales\Model\Order')->load($this->getRequest()->getParam('order_id'));
+
+
+if($order->getPayment()->getAdditionalInformation('number_whatsapp_send')){
+        echo '<p>'.__('Whatsapp para mensagens sobre o pedido:') .' '.$order->getPayment()->getAdditionalInformation('number_whatsapp_send').'</p>';
+}
+
+?>

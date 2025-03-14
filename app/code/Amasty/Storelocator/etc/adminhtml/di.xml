@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package Store Locator for Magento 2
+ */-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Amasty\Storelocator\Model\DataCollector\Location\CompositeCollector">
+        <arguments>
+            <argument name="dataCollectors" xsi:type="array">
+                <item name="attributes" xsi:type="object">Amasty\Storelocator\Model\DataCollector\Location\AttributeCollector</item>
+                <item name="marker_image_url" xsi:type="object">Amasty\Storelocator\Model\DataCollector\Location\MarkerImageUrlCollector</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

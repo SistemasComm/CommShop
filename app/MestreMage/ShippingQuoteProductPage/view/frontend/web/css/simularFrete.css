@@ -1,0 +1,215 @@
+.field.postcode input#cep {
+    width: 70%;
+    float: left;
+}
+.field.postcode input#sendFrete {
+    float: right;
+}
+ul#containerFrete {
+    float: left;
+    padding: 10px 0;
+    width: 95%;
+}
+span.link-cep-br {
+    float: left;
+    font-size: 9px;
+    width: 100%;
+}
+.modal-cep {
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10001;
+}
+.conteudo-modal-cep {
+    -moz-box-sizing: border-box;
+    padding: 30px;
+    font-size: 16px;
+    width: 410px;
+    background-color: #fefefe;
+    z-index: 1002;
+    margin: 118px auto;
+    display: flex;
+}
+.conteudo-modal-cep h2.simulateTitle {
+    margin: 0;
+    font-size: 21px;
+    border-bottom: 1px solid #ebebeb;
+}
+span.closed-modal-cep {
+    position: absolute;
+    right: 37%;
+}
+
+.conteudo-modal-cep .field.postcode input#cep {
+    width: 60%;
+}
+@media (max-width: 500px) {
+    .conteudo-modal-cep {
+        width: 245px !important;
+        margin: 10px auto !important;
+    }
+    .conteudo-modal-cep .field.postcode input#cep {
+        width: 42% !important;
+    }
+    span.closed-modal-cep {
+        right: 14% !important;
+    }
+}
+
+
+a.openmodal {
+    color: black;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.modal-chamar {
+    margin-bottom: 10px;
+}
+
+.catalog-product-view .product-options > dl {
+    margin-bottom: 0px;
+}
+
+
+.modal-interna {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 2001; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    -webkit-animation-name: fadeIn; /* Fade in the background */
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s
+}
+
+.modal-interna-content {
+    position: fixed;
+    top: 140px;
+    background-color: #fefefe;
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn;
+    animation-duration: 0.4s;
+    left: 40px;
+    right: 40px;
+    -webkit-box-shadow: -1px -1px 28px -5px rgba(0,0,0,0.75);
+    -moz-box-shadow: -1px -1px 28px -5px rgba(0,0,0,0.75);
+    box-shadow: -1px -1px 28px -5px rgba(0,0,0,0.75);
+    width: 50%;
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+
+
+.close-modal {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    width: 8%;
+    padding: 0 10px;
+    text-align: center;
+}
+.close-modal:hover,
+.close-modal:focus {
+    color: #C00;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.modal-interna-header {
+    background-color: #000;
+    color: white;
+    display: table;
+    width: 100.1%;
+}
+
+.modal-interna-header h2 {
+    color: white;
+    font-size: 18px;
+    float: left;
+    margin: 12px 0 10px 0;
+    text-align: left;
+    font-weight: bold;
+    padding: 0 11px;
+}
+
+.modal-interna-body img{
+    display: inline;
+}
+
+.modal-interna-body {
+    padding: 20px;
+    text-align: center;
+}
+.img-mostruario img {
+    width: 100%;
+}
+.conteudo-mostruario {
+    cursor: pointer;
+}
+
+#containerFrete li {
+    width: 100%;
+    float: left;
+    text-align: left;
+    border-bottom: 1px solid #ebebeb;
+    list-style-type: none;
+    padding: 5px;
+}
+
+.label-mm {
+    text-align: left;
+    width: 100%;
+    float: left;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+#simularFrete #sendFrete {
+    padding: 8px 30px;
+    border: none;
+    background-color: #1979c3;
+    color: #fff;
+    width: 29%;
+}
+
+
+
+@media (max-width: 791px) {
+    #modal-cep-mestremage span {
+        text-align: left;
+        margin-top: 7px;
+    }
+    .modal-interna-content {
+        width: 81%;
+    }
+    #simularFrete #sendFrete {
+        width: 100%;
+    }
+
+    .field.postcode input#cep {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .modal-interna-header h2 {
+        font-size: 10px;
+    }
+
+}
+
+
+

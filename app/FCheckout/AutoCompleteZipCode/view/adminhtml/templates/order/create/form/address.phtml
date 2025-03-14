@@ -1,0 +1,359 @@
+<?php
+
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var \Magento\Customer\Model\ResourceModel\Address\Collection $addressCollection
+ */
+$addressCollection = $block->getData('customerAddressCollection');
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$scopeConfig = $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface');
+$mask_postcode = $scopeConfig->getValue('autocompletezipcode/geral/mask_postcode', \Magento\Store\Model\ScopeInterface::SCOPE_STORES);
+$autoCompleteZipCodeHelper = $objectManager->create('\FCheckout\AutoCompleteZipCode\Helper\Data');
+$getAllRegions = $autoCompleteZipCodeHelper->getAllRegions();
+
+
+$addressArray = [];
+if ($block->getCustomerId()) {
+    $addressArray = $addressCollection->setCustomerFilter([$block->getCustomerId()])->toArray();
+}
+
+/**
+ * @var \Magento\Sales\ViewModel\Customer\AddressFormatter $customerAddressFormatter
+ */
+$customerAddressFormatter = $block->getData('customerAddressFormatter');
+
+/**
+ * @var \Magento\Sales\Block\Adminhtml\Order\Create\Billing\Address|\Magento\Sales\Block\Adminhtml\Order\Create\Shipping\Address $block
+ */
+if ($block->getIsShipping()) :
+    $_fieldsContainerId = 'order-shipping_address_fields';
+    $_addressChoiceContainerId = 'order-shipping_address_choice';
+    $_addressChoiceContainers = 'order-shipping_address';
+    $pageType = 'shipping';
+?>
+    <script>
+        require(["Magento_Sales/order/create/form"], function() {
+
+            order.shippingAddressContainer = '<?= /* @escapeNotVerified */ $_fieldsContainerId ?>';
+            order.setAddresses(<?= /* @escapeNotVerified */ $customerAddressFormatter->getAddressesJson($addressArray) ?>);
+
+        });
+    </script>
+<?php
+else :
+    $_fieldsContainerId = 'order-billing_address_fields';
+    $_addressChoiceContainerId = 'order-billing_address_choice';
+    $_addressChoiceContainers = 'order-billing_address';
+    $pageType = 'billing';
+?>
+    <script>
+        require(["Magento_Sales/order/create/form"], function() {
+            order.billingAddressContainer = '<?= /* @escapeNotVerified */ $_fieldsContainerId ?>';
+        });
+    </script>
+<?php
+endif; ?>
+
+<fieldset class="admin__fieldset">
+    <legend class="admin__legend <?= /* @escapeNotVerified */ $block->getHeaderCssClass() ?>">
+        <span><?= /* @escapeNotVerified */ $block->getHeaderText() ?></span>
+    </legend><br>
+
+    <fieldset id="<?= /* @escapeNotVerified */ $_addressChoiceContainerId ?>" class="admin__fieldset order-choose-address">
+        <?php if ($block->getIsShipping()) : ?>
+            <div class="admin__field admin__field-option admin__field-shipping-same-as-billing">
+                <input type="checkbox" id="order-shipping_same_as_billing" name="shipping_same_as_billing" onclick="order.setShippingAsBilling(this.checked)" class="admin__control-checkbox" <?php if ($block->getIsAsBilling()) : ?>checked<?php endif; ?> />
+                <label for="order-shipping_same_as_billing" class="admin__field-label">
+                    <?= /* @escapeNotVerified */ __('Same As Billing Address') ?>
+                </label>
+            </div>
+        <?php endif; ?>
+        <div class="admin__field admin__field-select-from-existing-address">
+            <label class="admin__field-label"><?= /* @escapeNotVerified */ __('Select from existing customer addresses:') ?></label>
+            <?php $_id = $block->getForm()->getHtmlIdPrefix() . 'customer_address_id' ?>
+            <div class="admin__field-control">
+                <select id="<?= /* @escapeNotVerified */ $_id ?>" name="<?= $block->getForm()->getHtmlNamePrefix() ?>[customer_address_id]" onchange="order.selectAddress(this, '<?= /* @escapeNotVerified */ $_fieldsContainerId ?>')" class="admin__control-select">
+                    <option value=""><?= /* @escapeNotVerified */ __('Add New Address') ?></option>
+                    <?php foreach ($addressArray as $addressId => $address) : ?>
+                        <option value="<?= /* @escapeNotVerified */ $addressId ?>" <?php if ($addressId == $block->getAddressId()) : ?> selected="selected" <?php endif; ?>>
+                            <?= /* @escapeNotVerified */ $block->escapeHtml($customerAddressFormatter->getAddressAsString($address)) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="order-address admin__fieldset" id="<?= /* @escapeNotVerified */ $_fieldsContainerId ?>">
+        <?= $block->getForm()->toHtml() ?>
+
+        <div class="admin__field admin__field-option order-save-in-address-book">
+            <input name="<?= $block->getForm()->getHtmlNamePrefix() ?>[save_in_address_book]" type="checkbox" id="<?= $block->getForm()->getHtmlIdPrefix() ?>save_in_address_book" value="1" <?php if (!$block->getDontSaveInAddressBook() && $block->getAddress()->getSaveInAddressBook()) : ?> checked="checked" <?php endif; ?> class="admin__control-checkbox" />
+            <label for="<?= $block->getForm()->getHtmlIdPrefix() ?>save_in_address_book" class="admin__field-label"><?= /* @escapeNotVerified */ __('Save in address book') ?></label>
+        </div>
+    </div>
+    <?php $hideElement = 'address-' . ($block->getIsShipping() ? 'shipping' : 'billing') . '-overlay'; ?>
+    <div style="display: none;" id="<?= /* @escapeNotVerified */ $hideElement ?>" class="order-methods-overlay">
+        <span><?= /* @escapeNotVerified */ __('You don\'t need to select a shipping address.') ?></span>
+    </div>
+
+    <script>
+        require(["Magento_Sales/order/create/form"], function() {
+            order.bindAddressFields('<?= /* @escapeNotVerified */ $_fieldsContainerId ?>');
+            order.bindAddressFields('<?= /* @escapeNotVerified */ $_addressChoiceContainerId ?>');
+            <?php if ($block->getIsShipping() && $block->getIsAsBilling()) : ?>
+                order.disableShippingAddress(true);
+            <?php endif; ?>
+        });
+    </script>
+</fieldset>
+
+
+<script>
+    var get_all_regions = JSON.parse('<?= json_encode($getAllRegions) ?>');
+
+    require([
+        'jquery',
+        'underscore',
+        'mage/translate',
+        'domReady!'
+    ], function($, _, $t) {
+        'use strict';
+        (function() {
+            const send = XMLHttpRequest.prototype.send;
+            XMLHttpRequest.prototype.send = function() {
+                this.addEventListener('load', function() {
+                    var fieldStreet = $('#<?= $_fieldsContainerId ?>').find('.field-street');
+                    var telephoneField = $('.field-telephone input');
+                    var zip, id;
+                    var billingPostName = 'order[billing_address][postcode]';
+                    var shippingPostName = 'order[shipping_address][postcode]';
+                    $("#<?= $_fieldsContainerId ?> .field-postcode").remove().insertBefore($("#<?= $_fieldsContainerId ?> .field-street"));
+
+
+                    var telephone = $('#<?= $_addressChoiceContainers ?>_telephone');
+                    var fax = $('#<?= $_addressChoiceContainers ?>_fax');
+                    var postcode = $('#<?= $_addressChoiceContainers ?>_postcode');
+
+
+                    postcode.keyup(function() {
+                        $(this).val(maskPostCode($(this).val()));
+                    });
+
+                    fax.keyup(function() {
+                        $(this).val(maskTel($(this).val()));
+                    });
+
+                    telephone.keyup(function() {
+                        $(this).val(maskTel($(this).val()));
+                    });
+
+                    postcode.change(function() {
+                        <?= $pageType ?>PostCode($(this).val());
+                        $('#<?= $_addressChoiceContainers ?>_country_id').trigger('change');
+                    });
+
+                    addRequiredFields(fieldStreet);
+                    addMultilineLabels(fieldStreet);
+                });
+                return send.apply(this, arguments)
+            }
+        })()
+
+
+
+
+        /**
+         * Add lines to street multiline children fields.
+         *
+         * @param {Object} fieldStreet
+         */
+        function addMultilineLabels(fieldStreet) {
+            var fields, labelHtml, labelFor = '',
+                label = '';
+
+            fieldStreet.children('label').remove();
+
+            _.each(fieldStreet, function(item) {
+                fields = $(item).find('.multi-input');
+
+                _.each(fields, function(field, index) {
+                    if ($(field).children('label').length > 0) {
+                        return;
+                    }
+                    labelHtml = '';
+                    labelFor = $(field).find('input').attr('id');
+
+                    switch (index) {
+                        case 0:
+                            label = "<?= $autoCompleteZipCodeHelper->getLineLabel(1) ?>";
+                            break;
+                        case 1:
+                            label = "<?= $autoCompleteZipCodeHelper->getLineLabel(2) ?>";
+                            break;
+                        case 2:
+                            label = "<?= $autoCompleteZipCodeHelper->getLineLabel(3) ?>";
+                            break;
+                        case 3:
+                            label = "<?= $autoCompleteZipCodeHelper->getLineLabel(4) ?>";
+                            break;
+                    }
+
+                    labelHtml += '<label class="label admin__field-label" for="' + labelFor + '"><span>' + label + '</span></label>';
+                    $(field).prepend(labelHtml);
+                });
+            });
+        }
+
+        /**
+         * Add required fields to street children fields.
+         *
+         * @param {Object} fieldStreet
+         */
+        function addRequiredFields(fieldStreet) {
+            var classToAdd = 'required-entry',
+                fields;
+
+            _.each(fieldStreet, function(item) {
+                fields = $(item).find('.multi-input');
+
+                _.each(fields, function(field, index) {
+                    if (index !== 2) {
+                        $(field).find('input').addClass(classToAdd);
+                        $(field).addClass('required');
+                    }
+
+                    if (index === 1) {
+                        $(field).find('input').attr('maxlength', 10);
+                    }
+                });
+            });
+        }
+
+
+        /**
+         * Update the addresses when values comes from Zipcodefinder api.
+         * Mainly to avoid autocomplete issues.
+         */
+        function triggerChangeEvent(fields) {
+            var event = new Event('change');
+
+            _.each(fields, function(item) {
+                setTimeout(function() {
+                    item[0].dispatchEvent(event);
+                }, 3000);
+            });
+        }
+
+    })
+
+    function <?= $pageType ?>Clean() {
+        document.getElementById('<?= $_addressChoiceContainers ?>_street0').value = ("");
+        document.getElementById('<?= $_addressChoiceContainers ?>_street3').value = ("");
+        document.getElementById('<?= $_addressChoiceContainers ?>_city').value = ("");
+        document.getElementById('<?= $_addressChoiceContainers ?>_region_id').value = ("");
+    }
+
+    function <?= $pageType ?>Callback(conteudo) {
+        if (!("erro" in conteudo)) {
+            let street0 = document.getElementById('<?= $_addressChoiceContainers ?>_street0');
+            let street3 = document.getElementById('<?= $_addressChoiceContainers ?>_street3');
+            let city = document.getElementById('<?= $_addressChoiceContainers ?>_city');
+            let region_id = document.getElementById('<?= $_addressChoiceContainers ?>_region_id');
+
+            street0.value = (conteudo.logradouro);
+            street3.value = (conteudo.bairro);
+            city.value = (conteudo.localidade);
+            region_id.value = (setIdByUf(conteudo.uf));
+
+            if (!jQuery('#order-shipping_address_postcode').val()) {
+                jQuery('#order-shipping_address_postcode').val(conteudo.cep)
+            }
+
+            jQuery('#<?= $_addressChoiceContainers ?>_street0').trigger('change').trigger('keyup');
+            jQuery('#<?= $_addressChoiceContainers ?>_street3').trigger('change').trigger('keyup');
+            jQuery('#<?= $_addressChoiceContainers ?>_city').trigger('change').trigger('keyup');
+            jQuery('#<?= $_addressChoiceContainers ?>_region_id').trigger('change').trigger('keyup');
+
+        } else {
+            <?= $pageType ?>Clean();
+        }
+    }
+
+    function <?= $pageType ?>PostCode(valor) {
+        var cep = valor.replace(/\D/g, '');
+        if (cep != "") {
+
+            var validacep = /^[0-9]{8}$/;
+
+            if (validacep.test(cep)) {
+
+                document.getElementById('<?= $_addressChoiceContainers ?>_street0').value = "";
+                document.getElementById('<?= $_addressChoiceContainers ?>_street3').value = "";
+                document.getElementById('<?= $_addressChoiceContainers ?>_city').value = "";
+                document.getElementById('<?= $_addressChoiceContainers ?>_region_id').value = "";
+
+                var script = document.createElement('script');
+
+                script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=<?= $pageType ?>Callback';
+
+                document.body.appendChild(script);
+
+            } else {
+                <?= $pageType ?>Clean();
+            }
+        } else {
+            <?= $pageType ?>Clean();
+        }
+    };
+
+    function maskTel(v) {
+        if (v.length > 15) {
+            return v.substring(0, 15);
+        }
+        v = v.replace(/\D/g, "");
+        v = v.replace(/^(\d{2})(\d)/g, "($1) $2");
+        v = v.replace(/(\d)(\d{4})$/, "$1-$2");
+        return v;
+    }
+
+    function maskPostCode(v) {
+
+        if (v.length > 9) {
+            return v.substring(0, 9);
+        }
+        v = v.replace(/\D/g, "");
+        v = v.replace(/^(\d{5})(\d)/, "$1-$2");
+        return v
+    }
+
+    function getObjects(obj, key, val) {
+        var objects = [];
+        for (var i in obj) {
+            if (!obj.hasOwnProperty(i)) continue;
+            if (typeof obj[i] == 'object') {
+                objects = objects.concat(getObjects(obj[i], key, val));
+            } else
+            if (i == key && obj[i] == val || i == key && val == '') {
+                objects.push(obj);
+            } else if (obj[i] == val && key == '') {
+                if (objects.lastIndexOf(obj) == -1) {
+                    objects.push(obj);
+                }
+            }
+        }
+        return objects;
+    }
+
+    function setIdByUf(uf) {
+        let id = getObjects(get_all_regions, 'code', uf);
+        return id[0].id;
+    }
+</script>

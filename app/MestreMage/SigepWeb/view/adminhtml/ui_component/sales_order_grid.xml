@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <listingToolbar name="listing_top">
+        <massaction name="listing_massaction">
+            <action name="printtags">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">printposttags</item>
+                        <item name="label" xsi:type="string" translate="true">Imprimir Etiquetas SigepWeb</item>
+                        <item name="url" xsi:type="url" path="printpostcodtags/order/printtags"/>
+                    </item>
+                </argument>
+            </action>
+            <action name="printplp">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">printplp</item>
+                        <item name="label" xsi:type="string" translate="true">Imprimir PLP SigepWeb</item>
+                        <item name="url" xsi:type="url" path="printpostcodtags/order/printplp"/>
+                    </item>
+                </argument>
+            </action>
+            <action name="fecharplp">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">fecharplp</item>
+                        <item name="label" xsi:type="string" translate="true">Fechar PLP SigepWeb</item>
+                        <item name="url" xsi:type="url" path="printpostcodtags/order/fecharplp"/>
+                    </item>
+                </argument>
+            </action>            
+        </massaction>
+    </listingToolbar>
+    <columns name="sales_order_columns">
+        <column name="export_status" class="MestreMage\SigepWeb\Ui\Component\Listing\Column\Plpstatus">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+				    <item name="sortable" xsi:type="boolean">false</item>
+                    <item name="has_preview" xsi:type="string">1</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="label" xsi:type="string" translate="true">Status PLP</item>
+                </item>
+            </argument>
+        </column>
+    </columns>    
+</listing>

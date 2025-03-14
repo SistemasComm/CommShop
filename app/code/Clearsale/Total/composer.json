@@ -1,0 +1,17 @@
+{
+    "name": "clearsale/magento2-total",
+    "version": "1.0.15",
+    "description": "",
+    "license": "proprietary",
+    "require": {
+        "clearsale/magento2-base": "^1.0.14"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Clearsale\\Total\\": ""
+        }
+    }
+}

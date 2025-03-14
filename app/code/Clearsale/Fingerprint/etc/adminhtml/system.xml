@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<tab id="clearsale" sortOrder="999" translate="label">
+			<label>clearsale</label>
+		</tab>
+		<section id="clearsale_fingerprint" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+			<label>Fingerprint</label>
+			<tab>clearsale</tab>
+			<resource>Clearsale_Fingerprint::config_clearsale_fingerprint</resource>
+			<group id="settings" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label comment">
+				<label>Settings</label>
+				<comment><![CDATA[The fingerprint module is responsible for identifying and detecting the device that is being used to make the purchase in the store.]]></comment>
+				<field id="google_tag_manager" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label comment" type="select">
+					<label><![CDATA[Google Tag Manager (GTM)]]></label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<comment><![CDATA[Field to activate Google Tag Manager if you have it in your store.]]></comment>
+				</field>
+				<field id="app_name" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label comment" type="text">
+					<label>App Name</label>
+					<comment><![CDATA[Field where the Fingerprint app code provided by Clearsale is filled in.]]></comment>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>

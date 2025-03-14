@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="mestremage" sortOrder="999" translate="mestremage">
+            <label>mestremage</label>
+        </tab>
+        <section id="opcmestremage" translate="One Step Checkout" type="text"  showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>One Step Checkout</label>
+            <tab>mestremage</tab>
+            <resource>MestreMage_OneStepCheckout::opcheckout_configuration</resource>
+            <group id="general" translate="label" sortOrder="1" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Configuration</label>
+                
+				<field id="active" translate="Enable" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+				
+				<field id="active_hash" translate="Chave de ativação" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Chave de ativação</label>
+				</field>
+				
+                <field id="type_layout" translate="Type Layout" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Type Layout</label>
+                    <source_model>MestreMage\OneStepCheckout\Model\Source\TypeLayout</source_model>
+                </field>
+				
+				<!--
+				<field id="optimized_fields" translate="Optimized Fields" type="select" sortOrder="21" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Optimized Fields</label>
+                    <source_model>MestreMage\OneStepCheckout\Model\Source\OptimizedFields</source_model>
+					<comment><![CDATA[]]></comment>
+                </field>
+				
+				<field id="simple_header" translate="Simple Header" type="select" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Simple Header</label>
+                    <source_model>MestreMage\OneStepCheckout\Model\Source\SimpleHeader</source_model>
+					<comment><![CDATA[Oculta todos os elementos do topo e deixa apenas a logomarca centralizada.]]></comment>
+                </field>
+				
+				<field id="simple_footer" translate="Simple Footer" type="select" sortOrder="23" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Simple Footer</label>
+                    <source_model>MestreMage\OneStepCheckout\Model\Source\SimpleFooter</source_model>
+					<comment><![CDATA[Oculta todo o rodapé.]]></comment>
+                </field>
+				-->
+				
+                <field id="custom_css" translate="Custom CSS" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom css</label>
+                    <comment>custom css insert footer checkout</comment>
+                </field>
+                <field id="custom_js" translate="Custom JS" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom js</label>
+                    <comment>Custom js insert footer checkout</comment>
+                </field>
+                <field id="shipping_address" translate="Coluna 1" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Coluna 1</label>
+				</field>
+                 <field id="shipping_method" translate="Coluna 2" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Coluna 2</label>
+				</field>
+                <field id="payment_method" translate="Coluna 3" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Coluna 3</label>
+				</field>
+                 <field id="opc_sidebar" translate="Coluna 4" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Coluna 4</label>
+				</field>
+                <field id="authentication_button" translate="Botão de logar" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Botão de logar</label>
+				</field>
+                <field id="msg_invalid_phone" translate="Telefone invalid" type="text" sortOrder="95" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Telefone invalido</label>
+				</field>   
+                <field id="required_register" translate="Criação de Conta" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Criação de Conta </label>
+                    <source_model>MestreMage\OneStepCheckout\Model\Source\RequiredRegister</source_model>
+                </field>             
+            </group>
+            <group id="options" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Options</label>
+                <field id="checkout_comments_enabled" translate="Enable Order Comments" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Order Comments</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

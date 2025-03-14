@@ -1,0 +1,22 @@
+{
+    "name": "mestremage/module-cpfcnpj",
+    "description": "adiciona Cpf Cnpj no checkout",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Mestre Magento",
+            "email": "suporte@mestremage.com.br"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "FCheckout\\CpfCnpj\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

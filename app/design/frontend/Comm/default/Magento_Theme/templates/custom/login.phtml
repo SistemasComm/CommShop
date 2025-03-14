@@ -1,0 +1,55 @@
+<?php
+use \Magento\Framework\App\ObjectManager;
+use \Magento\Framework\UrlInterface;
+
+$objectManager = ObjectManager::getInstance();
+$urlInterface = $objectManager->get(UrlInterface::class);
+
+$loginUrl = $urlInterface->getUrl('customer/account/login');
+$createUrl = $urlInterface->getUrl('customer/account/create');
+$accountUrl = $urlInterface->getUrl('customer/account');
+$logoutUrl = $urlInterface->getUrl('customer/account/logout');
+?>
+
+<div class="login-block" data-bind="scope: 'customer'">
+    <span class="icon"></span>
+    <div class="text" style="display: none;" data-bind="style: { display: customer().firstname || !customer().firstname ? 'block' : 'none' }">
+        <!-- ko ifnot: customer().firstname -->
+        <p class="login-text"><a href="<?= $loginUrl ?>">Entre</a></p>
+        <p class="login-text-enter"><a href="<?= $createUrl ?>"> ou Cadastre-se</a></p>
+        <p class="extra-text">Para ver seus pedidos</p>
+        <!-- /ko -->
+        <!-- ko if: customer().firstname -->
+        <p class="login-text">Bem vindo(a) <b data-bind="text: customer().firstname"></b>!</p>
+        <p class="extra-text">
+            <a href="<?= $accountUrl ?>">Minha conta</a> | 
+            <a href="<?= $logoutUrl ?>">Sair</a>
+        </p>
+        <!-- /ko -->
+    </div>
+    <ul class="popover">
+        <!-- ko ifnot: customer().firstname -->
+        <li><a href="<?= $loginUrl ?>">Entrar</a></li>
+        <!-- /ko -->
+        <!-- ko if: customer().firstname -->
+        <li><a href="<?= $accountUrl ?>">Minha conta</a></li>
+        <li><a href="<?= $logoutUrl ?>">Sair</a></li>
+        <!-- /ko -->
+    </ul>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "customer": {
+                        "component": "Magento_Customer/js/view/customer"
+                    }
+                }
+            },
+            "js/header-login-toggle": {}
+        }
+    }
+</script>
+

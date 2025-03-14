@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <clearsale_total>
+            <settings>
+                <mass_order_qty>50</mass_order_qty>
+            </settings>
+            <cron_config>
+                <frequency>*/15 * * * *</frequency>
+            </cron_config>
+            <manage_status>
+				<filter_status>pending,processing</filter_status>
+                <analyze_status>aprovacao_clearsale</analyze_status>
+                <approved_status>aprovado_clearsale</approved_status>
+                <manual_approved_status>aprovado_clearsale</manual_approved_status>
+                <reproved_status>reprovado_clearsale</reproved_status>
+                <review_status>review_clearsale</review_status>
+            </manage_status>
+        </clearsale_total>
+    </default>
+</config>

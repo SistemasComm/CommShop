@@ -1,0 +1,18 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="sales_order_tabs">
+            <block class="Clearsale\Total\Block\Adminhtml\OrderEdit\Tab\Chargeback" name="clearsale_total_chargeback_edit_tab" template="Clearsale_Total::total_chargeback.phtml"/>
+            <action method="addTabAfter">
+                <argument name="name" xsi:type="string">total_chargeback_section</argument>
+                <argument name="block" xsi:type="string">Clearsale\Total\Block\Adminhtml\OrderEdit\Tab\Chargeback</argument>
+                <argument name="after" xsi:type="string">order_transactions</argument>
+            </action>
+            <block class="Clearsale\Total\Block\Adminhtml\OrderEdit\Tab\StatusUpdate" name="clearsale_total_statusupdate_edit_tab" template="Clearsale_Total::total_statusupdate.phtml"/>
+            <action method="addTabAfter">
+                <argument name="name" xsi:type="string">total_status_update_section</argument>
+                <argument name="block" xsi:type="string">Clearsale\Total\Block\Adminhtml\OrderEdit\Tab\StatusUpdate</argument>
+                <argument name="after" xsi:type="string">total_chargeback_section</argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>

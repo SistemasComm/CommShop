@@ -1,0 +1,11 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="MestreMage_ShippingQuoteProductPage::/css/simularFrete.css" />
+        <script src="MestreMage_ShippingQuoteProductPage::/js/simularFrete.js"/>
+    </head>
+    <body>
+        <referenceContainer name="product.info.extrahint">
+            <block class="MestreMage\ShippingQuoteProductPage\Block\Catalog\Product\View\CalcularFrete" name="mestre_magento_correios_frete" after="-" template="catalog/product/view/frete.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,28 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package Store Locator for Magento 2
+ */ /** @var \Amasty\Storelocator\Block\Location $block */ ?>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Amasty_Storelocator/js/googleApiCompatibility": {}
+        }
+    }
+</script>
+<script>
+    require([
+        "jquery",
+        "Magento_Ui/js/lib/view/utils/dom-observer",
+        "mage/adminhtml/form",
+        "Amasty_Storelocator/js/admin",
+        "https://maps.googleapis.com/maps/api/js?libraries=places&key=<?= $block->escapeHtml(
+            $block->configProvider->getApiKey()
+        ); ?>"
+    ], function(jQuery, domObserver) {
+        domObserver.get('#map-canvas', function () {
+            jQuery('#map-canvas').amLocator();
+        });
+    })
+</script>

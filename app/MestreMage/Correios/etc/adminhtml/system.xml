@@ -1,0 +1,320 @@
+<?xml version="1.0" ?>
+<!--
+ /**
+ * Mestre Magento
+ * www.modulomagento.com.br
+ *
+ * LICENÇA DE USO
+ * Este arquivo está sujeito ao EULA (contrato de licença para usuário final).
+ * @copyright Copyright (c) Mestre Magento. ( https://www.modulomagento.com.br/ )
+ * @license   https://www.modulomagento.com.br/Mestre-Magento-Licenca.txt
+ *
+ * ##############################################################################
+ * #																			#
+ * #  Nós programadores nos dedicamos muito, da mesma forma que você, então		#
+ * #  valorize sua profissão e não aceite usar esse módulo de forma ilícita.	#
+ * #  Denuncie anônimamente a empresa que utilizar esse módulo de forma ilegal.	#
+ * #  Estamos abertos a parcerias com desenvolvedores ;)						#
+ * #																			#
+ * ##############################################################################
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<section id="modulo_correios_section_config_geral" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+			<label>Correios Configuração Geral</label>
+			<tab>mestremage</tab>
+			<resource>MestreMage_Correios::config</resource>
+			<group id="modulo_correios_group_config_geral" translate="label" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+				<frontend_model>MestreMage\Correios\Block\Adminhtml\redirect\ConfigModule</frontend_model>
+			</group>
+		</section>
+		<section id="modulo_correios_section" translate="label" type="text" sortOrder="201" showInDefault="1" showInWebsite="1" showInStore="1">
+			<label>Correios Códigos e Contrato</label>
+			<tab>mestremage</tab>
+			<resource>MestreMage_Correios::config</resource>
+			<group id="modulo_correios_group" translate="label" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>Correios</label>
+				<frontend_model>MestreMage\Correios\Block\Adminhtml\System\Config\Extensions</frontend_model>
+			</group>
+			<group id="settings" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+				<label>CORREIOS CÓDIGOS</label>
+				<comment>Os códigos abaixo são os padrões do Correios, caso seu contrato com o Correios tenha um código específico, redefina no campo abaixo correspondente ao método de entrega.</comment>
+				<field id="methods" translate="label comment tooltip" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+					<label>Methods</label>
+					<frontend_model>MestreMage\Correios\Block\Adminhtml\System\Config\PostMethods</frontend_model>
+					<backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+					<tooltip><![CDATA[Os códigos abaixo são os padrões do Correios, caso seu contrato com o Correios tenha um código específico, redefina no campo abaixo correspondente ao método de entrega.]]></tooltip>
+				</field>
+			</group>
+			<group id="settings_contract" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+				<label>CORREIOS CONTRATO</label>
+				<comment>Para ter um contrato junto ao Correios, ligue para 3003 0800 (capitais e regiões metropolitanas) ou 0800 200 0800 (demais localidades).</comment>
+				<field id="cod_adm" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Código Administrativo</label>
+				</field>
+				<field id="pass_adm" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Senha Administrativa</label>
+				</field>
+			</group>
+			<group id="settings_con_test" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+				<label>CORREIOS VALIDAR CONEXÃO COM CONTRATO</label>
+				<comment>Aqui iremos realizar uma conexão simples com o webservice do Correios utilizando os dados do seu contrato.</comment>
+				<field id="zip_orig" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>CEP de origem</label>
+				</field>
+				<field id="zip_dest" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>CEP de destino</label>
+				</field>
+
+			</group>
+		</section>
+		<section id="modulo_correios_section_base_offline" translate="label" type="text" sortOrder="202" showInDefault="1" showInWebsite="1" showInStore="1">
+			<label>Correios Base Offline</label>
+			<tab>mestremage</tab>
+			<resource>MestreMage_Correios::config</resource>
+			<group id="modulo_correios_group_base_offline" translate="label" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+				<frontend_model>MestreMage\Correios\Block\Adminhtml\redirect\AddOfflinePostCode</frontend_model>
+			</group>
+		</section>
+		<section id="carriers" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="1000" translate="label">
+			<group id="correios" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+				<label>Correios Mestre Mage</label>
+				<comment><![CDATA[
+				
+				<p><h2>Instruções Iniciais</h2>
+				Atenção! Antes de configurar o módulo você precisa realizar alguns passos:</p>
+				
+				<p>
+					<strong>Passo 1: </strong>
+					Verifique se você configurou em sua loja a medida de peso quilos (kgs) em Lojas > Configurações > Geral > Geral > Opções de localidade > Unidade de Peso.
+				</p>
+
+				<p>
+					<strong>Passo 2: </strong>
+					Verifique se você configurou em sua loja o CEP de origem em Lojas > Configurações > Vendas > Detalhes do Envio > Origem.
+				</p>
+				
+				<p>
+					<strong>Passo 3: </strong>
+					Sempre defina no cadastro do produto o peso, altura, largura e comprimento, pois sem essas informações o Correios não irá retornar o frete.
+				</p>
+				
+				<p style='color:#f00;'>
+					<strong>Aviso Importante!<br />Antes de colocar oficialmente em sua loja, valide o funcionamento do módulo em um ambiente de teste e somente após validar os valores de frete coloque em produção.</strong>
+				</p>
+				
+				 ]]></comment>
+				<field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Enabled</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="ambiente" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Ambiente</label>
+					<source_model>MestreMage\Correios\Model\Config\Source\Sandbox</source_model>
+					<comment><![CDATA[No modo sandbox o retorno do Correios é apresentado ao final da tela, junto com os parâmetros que foram enviados, como CEP de origem e destino, valor e dimensões do pedido, serviços adicionais configurados. Assim você poderá validar se o frete retornado esta correto.]]></comment>
+				</field>
+				<field id="active_hash" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Chave de ativação</label>
+				</field>
+				<field id="enabled_log" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Habilitar Log?</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<comment>Todas as requisições serão armazenadas em um arquivo de texto, no arquivo /var/log/correios.log</comment>
+				</field>
+				<field id="name" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Título do método de entrega</label>
+				</field>
+				<field id="posting_methods" translate="label" type="multiselect" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Serviços Disponíveis</label>
+					<source_model>MestreMage\Correios\Model\Config\Source\PostingMethods</source_model>
+					<comment>Selecione um ou mais itens segurando a tecla CTRL.</comment>
+				</field>
+				<field id="posting_freemethod" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Método Gratuito Principal</label>
+					<source_model>MestreMage\Correios\Model\Config\Source\PostingMethods</source_model>
+					<comment>Caso exista uma regra de promoção criada em sua loja que aplique frete grátis, esse método de entrega irá absorver essa regra deixando ele gratuito.</comment>
+				</field>
+				<field id="posting_freemethod_2" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Método Gratuito Secundário</label>
+					<source_model>MestreMage\Correios\Model\Config\Source\PostingMethods</source_model>
+					<comment>Caso exista uma regra de promoção criada em sua loja que aplique frete grátis, esse método de entrega irá absorver essa regra deixando ele gratuito. Porém essa opção só será aplicada caso o método definido no campo acima "Método Gratuito Principal" não existir.</comment>
+				</field>
+				<field id="freeshipping_message" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Mensagem de Entrega Grátis</label>
+				</field>
+				<field id="owner_hands" translate="label" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Serviço Adicional Mãos Próprias</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<comment><![CDATA[Habilitando esse serviço será acrescido ao valor do frete conforme descrito nesse link:<br>http://www.correios.com.br/enviar-e-receber/servicos-adicionais/precos-de-mao-propria]]></comment>
+				</field>
+				<field id="received_warning" translate="label" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Serviço Adicional Aviso de Recebimento</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<comment><![CDATA[Habilitando esse serviço será acrescido ao valor do frete conforme descrito nesse link:<br>https://www.correios.com.br/enviar-e-receber/servicos-adicionais/preco-valor-declarado]]></comment>
+				</field>
+				<field id="declared_value" translate="label" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Serviço Adicional Usar Valor Declarado</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<comment><![CDATA[Habilitando esse serviço será acrescido ao valor do frete conforme descrito nesse link:<br>https://www.correios.com.br/enviar-e-receber/servicos-adicionais/preco-valor-declarado]]></comment>
+				</field>
+				<field id="declared_value_default" translate="label comment" type="text" sortOrder="115" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Valor Declarado Padrão</label>
+					<comment><![CDATA[Valor padrão R$21,00 | mais informação:<br>https://www.correios.com.br/enviar-e-receber/servicos-adicionais/preco-valor-declarado]]></comment>
+				</field>
+				<field id="default_height" translate="label comment" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Altura Mínima Padrão</label>
+					<comment><![CDATA[Caso você não defina um valor de altura no cadastro do produto, utilizaremos o valor definido nesse campo. Veja as dimensões mínimas permitidas pelo Correios:<br>https://www.correios.com.br/enviar-e-receber/precisa-de-ajuda/limites-de-dimensoes-e-peso]]></comment>
+				</field>
+				<field id="default_depth" translate="label comment" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Largura Mínima Padrão</label>
+					<comment><![CDATA[Caso você não defina um valor de largura no cadastro do produto, utilizaremos o valor definido nesse campo. Veja as dimensões mínimas permitidas pelo Correios:<br>https://www.correios.com.br/enviar-e-receber/precisa-de-ajuda/limites-de-dimensoes-e-peso]]></comment>
+				</field>
+				<field id="default_width" translate="label comment" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Comprimento Mínima Padrão</label>
+					<comment><![CDATA[Caso você não defina um valor de comprimento no cadastro do produto, utilizaremos o valor definido nesse campo. Veja as dimensões mínimas permitidas pelo Correios:<br>https://www.correios.com.br/enviar-e-receber/precisa-de-ajuda/limites-de-dimensoes-e-peso]]></comment>
+				</field>
+				<field id="max_height" translate="label comment" type="text" sortOrder="145" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Altura Máxima</label>
+					<comment><![CDATA[  Limites de dimensões de embalagens | Padrão: 100cm  <a href="https://www2.correios.com.br/sistemas/precosprazos/Formato.cfm" target="_blank">Mais informações</a> ]]></comment>
+				</field>
+				<field id="max_depth" translate="label comment" type="text" sortOrder="145" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Largura Máxima</label>
+					<comment><![CDATA[  Limites de dimensões de embalagens | Padrão: 100cm  <a href="https://www2.correios.com.br/sistemas/precosprazos/Formato.cfm" target="_blank">Mais informações</a> ]]></comment>
+				</field>
+				<field id="max_width" translate="label comment" type="text" sortOrder="145" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Comprimento Máximo</label>
+					<comment><![CDATA[  Limites de dimensões de embalagens | Padrão: 100cm  <a href="https://www2.correios.com.br/sistemas/precosprazos/Formato.cfm" target="_blank">Mais informações</a> ]]></comment>
+				</field>
+				<field id="handling_fee" translate="label comment" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Taxa de Manuseio</label>
+					<comment>O valor definido nesse campo acrescenta ao frete retornado pelo Correios.</comment>
+				</field>
+				<field id="show_deliverydays" translate="label" type="select" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Exibir Prazo de Entrega?</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="add_deliverydays" translate="label comment" type="text" sortOrder="170" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Adicionar dias de Prazo Pedido com estoque</label>
+					<comment>O valor definido nesse campo acrescenta no prazo retornado pelo Correios caso todos os produtos do pedido tenham estoque.</comment>
+				</field>
+				<field id="add_deliverydays_ns" translate="label comment" type="text" sortOrder="180" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Adicionar dias de Prazo Pedido sem estoque</label>
+					<comment>O valor definido nesse campo acrescenta no prazo retornado pelo Correios caso algum produto dentro do pedido não tenha estoque.</comment>
+				</field>
+				<field id="deliverydays_message" translate="label comment" type="text" sortOrder="190" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Mensagem do Prazo de Entrega com Estoque</label>
+					<comment><![CDATA[%s = exibe o nome do serviço (PAC, SEDEX e etc...).<br>%d = exibe a quantidade de dias.]]></comment>
+				</field>
+				<field id="deliverydays_message_ns" translate="label comment" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Mensagem do Prazo de Entrega sem Estoque</label>
+					<comment><![CDATA[%s = exibe o nome do serviço (PAC, SEDEX e etc...).<br>%d = exibe a quantidade de dias.]]></comment>
+				</field>
+				<field id="consulting_methods_type" translate="label" type="select" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Modo de Consulta</label>
+					<source_model>MestreMage\Correios\Model\Config\Source\ConsultingMethods</source_model>
+				</field>
+				<field id="time_out_cur" translate="label comment" type="text" sortOrder="220" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Tempo Máximo de Espera em segundos</label>
+					<comment><![CDATA[Quando o modo de consulta híbrido é habilitado, você pode determinar quantos segundos a loja deve tentar ter um retorno do webservice dos correios. Ultrapassando esse limite a consulta será feita na Base Offline que você cadastrou. O valor que indicamos é de no máximo 5 segundos.]]></comment>
+				</field>
+				<field id="attr_height" translate="label Atributo Altura" type="select" sortOrder="230" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Atributo Altura</label>
+					<comment><![CDATA[Você pode definir que a altura do produto seja definida por outro campo do cadastro do produto. Basta colocar nesse campo o ID do atributo desse outro campo.]]></comment>
+					<source_model>MestreMage\Correios\Model\Config\Source\AtributeProduct</source_model>
+				</field>
+				<field id="attr_width" translate="label Atributo Largura" type="select" sortOrder="240" showInDefault="1" showInWebsite="1" showInStore="0">
+						<label>Atributo Comprimento</label>
+					<comment><![CDATA[Você pode definir que o comprimento do produto seja definida por outro campo do cadastro do produto. Basta colocar nesse campo o ID do atributo desse outro campo.]]></comment>
+				<source_model>MestreMage\Correios\Model\Config\Source\AtributeProduct</source_model>
+				</field>
+				<field id="attr_depth" translate="label Atributo Comprimento" type="select" sortOrder="250" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Atributo Largura</label>
+					<comment><![CDATA[Você pode definir que a largura do produto seja definida por outro campo do cadastro do produto. Basta colocar nesse campo o ID do atributo desse outro campo.]]></comment>
+				<source_model>MestreMage\Correios\Model\Config\Source\AtributeProduct</source_model>
+				</field>
+				<field id="weight_type" translate="label" type="select" sortOrder="260" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Tipo de peso</label>
+					<source_model>MestreMage\Correios\Model\Config\Source\WeightType</source_model>
+				</field>
+
+				<field id="shipping_tracking" translate="label comment" type="select" sortOrder="270" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Conteúdo e-mail</label>
+                    <comment><![CDATA[ Variaveis para uso: {{var customer_name|raw}}, {{var message|raw}}, {{var order_id|raw}}, {{var location|raw}}. ]]></comment>
+					<source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+				</field>
+				<field id="max_packge_weight" translate="label comment" type="text" sortOrder="280" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Peso Limite</label>
+					<comment><![CDATA[Peso máximo do pacote para consultar | Padrão: 50]]></comment>
+				</field>
+				<field id="split_package" translate="label" type="select" sortOrder="290" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Dividir Pacote</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<comment><![CDATA[Caso ultrapasse o peso limite dividir os valores para enviar em duas embalagens.]]></comment>
+				</field>
+				<field id="view_method_with_additional_value" translate="label" type="select" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Exibir método com valor adicional</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<comment><![CDATA[Exibir método de entrega do correios caso altura ou largura ultrapasse o valor de dimensão adicional.]]></comment>
+				</field>				
+				<field id="additional_value" translate="label" type="text" sortOrder="310" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Valor Adicional</label>
+					<comment><![CDATA[Adicione o valor que sera inserido quando o produto exceder a dimensão.]]></comment>
+				</field>
+				<field id="dimension_for_additional_value" translate="label" type="text" sortOrder="320" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Dimensão para Valor Adicional</label>
+					<comment><![CDATA[Adicione dimensão para valor adicional em centimetros.]]></comment>
+				</field>								
+				<field id="sort_order" translate="label" type="text" sortOrder="330" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Ordenação</label>
+				</field>
+			</group>
+		</section>
+
+		<section id="modulo_correios_tracking_whatsapp" translate="label" type="text" sortOrder="201" showInDefault="1" showInWebsite="1" showInStore="1">
+			<label>Rastreio de objetos por WhatsApp</label>
+			<tab>mestremage</tab>
+			<resource>MestreMage_Correios::config</resource>
+
+			<group id="settings_api_twilio" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+				<label>Twilio Api</label>
+					<comment><![CDATA[
+				<p>
+					<strong>Acesse <a href="https://www.twilio.com/console">https://www.twilio.com</a> para configurar o disparo pelo WhatsApp. </strong>
+				
+				</p>
+
+				 ]]></comment>
+				<field id="active" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Enabled</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="tel_twilio" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>PHONE API</label>
+					<comment>Numero do telefone disponibilizado pela twilio</comment>
+				</field>
+
+				<field id="sid_twilio" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>ACCOUNT SID</label>
+				</field>
+
+				<field id="auth_token_twilio" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>AUTH TOKEN</label>
+				</field>
+
+				<field id="input_whatsapp_sucess" translate="label" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>HTML input WhatsApp</label>
+						<comment><![CDATA[HTML campo de telefone e botão do WhatsApp, adicionado na tela de sucesso.<br> Obs: não alterar os ids dos inputs.]]></comment>
+				</field>
+
+				<field id="return_whatsapp_sucess" translate="label" type="textarea" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>HTML retorno WhatsApp</label>				
+				</field>
+
+			</group>
+
+		</section>
+
+	</system>
+</config>

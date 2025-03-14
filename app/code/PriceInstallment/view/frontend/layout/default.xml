@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author      Mestre Magento
+ * @copyright   2018 MestreMage (https://mestremage.com.br)
+ * @license     https://mestremage.com.br Copyright
+ *
+ * @link        https://mestremage.com.br/
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<body>
+  <referenceContainer name="page.wrapper">
+         <block class="Magento\Framework\View\Element\Template" name="PriceInstallmentAllPage" template="MestreMage_PriceInstallment::priceinstalmentallpage.phtml"/>
+    </referenceContainer>
+</body>
+</page>

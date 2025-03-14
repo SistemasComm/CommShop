@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+ /**
+ * Mestre Magento
+ * www.modulomagento.com.br
+ *
+ * LICENÇA DE USO
+ * Este arquivo está sujeito ao EULA (contrato de licença para usuário final).
+ * @copyright Copyright (c) Mestre Magento. ( https://www.modulomagento.com.br/ )
+ * @license   https://www.modulomagento.com.br/Mestre-Magento-Licenca.txt
+ *
+ * ##############################################################################
+ * #																			#
+ * #  Nós programadores nos dedicamos muito, da mesma forma que você, então		#
+ * #  valorize sua profissão e não aceite usar esse módulo de forma ilícita.	#
+ * #  Denuncie anônimamente a empresa que utilizar esse módulo de forma ilegal.	#
+ * #  Estamos abertos a parcerias com desenvolvedores ;)						#
+ * #																			#
+ * ##############################################################################
+ *
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="left">
+            <referenceBlock name="sales_order_tabs">
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">mestremage_correios</argument>
+                    <argument name="block" xsi:type="string">MestreMage\Correios\Block\Adminhtml\Order\View\Tab\Custom</argument>
+                </action>
+            </referenceBlock>
+        </referenceContainer>
+                <referenceContainer name="payment_additional_info">
+            <block class="Magento\Framework\View\Element\Template" name="MestreMage_correios_infos" template="MestreMage_Correios::info/pedidoinfo.phtml" />
+        </referenceContainer>
+    </body>
+</page>

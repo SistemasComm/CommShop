@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <section_module_sigepweb>
+            <sigepweb>
+                <active>0</active>
+                <log>0</log>
+                <title>Jad Log</title>
+
+
+                <weight_default>1</weight_default>
+                <height_default>2</height_default>
+                <width_default>16</width_default>
+                <length_default>11</length_default>
+
+
+                <sigepweb_altura>correios_height</sigepweb_altura>
+                <sigepweb_comprimento>correios_width</sigepweb_comprimento>
+                <sigepweb_largura>correios_depth</sigepweb_largura>
+
+            </sigepweb>
+        </section_module_sigepweb>
+    </default>
+</config>

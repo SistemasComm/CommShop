@@ -1,0 +1,499 @@
+
+
+
+<script type="text/javascript">
+    require(['jquery', 'jquery/ui'], function($) {
+        (function() {
+            const send = XMLHttpRequest.prototype.send;
+            XMLHttpRequest.prototype.send = function() {
+                this.addEventListener('load', function() {
+                    if (productOptions = $(".product-options-wrapper div")) {
+                        productOptions.change(function() {
+                            selectProduct();
+                        });
+                    }
+                });
+                return send.apply(this, arguments)
+            }
+        })();
+
+        function mascaraValor(valor) {
+            var currencysymbol = MestreMage_PriceInstallment.currencysymbol;
+            valor = parseInt(valor);
+            valor.toFixed(2);
+            valor = valor.toString().replace(/\D/g, "");
+            valor = valor.toString().replace(/(\d)(\d{8})$/, "$1.$2");
+            valor = valor.toString().replace(/(\d)(\d{5})$/, "$1.$2");
+            valor = valor.toString().replace(/(\d)(\d{2})$/, "$1,$2");
+            return currencysymbol + valor
+        }
+
+        function jurosSimples(valor, taxa, parcelas) {
+            var valParcela;
+            if (parcelas > 1) {
+                valor = valor + '';
+                valor = parseInt(valor.replace(/[\D]+/g, ''));
+                valor = valor + '';
+                valor = valor.replace(/([0-9]{2})$/g, ".$1");
+
+                if (valor.length > 6) {
+                    valor = valor.replace(/([0-9]{3})([0-9]{2}$)/g, ".$1.$2");
+                }
+
+                valParcela = (parseFloat(valor) + parseFloat(taxa)) / parcelas;
+                var part = valParcela.toString().split('.');
+
+                var part_2 = part[1] + 00;
+                if (typeof part[1] === "undefined") {
+                    part_2 = '00';
+                }
+
+                valParcela = part[0] + (part_2).toString().substring(0, 2);
+                valParcela = parseInt(valParcela.toString().replace(/[\D]+/g, ''));
+            } else {
+                valParcela = valor;
+            }
+            return valParcela;
+        }
+
+        function jurosComposto(valor, juros, parcela) {
+            var taxa, valor_final;
+            if (parcela > 1) {
+                if (juros) {
+                    taxa = parseFloat(juros) / 100;
+                    valor_final = (valor * taxa) / (1 - (Math.pow(1 / (1 + taxa), parcela)));
+                } else {
+                    valor_final = valor / parcela;
+                }
+            } else {
+                valor_final = valor;
+            }
+            return valor_final;
+        }
+
+        function aplicarPorcentagem(valor, juros, parcela) {
+            var valor_final;
+            if (MestreMage_PriceInstallment.typeInterest == 'compound') {
+                valor_final = jurosComposto(valor, juros, parcela);
+            } else {
+                valor_final = jurosSimples(valor, juros, parcela);
+            }
+            var textoFinal = '';
+            if (parseInt(juros)) {
+                textoFinal += ' ' + MestreMage_PriceInstallment.textoComJuros;
+            } else {
+                textoFinal += ' ' + MestreMage_PriceInstallment.textoSemJuros;
+            }
+
+            return mascaraValor(valor_final) + textoFinal;
+        }
+
+        function selectProduct() {
+            if (document.querySelector('[data-price-type*="finalPrice"] .price')) {
+                var preco_html = document.querySelector('[data-price-type*="finalPrice"] .price').innerHTML.replace(/[^0-9]/g, '');
+                var txtPadrao = MestreMage_PriceInstallment.txtPadrao;
+                var tipoDesconto = MestreMage_PriceInstallment.tipoDesconto;
+                var fraseAvista = MestreMage_PriceInstallment.fraseAvista;
+                var valorDesconto = MestreMage_PriceInstallment.valorDesconto;
+                var padraodotextonatabela = MestreMage_PriceInstallment.padraodotextonatabela;
+                var tituloTabela = MestreMage_PriceInstallment.tituloTabela;
+                var precoavistanatabela = MestreMage_PriceInstallment.precoAvistaTabela;
+                var valorAvistaAtivarmodulo = MestreMage_PriceInstallment.valorAvistaAtivarmodulo;
+                var textoPrecoAvista = MestreMage_PriceInstallment.textoPrecoAvista;
+                var parcelasModificada = MestreMage_PriceInstallment.parcelasModificada;
+                var juros = MestreMage_PriceInstallment.juros;
+                var lblParcel = MestreMage_PriceInstallment.lblParcel;
+                var lblPrice = MestreMage_PriceInstallment.lblPrice;
+                var jurosParcela = MestreMage_PriceInstallment.jurosParcela;
+                var mostrartotaldasparcelas = MestreMage_PriceInstallment.mostrartotaldasparcelas;
+                var mostrarsoparcelasemjuros = MestreMage_PriceInstallment.mostrarsoparcelasemjuros;
+                var parcelasFix = MestreMage_PriceInstallment.parcelasFix;
+                var valorMinimo = MestreMage_PriceInstallment.valorMinimo;
+
+                var parcela = 0;
+                var final = '';
+                for (x = 1; x <= parseInt(parcelasFix); x++) {
+                    final = (preco_html / x);
+
+                    var valParcela = parseInt(valorMinimo).toFixed(2);
+                    var part = valParcela.toString().split('.');
+
+                    var part_2 = part[1] + 00;
+                    if (typeof part[1] === "undefined") {
+                        part_2 = '00';
+                    }
+
+                    valParcela = part[0] + (part_2).toString().substring(0, 2);
+                    valParcela = parseInt(valParcela.toString().replace(/[\D]+/g, ''));
+
+                    if (parseInt(final) >= valParcela) {
+                        parcela = x;
+                    }
+                }
+
+                if (parseInt(mostrarsoparcelasemjuros)) {
+                    var parcelaSemJuros = (jurosParcela <= parcela ? jurosParcela : parcela);
+                    $('.jsr-priceinstallment p').html((txtPadrao.replace('{price}', aplicarPorcentagem(preco_html, 0, parcelaSemJuros))).replace('{parcel}', parcelaSemJuros));
+                } else {
+                    $('.jsr-priceinstallment p').html((txtPadrao.replace('{price}', aplicarPorcentagem(preco_html, (jurosParcela >= parcela ? 0 : juros), parcela))).replace('{parcel}', parcela));
+                }
+
+                var percentual = 0;
+                var finalDesconto = 0;
+                var finalPreco = preco_html;
+                if (tipoDesconto == 1) {
+                    finalDesconto = (finalPreco - parseFloat(valorDesconto.replace(/[^\d]+/g, '')));
+                } else if (tipoDesconto == 2) {
+                    percentual = parseFloat(valorDesconto) / 100.0;
+                    finalDesconto = finalPreco - (percentual * finalPreco);
+                }
+                if (MestreMage_PriceInstallment.valorAvistaAtivarmodulo) {
+                    $('.product-info-price #preco-a-vista-mm p').html(fraseAvista.replace('{valor}', mascaraValor(finalDesconto)));
+                }
+                if (MestreMage_PriceInstallment.mostrarTabelaParcela) {
+                    var label_total_parcela = '';
+                    if (parseInt(mostrartotaldasparcelas)) {
+                        label_total_parcela = '<th>Total</th>';
+                    }
+                    var html = '';
+                    html += '<h3>' + tituloTabela + '</h3>';
+                    html += '<table>';
+                    html += '<tr><th>' + lblParcel + '</th><th>' + lblPrice + '</th>' + label_total_parcela + '</tr>';
+                    if (parseInt(valorAvistaAtivarmodulo)) {
+                        if (parseInt(precoavistanatabela)) {
+                            html += '<tr><td>' + textoPrecoAvista + '</td><td>' + mascaraValor(finalDesconto) + '</td></tr>';
+                        }
+                    }
+                    for (var i = 1; i <= parcelasModificada; i++) {
+                        var valor_final_parcelas = '';
+                        if (parseInt(mostrartotaldasparcelas)) {
+                            valor_final_parcelas = '<td>' + mascaraValor(parseFloat(jurosComposto(preco_html, (jurosParcela > i ? 0 : juros), i)) * i) + '</td>';
+                        }
+
+                        html += '<tr><td>' + padraodotextonatabela.replace('{parcel}', i) + '</td><td> ' + aplicarPorcentagem(preco_html, (jurosParcela > i ? 0 : juros), i) + '</td>' + valor_final_parcelas + '</tr>';
+                    }
+                    html += '</table>';
+                    $('div#mestre-magento-table').html(html);
+                }
+            }
+        }
+
+        var modal_msg = $('#modal-priceinstallment-mestremage');
+
+        $('#link-buscar-priceinstallment').click(function() {
+            modal_msg.show();
+        });
+
+        $('.modal-interna-header span.close-modal').click(function() {
+            modal_msg.hide();
+        });
+
+    });
+</script>
+
+
+<style>
+    .product-info-main .product-info-price .price-box {
+        float: left;
+        width: 100%;
+    }
+
+    .jsr-priceinstallment table>tbody>tr>td,
+    .jsr-priceinstallment table>tbody>tr>th {
+        padding: 1px 7px;
+    }
+
+    .jsr-priceinstallment span {
+        width: 100%;
+        float: left;
+        margin-top: 10px;
+    }
+
+    .catalog-product-view .jsr-priceinstallment span {
+        width: unset !important;
+        float: unset !important;
+        margin-top: 10px;
+    }
+
+    .product-info-main .product-info-stock-sku {
+        padding-left: 0;
+    }
+
+    div#mestre-magento-table {
+        line-height: 5px;
+        margin: 0 0 20px 0
+    }
+
+    div#mestre-magento-table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    body.page-product-grouped .jsr-priceinstallment {
+        display: none;
+    }
+
+    .field.postcode input#cep {
+        width: 70%;
+        float: left;
+    }
+
+    .field.postcode input#sendFrete {
+        float: right;
+    }
+
+    ul#containerFrete {
+        float: left;
+        padding: 10px 0;
+        width: 95%;
+    }
+
+    span.link-priceinstallment-br {
+        float: left;
+        font-size: 9px;
+        width: 100%;
+    }
+
+    .modal-priceinstallment {
+        background-color: rgba(0, 0, 0, 0.6);
+        display: none;
+        height: 100%;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 10001;
+    }
+
+    .conteudo-modal-priceinstallment {
+        -moz-box-sizing: border-box;
+        padding: 30px;
+        font-size: 16px;
+        width: 410px;
+        background-color: #fefefe;
+        z-index: 1002;
+        margin: 118px auto;
+        display: flex;
+    }
+
+    .conteudo-modal-priceinstallment h2.simulateTitle {
+        margin: 0;
+        font-size: 21px;
+    }
+
+    span.closed-modal-priceinstallment {
+        position: absolute;
+        right: 37%;
+    }
+
+    .conteudo-modal-priceinstallment .field.postcode input#cep {
+        width: 60%;
+    }
+
+    @media (max-width: 500px) {
+        .conteudo-modal-priceinstallment {
+            width: 245px !important;
+            margin: 10px auto !important;
+        }
+
+        .conteudo-modal-priceinstallment .field.postcode input#cep {
+            width: 42% !important;
+        }
+
+        span.closed-modal-priceinstallment {
+            right: 14% !important;
+        }
+    }
+
+
+    a.openmodal {
+        color: black;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    .modal-chamar {
+        margin-bottom: 10px;
+    }
+
+    .catalog-product-view .product-options>dl {
+        margin-bottom: 0px;
+    }
+
+
+    .modal-interna {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 2001;
+        /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0);
+        /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4);
+        /* Black w/ opacity */
+        -webkit-animation-name: fadeIn;
+        /* Fade in the background */
+        -webkit-animation-duration: 0.4s;
+        animation-name: fadeIn;
+        animation-duration: 0.4s
+    }
+
+    .modal-interna-content {
+        position: fixed;
+        top: 140px;
+        background-color: #fefefe;
+        -webkit-animation-name: slideIn;
+        -webkit-animation-duration: 0.4s;
+        animation-name: slideIn;
+        animation-duration: 0.4s;
+        left: 40px;
+        right: 40px;
+        -webkit-box-shadow: -1px -1px 28px -5px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: -1px -1px 28px -5px rgba(0, 0, 0, 0.75);
+        box-shadow: -1px -1px 28px -5px rgba(0, 0, 0, 0.75);
+        width: 50%;
+        margin: 0 auto;
+        padding-bottom: 20px;
+    }
+
+
+    .close-modal {
+        color: #000;
+        float: right;
+        font-size: 35px;
+        font-weight: bold;
+        width: 8%;
+        padding: 0 10px;
+        text-align: center;
+    }
+
+    .close-modal:hover,
+    .close-modal:focus {
+        color: #C00;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+
+    .modal-interna-header {
+        background-color: #fff;
+        color: white;
+        display: table;
+        width: 100%;
+    }
+
+    .modal-interna-header h2 {
+        color: white;
+        font-size: 18px;
+        float: left;
+        margin: 12px 0 10px 0;
+        text-align: left;
+        font-weight: bold;
+        padding: 0 11px;
+    }
+
+    .modal-interna-body img {
+        display: inline;
+    }
+
+    .modal-interna-body {
+        padding: 0 20px;
+        text-align: center;
+    }
+
+    .modal-interna-body h3 {
+        margin-top: 0px;
+    }
+
+    .img-mostruario img {
+        width: 100%;
+    }
+
+    .conteudo-mostruario {
+        cursor: pointer;
+    }
+
+    #containerFrete li {
+        width: 100%;
+        float: left;
+        text-align: left;
+        list-style-type: none;
+        padding: 5px;
+    }
+
+    .label-mm {
+        text-align: left;
+        width: 100%;
+        float: left;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    #simularFrete #sendFrete {
+        padding: 8px 30px;
+        border: none;
+        background-color: #1979c3;
+        color: #fff;
+        width: 29%;
+    }
+
+    @media (max-width: 1024px) {
+        #modal-priceinstallment-mestremage span {
+            text-align: left;
+            margin-top: 7px;
+        }
+
+        .modal-interna-content {
+            width: 81%;
+        }
+
+        #simularFrete #sendFrete {
+            width: 100%;
+        }
+
+        .field.postcode input#cep {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .modal-interna-header h2 {
+            font-size: 10px;
+        }
+
+    }
+
+    @media (max-width: 425px) {
+        .modal-interna-content {
+            width: 100%;
+            left: 0px;
+        }
+
+        .modal-interna-body {
+            padding: 0px;
+        }
+    }
+
+    .modal-interna-body tr td {
+        line-height: 15px;
+    }
+
+    #modal-priceinstallment-mestremage table tr th {
+        text-align: center;
+    }
+
+    span#link-buscar-priceinstallment {
+        text-decoration: underline;
+    }
+
+    .price-box.price-final_price {
+        margin: 0px;
+    }
+</style>

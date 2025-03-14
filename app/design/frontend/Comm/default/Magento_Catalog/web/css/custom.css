@@ -1,0 +1,36 @@
+#preco-a-vista-mm p {
+  color: #797979;
+}
+#preco-a-vista-mm .price {
+  color: #14b449;
+  font-weight: bold;
+  font-size: 34px;
+  line-height: 34px;
+}
+.old-price {
+  text-decoration: line-through;
+  color: #8d8d8d;
+  font-size: 16px !important;
+} 
+.special-price {
+  display: flex;
+  font-size: 20px;
+  font-weight: 300;
+}
+.product-info-price .price-box .price-container .price {
+  font-size: unset !important;
+  line-height: unset !important;
+}
+.product-info-main .product-info-price .old-price .price-wrapper .price {
+  font-size: 16px !important;
+}
+.product-info-price .price-box {
+  padding-bottom: 0 !important;
+}
+.mm-price-parcels-view {
+  font-size: 20px;
+  line-height: 20px;
+}
+.product-info-price .price-box .special-price .price-container .price {
+  margin-left: 4px;
+}

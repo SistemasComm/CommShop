@@ -1,0 +1,51 @@
+<?php
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORES;
+$scopeConfig = $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface');
+$checkout_session = $objectManager->get('Magento\Checkout\Model\Session');
+$order = $checkout_session->getLastRealOrder();
+
+if($scopeConfig->getValue("modulo_correios_tracking_whatsapp/settings_api_twilio/active", $storeScope)):
+    if (preg_match('/correios_correios_mm/', $order->getData('shipping_method'))): ?>
+    <div id="container_whatsapp_tracking">
+    <?=$scopeConfig->getValue("modulo_correios_tracking_whatsapp/settings_api_twilio/input_whatsapp_sucess", $storeScope)?>
+    </div>
+
+    <script>
+        require([
+            "jquery",
+            "jquery/ui"
+        ], function($){
+            $('#btn_whatsapp_tracking').click(function(){
+                    var whatsapp_tracking = $('#whatsapp_tracking').val();
+                    var increment_id = "<?=$order->getData('increment_id')?>";
+                $.ajax({
+                    url: window.location.origin+"/rest/all/V1/mestremage-correios/searchpostcode?param=1&whatsapp="+whatsapp_tracking+"&increment_id="+increment_id,  
+                    success: function(data) {
+                        if(data){
+                            $('#container_whatsapp_tracking').html('<?=$scopeConfig->getValue("modulo_correios_tracking_whatsapp/settings_api_twilio/return_whatsapp_sucess", $storeScope)?>')
+                        }
+                    }
+                });
+            })
+
+            $('#whatsapp_tracking').keyup(function () {
+                $(this).val(maskTel($(this).val()));
+            });
+            function maskTel(v){
+                v=v.replace(/\D/g,"");
+                v=v.replace(/^(\d{2})(\d)/g,"($1) $2");
+                v=v.replace(/(\d)(\d{4})$/,"$1-$2");
+                return v;
+            }
+
+        });
+    </script>
+    <?php endif; ?>
+<?php endif; ?>
+
+
+
+
+

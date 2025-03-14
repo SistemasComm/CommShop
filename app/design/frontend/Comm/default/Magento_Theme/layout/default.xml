@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+    <remove src="fonts/opensans/light/opensans-300.woff2"/>
+    <remove src="fonts/opensans/regular/opensans-400.woff2"/>
+    <remove src="fonts/opensans/semibold/opensans-600.woff2"/>
+    <remove src="fonts/opensans/bold/opensans-700.woff2"/>
+    </head>
+    <body>
+        <referenceContainer name="header-wrapper">
+            <block name="header.login.block" template="Magento_Theme::custom/login.phtml" after="top.search"/>
+        </referenceContainer>
+
+        <move element="minicart" destination="header-wrapper"/>
+
+        <referenceContainer name="header.panel.wrapper" remove="true"/>
+        <referenceContainer name="compare-link-wrapper" remove="true"/>
+        <referenceBlock name="footer_links" remove="true"/>
+        <referenceBlock name="form.subscribe" remove="true"/>
+        <referenceBlock name="sale.reorder.sidebar" remove="true"/>
+        <referenceBlock name="wishlist_sidebar" remove="true"/>
+        <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+
+       
+        <referenceContainer name="footer">
+            <block name="template.footer-two" template="Magento_Theme::custom/footer-two.phtml"/>
+        </referenceContainer>
+        <referenceBlock name="copyright" template="Magento_Theme::custom/copyrigth.phtml"/>
+       
+    </body>
+</page>

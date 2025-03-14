@@ -1,0 +1,39 @@
+/**
+ * @author Mestre Magento
+ * @copyright Copyright (c) Mestre Magento (https://www.modulomagento.com.br/)
+ * @license https://www.modulomagento.com.br/termos-condicoes/
+ * @support contato@modulomagento.com.br
+ */
+
+.config-nav-block.mestre-magento-tab strong:before {
+    background: url(../images/logo.png) no-repeat;
+    width: 30px;
+    height: 19px;
+    content: '';
+    display: inline-block;
+    margin-right: 12px;
+    vertical-align: bottom;
+}
+#mestremage_store {
+    border: 0;
+    height: 1500px;
+}
+tr#return_search_mm {
+    position: absolute;
+    margin-top: 100px;
+}
+fieldset#modulo_correios_section_settings_con_test a {
+    background-color: #eb5202;
+    text-align: center;
+    display: block;
+    float: left;
+    margin-top: 33px;
+    padding: 8px 20px;
+    color: #fff;
+    text-decoration: none;
+}
+tr#return_search_mm a {
+    text-align: left;
+    background-color: #fff;
+    color: blue;
+}

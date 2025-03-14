@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * @author Mestre Magento
+ * @copyright Copyright (c) Mestre Magento (https://www.modulomagento.com.br/)
+ * @license https://www.modulomagento.com.br/termos-condicoes/
+ * @support contato@modulomagento.com.br
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+	<module name="MestreMage_Core" setup_version="1.0.0"/>
+</config>

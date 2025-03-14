@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <system>
+        <tab id="mestremage" translate="label" sortOrder="700"  class="mestre-magento-tab">
+            <label>Mestre magento</label>
+        </tab>
+        <section id="mmcpfcnpj" translate="label" sortOrder="500" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Configurar CPF/CNPJ</label>
+            <tab>mestremage</tab>
+            <resource>MestreMage_CpfCnpj::config</resource>
+            <group id="geral" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="ativarmodulo" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="active_hash" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Chave de ativação</label>
+				</field>
+            </group>
+            <group id="loja" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>settings</label>
+                <field id="razao_social" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Exibir Campo Razão Social?</label>
+                    <source_model>MestreMage\CpfCnpj\Model\Source\Option</source_model>
+                </field>
+                <field id="inscricao_estadual" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Exibir Campo Inscrição Estadual?</label>
+                     <source_model>MestreMage\CpfCnpj\Model\Source\Option</source_model>
+                </field>
+                <field id="valid_inscricao_estadual" translate="label" type="select" sortOrder="65" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Validar Inscrição Estadual</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="taxvat_unico" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>CPF/CNPJ Unico</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="msg_unique_taxvat" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Mensagem de retorno CPF/CNPJ Unico</label>
+                    	<comment><![CDATA[EX: O CPF/CNPJ {{taxvat}} já esta cadastrado em nossa loja. Efetue o login ou clique em lembrar senha.]]></comment>
+				</field>
+
+                <field id="customer_group_cpf" translate="label comment" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Grupo de Clientes do CPF</label>
+                    <source_model>MestreMage\CpfCnpj\Model\Source\Customergroup</source_model>
+                    <comment>Atribuir pessoa física a um grupo.</comment>
+                </field>
+
+                <field id="customer_group_cnpj" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Grupo de Clientes do CNPJ</label>
+                    <source_model>MestreMage\CpfCnpj\Model\Source\Customergroup</source_model>
+                    <comment>Atribuir pessoa jurídica a um grupo.</comment>
+                </field>
+
+            </group>
+
+        </section>
+    </system>
+</config>

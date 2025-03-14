@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp:etc/csp_whitelist.xsd">
+    <policies>
+        <policy id="connect-src">
+            <values>
+                <value id="mm-correios-api" type="host">https://ws.correios.com.br</value>
+            </values>
+        </policy>
+        <policy id="form-action">
+            <values>
+                <value id="mm-correios-form" type="host">https://www.correios.com.br</value>
+            </values>
+        </policy>
+    </policies>
+</csp_whitelist>
+

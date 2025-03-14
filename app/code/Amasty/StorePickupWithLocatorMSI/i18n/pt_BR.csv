@@ -1,0 +1,26 @@
+"Unable to save new entity. Error: %1","Não é possível salvar a nova entidade. Erro: %1"
+"Unable to remove entity. Error: %1","Não é possível remover a entidade. Erro: %1"
+"MSI Source","Fonte MSI"
+Enabled,Ativado
+Disabled,Desativado
+"Pickup is available in ","Retirada disponível em "
+store,loja
+stores,lojas
+pcs.,unidades
+"in stock","em estoque"
+"See All","Ver Todos"
+"Choose product options to see availability in stores","Escolha as opções do produto para ver a disponibilidade nas lojas"
+"Show Relevant Locations List for Products with Assigned MSI Stock","Mostrar Lista de Locais Relevantes para Produtos com Estoque MSI Atribuído"
+"Ativa a lista de locais nas páginas de produtos.
+O local deve ter uma fonte MSI atribuída para aparecer na lista.
+A lista aparecerá para produtos aos quais foram atribuídos estoques associados a qualquer fonte de local disponível.
+Apenas locais onde o produto está em estoque apareceriam por padrão.","Ativa a lista de locais nas páginas de produtos.
+O local deve ter uma fonte MSI atribuída para aparecer na lista.
+A lista aparecerá para produtos aos quais foram atribuídos estoques associados a qualquer fonte de local disponível.
+Apenas locais onde o produto está em estoque apareceriam por padrão."
+"Incluir locais nos quais o produto está fora de estoque na lista de locais do produto","Incluir locais nos quais o produto está fora de estoque na lista de locais do produto"
+"Permite exibir locais nos quais o produto não está imediatamente disponível (fora de estoque).","Permite exibir locais nos quais o produto não está imediatamente disponível (fora de estoque)."
+"Is Chosen","Está Escolhido"
+Code,Código
+Name,Nome
+"Is Enabled","Está Ativado"

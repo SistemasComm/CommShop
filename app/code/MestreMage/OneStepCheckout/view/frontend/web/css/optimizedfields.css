@@ -1,0 +1,37 @@
+.osc div.field {
+    height: 65px !important;
+}
+
+form input[type="text"],
+form input[type="password"] {
+	z-index: 10;
+	background: transparent;
+}
+
+form div.field label {
+	position: relative;
+	z-index: 99;
+	top: 32px;
+	left: 15px;
+	transition: all 0.1s ease-in-out;
+	color: #777 !important;
+    cursor: text;
+}
+
+form div.filled label {
+	top: 9px;
+	font-size: 12px;
+	width: unset !important;
+	background: #fff;
+	padding: 5px 10px 5px 10px !important;
+	color: #999;
+}
+
+form .fieldset > .field, .fieldset > .fields > .field {
+    margin: 0 0 0 0 !important;
+}
+
+form .fieldset>.field:not(.choice)>.label {
+    margin: 0 0 0 0 !important;
+    padding: 0 0 0 0 !important;
+}

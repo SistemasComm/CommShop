@@ -1,0 +1,119 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="clearsale" translate="label" sortOrder="0">
+            <label>ClearSale</label>
+        </tab>
+        <section id="clearsale_base" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <tab>clearsale</tab>
+            <label>Base</label>
+            <resource>Clearsale_Base::config</resource>
+            <group id="settings" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Settings</label>
+                <field id="environment_type" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Environment Type</label>
+                    <source_model>Clearsale\Base\Model\Config\Source\Environment</source_model>
+                    <comment>
+                    <![CDATA[Clearsale environment where orders will be shipped.<br>Select 'Production' to send actual orders placed in your store.]]>
+                    </comment>
+                </field>
+
+                <field id="clearsale_product_user" translate="label comment" type="text" sortOrder="11" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Clearsale User Name</label>
+                    <comment>
+                    <![CDATA[In this field you will be asked to enter the store integration username provided by Clearsale.]]>
+                    </comment>
+                </field>
+                <field id="clearsale_product_password" translate="label comment" type="text" sortOrder="12" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Clearsale User Password</label>
+                    <comment>
+                    <![CDATA[In this field you must enter the integration password provided by Clearsale.]]>
+                    </comment>
+                </field>
+
+                <field id="clearsale_active_vatid" translate="label" type="select" sortOrder="35" showInDefault="1" canRestore="1">
+                    <label>Active VAT ID by customer group</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                    <![CDATA[Field to map which Magento attribute is used to inform the customer's VAT ID.<br> Enable this setting if the store allows Guest Checkout.]]>
+                    </comment>
+                </field>
+                <field id="clearsale_customer_group" translate="label comment" type="multiselect" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Customer Group (VAT ID)</label>
+                    <source_model>Clearsale\Base\Model\Config\Source\CustomerGroup</source_model>
+                    <depends>
+                        <field id="clearsale_base/settings/clearsale_active_vatid">1</field>
+                    </depends>
+                    <comment>
+                    <![CDATA[We recommend selecting all groups above.]]>
+                    </comment>
+                </field>
+            </group>
+
+            <group id="address_mapping" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Address Mapping</label>
+                <field id="address_street_map" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Attribute for Street</label>
+                    <source_model>Clearsale\Base\Model\Config\Source\AddressAttribute</source_model>
+                </field>
+                <field id="address_number_map" translate="label comment" type="select" sortOrder="35" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Attribute for Street Number</label>
+                    <source_model>Clearsale\Base\Model\Config\Source\AddressAttribute</source_model>
+                </field>
+                <field id="address_neighborhood_map" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Attribute for Neighborhood</label>
+                    <source_model>Clearsale\Base\Model\Config\Source\AddressAttribute</source_model>
+                </field>
+                <field id="address_complement_map" translate="label comment" type="select" sortOrder="45" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Attribute for Complement</label>
+                    <source_model>Clearsale\Base\Model\Config\Source\AddressAttribute</source_model>
+                </field>
+            </group>
+
+            <group id="payment_mapping" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Payment Mapping</label>
+                <comment>
+                    <![CDATA[Area to map which means of payment in the store correspond to their respective type.]]>
+                </comment>
+                <field id="credit_card_map" translate="label comment" type="multiselect" sortOrder="5" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Credit Card Map</label>
+                    <source_model>Clearsale\Base\Model\Config\Source\PaymentMethods</source_model>
+                    <validate>required-entry</validate>
+                    <comment>
+                    <![CDATA[Required]]>
+                    </comment>
+                </field>
+                 <field id="debit_card_map" translate="label comment" type="multiselect" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Debit Card Map</label>
+                    <source_model>Clearsale\Base\Model\Config\Source\PaymentMethods</source_model>
+                </field>
+                 <field id="paypal_map" translate="label comment" type="multiselect" sortOrder="15" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Paypal Map</label>
+                    <source_model>Clearsale\Base\Model\Config\Source\PaymentMethods</source_model>
+                </field>
+                 <field id="bank_transfer_map" translate="label comment" type="multiselect" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Bank Transfer Map</label>
+                    <source_model>Clearsale\Base\Model\Config\Source\PaymentMethods</source_model>
+                </field>
+                <field id="ticket_map" translate="label comment" type="multiselect" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Ticket Map</label>
+                    <source_model>Clearsale\Base\Model\Config\Source\PaymentMethods</source_model>
+                </field>
+                <field id="deposit_map" translate="label comment" type="multiselect" sortOrder="25" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Deposit Map</label>
+                    <source_model>Clearsale\Base\Model\Config\Source\PaymentMethods</source_model>
+                </field>
+            </group>
+
+            <group id="info" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Info</label>
+                <field id="style" translate="label comment" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1"> 
+					<label>Info</label>
+                    <frontend_model>Clearsale\Base\Block\Adminhtml\Info</frontend_model>
+                </field>
+            </group>
+        </section>
+
+    </system>
+</config>

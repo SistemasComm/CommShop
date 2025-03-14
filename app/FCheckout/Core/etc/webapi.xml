@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * @author Mestre Magento
+ * @copyright Copyright (c) Mestre Magento (https://www.modulomagento.com.br/)
+ * @license https://www.modulomagento.com.br/termos-condicoes/
+ * @support contato@modulomagento.com.br
+ */
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+	<route method="GET" url="/V1/mestremage-core/modules">
+		<service class="FCheckout\Core\Api\ModulesManagementInterface" method="getModules"/>
+		<resources>
+			<resource ref="anonymous"/>
+		</resources>
+	</route>
+</routes>

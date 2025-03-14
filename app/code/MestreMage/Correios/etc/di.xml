@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<!--
+ /**
+ * Mestre Magento
+ * www.modulomagento.com.br
+ *
+ * LICENÇA DE USO
+ * Este arquivo está sujeito ao EULA (contrato de licença para usuário final).
+ * @copyright Copyright (c) Mestre Magento. ( https://www.modulomagento.com.br/ )
+ * @license   https://www.modulomagento.com.br/Mestre-Magento-Licenca.txt
+ *
+ * ##############################################################################
+ * #																			#
+ * #  Nós programadores nos dedicamos muito, da mesma forma que você, então		#
+ * #  valorize sua profissão e não aceite usar esse módulo de forma ilícita.	#
+ * #  Denuncie anônimamente a empresa que utilizar esse módulo de forma ilegal.	#
+ * #  Estamos abertos a parcerias com desenvolvedores ;)						#
+ * #																			#
+ * ##############################################################################
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="MestreMage\Correios\Api\SendPedioCorreiosManagementInterface" type="MestreMage\Correios\Model\SendPedioCorreiosManagement"/>
+    <preference for="MestreMage\Correios\Api\Data\CorreiosInterface" type="MestreMage\Correios\Model\Correios" />
+    <preference for="MestreMage\Correios\Api\SearchPostCodeManagementInterface" type="MestreMage\Correios\Model\SearchPostCodeManagement"/>
+    <preference for="MestreMage\Correios\Api\ImportexportManagementInterface" type="MestreMage\Correios\Model\ImportexportManagement"/>
+    <virtualType name="MestreMage\Correios\Model\ResourceModel\Correios\Correios\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">mm_correios_offline</argument>
+            <argument name="resourceModel" xsi:type="string">MestreMage\Correios\Model\ResourceModel\Correios</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="correios_record_correios_list_data_source" xsi:type="string">MestreMage\Correios\Model\ResourceModel\Correios\Correios\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,115 @@
+<div class="admin__page-section-item-title">
+    <span class="title"><?php /* @escapeNotVerified */ echo __('Status update') ?></span>
+</div>
+<div id="clearsale_status_update_block" class="edit-order-chargeback">
+    <div class="clearsale_status_update_block" id="chargeback_form">
+        <div class="admin__field admin__field-option">
+            <input name="statusupdate[has_status_updated]"
+                   type="checkbox"
+                   id="has_status_updated"
+                   class="admin__control-checkbox" />
+            <label class="admin__field-label" for="has_status_updated">
+                <?php /* @escapeNotVerified */ echo __('Do you want to update clearsale order status?') ?>
+            </label>
+        </div>
+
+        <div class="admin__field">
+            <label for="status_update" class="admin__field-label">
+                <?php /* @escapeNotVerified */ echo __('Status') ?>
+            </label>
+            <div class="admin__field-control">
+                    <select name="statusupdate[status]"
+                              rows="3"
+                              cols="5"
+                              id="status_update"
+                              class="admin__control-select disabled"
+                              disabled="disabled">
+                        <?php foreach ($block->getPaymentStatusOption() as $_code => $_label): ?>
+                            <option value="<?= $block->escapeHtml($_code) ?>"><?= $block->escapeHtml($_label) ?></option>
+                        <?php endforeach; ?>
+                    </select>
+
+            </div>
+        </div>
+
+        <div class="admin__field">
+            <div class="order-fraud-insight-chargeback-actions">
+                <?php echo $block->getChildHtml('submit_button') ?>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    require([
+        'jquery'
+    ], function ($) {
+        'use strict';
+
+        var cbx = $('#has_status_updated');
+
+        cbx.on('change', function () {
+            var formElms = $(this).parent().parent().find('input[type=text], select, button');
+            if ($(this).prop('checked') == true) {
+                formElms.prop('disabled', false).removeClass('disabled');
+            } else {
+                formElms.prop('disabled', true).addClass('disabled');
+            }
+        });
+    });
+
+    function submitClearsaleStatusAndReloadArea(area, url) {
+        if($(area)) {
+            var fields = $(area).select('input', 'select', 'textarea');
+            var data = Form.serializeElements(fields, true);
+            url = url + (url.match(new RegExp('\\?')) ? '&isAjax=true' : '?isAjax=true');
+            new Ajax.Request(url, {
+                parameters: $H(data),
+                loaderArea: area,
+                onSuccess: function(transport) {
+                    try {
+                        if (transport.responseText.isJSON()) {
+                            var response = transport.responseText.evalJSON()
+                            if (response.error) {
+                                alert(response.message);
+                            }
+                            if(response.ajaxExpired && response.ajaxRedirect) {
+                                setLocation(response.ajaxRedirect);
+                            }
+                        } else {
+                            $(area).update(transport.responseText);
+                            reloadCommentArea($('order_history_block'));
+                        }
+                    }
+                    catch (e) {
+                        $(area).update(transport.responseText);
+                    }
+                }
+            });
+        }
+    }
+
+    function reloadCommentArea(area) {
+        if ($(area)) {
+            new Ajax.Request("<?php echo $block->getReloadCommentUrl() ?>", {
+                onSuccess: function(transport) {
+                    try {
+                        if (transport.responseText.isJSON()) {
+                            var response = transport.responseText.evalJSON()
+                            if (response.error) {
+                                alert(response.message);
+                            }
+                            if(response.ajaxExpired && response.ajaxRedirect) {
+                                setLocation(response.ajaxRedirect);
+                            }
+                        } else {
+                            $(area).update(transport.responseText);
+                        }
+                    }
+                    catch (e) {
+                        $(area).update(transport.responseText);
+                    }
+                }
+            });
+        }
+    }
+</script>

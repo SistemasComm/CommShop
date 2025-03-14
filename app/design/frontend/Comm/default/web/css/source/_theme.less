@@ -1,0 +1,80 @@
+// Custom variables
+@primary-font-name: 'Montserrat';
+
+@primary-color: #000;
+@price-color-list: #000;
+
+// Breakpoints
+@1420: ~"(max-width: 1420px)";
+@1400: ~"(max-width: 1400px)";
+@1320: ~"(max-width: 1320px)";
+@1220: ~"(max-width: 1220px)";
+@1100: ~"(max-width: 1100px)";
+@1024: ~"(max-width: 1024px)";
+@960: ~"(max-width: 960px)";
+@920: ~"(max-width: 920px)";
+@840: ~"(max-width: 840px)";
+@768: ~"(max-width: 767px)";
+@768g: ~"(min-width: 768px)";
+@680: ~"(max-width: 680px)";
+@640: ~"(max-width: 640px)";
+@620: ~"(max-width: 620px)";
+@560: ~"(max-width: 560px)";
+@500: ~"(max-width: 500px)";
+@480: ~"(max-width: 480px)";
+@400: ~"(max-width: 400px)";
+@360: ~"(max-width: 360px)";
+
+// Magento Variables
+@font-family__base: @primary-font-name;
+
+//  Links
+@link__color: @primary-color;
+@link__text-decoration: none;
+
+/* @link__visited__color: @link__color;
+@link__visited__text-decoration: none;
+
+@link__hover__color: @theme__color__primary-alt;
+@link__hover__text-decoration: underline;
+
+@link__active__color: @active__color;
+@link__active__text-decoration: underline; */
+
+//  Primary button
+
+@button-primary__background: @primary-color;
+@button-primary__border: 1px solid @primary-color;
+@button-primary__color: @color-white;
+@button-primary__gradient-color-start: false;
+@button-primary__gradient-color-end: false;
+
+/* @button-primary__hover__background: @theme__color__primary-alt;
+@button-primary__hover__border: 1px solid @theme__color__primary-alt;
+@button-primary__hover__color: @button-primary__color;
+@button-primary__hover__gradient-color-start: false;
+@button-primary__hover__gradient-color-end: false;
+
+@button-primary__active__background: @button-primary__hover__background;
+@button-primary__active__border: @button-primary__hover__border;
+@button-primary__active__color: @button-primary__color;
+@button-primary__active__gradient-color-start: false;
+@button-primary__active__gradient-color-end: false; */
+
+// Resolve magento bug
+@copyright__background-color: #eaeaea;
+
+.flex-two{
+	display: flex;
+}
+.flex-item-1 {
+	flex: 1;
+}
+.align-self-center{
+    align-self: center;
+}
+.text-right{
+    text-align: right;
+}
+
+@icon-star-empty: '\e605';

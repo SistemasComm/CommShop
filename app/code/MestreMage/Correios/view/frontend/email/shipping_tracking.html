@@ -1,0 +1,42 @@
+<!--@subject {{var subject}} @-->
+<!--@vars
+{"store url=\"\"":"Store Url","skin url=\"images/logo_email.gif\" _area='frontend'":"Email Logo Image"}
+@-->
+<!--@styles
+body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+@-->
+
+{{template config_path="design/email/header_template"}}
+
+<table align="center" style="border:2px solid #CDCDCD; font-size:14px; border-top:0px">
+    <tbody>
+        <tr>
+            <td align="center" style="padding:21px 10px; padding-bottom:30px; text-align:justify; color:#666666; min-width:535px">
+                <table border="0" id="x_table1" width="540px" style="">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p style="font:normal 19px arial; text-align:center; color:#1C5FAE; margin-top:0">Informações sobre o pedido: <span style="margin-left:20px; color:#EF5124; font:bold 38px arial; letter-spacing:-2px">{{var order_id|raw}}</span>
+                                 </p>
+                                 <hr width="100%" size="1" noshade="" align="center" style="border:1px solid #CDCDCD; margin-top:30px">
+                                 <p style="color:#666666; font-family:arial">&nbsp;<b>Olá {{var customer_name|raw}}!</b></p>
+                                 <p style="font-size:13px; color:#666666; font-family:Arial">O status de seu pedido é:</p>
+                                 <p style="font-size:20px; margin-bottom:0px; text-align:center; color:#315FAE; font-weight:bold; font-family:Arial">{{var message|raw}}</p>
+                                 <br>
+                                 <p  style="font-size:16px; margin-bottom:0px; text-align:center; color:#315FAE; font-weight:bold; font-family:Arial"><a href="{{var url_sales_order_view|raw}}">Mais informações</a></p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <hr size="2" width="100%" noshade="" align="center" style="border:1px solid #CDCDCD; margin-top:30px; margin-bottom:30px">
+                    <span style="font-size:16px; font-family:Arial">
+                        <b>Obrigado!</b>
+                    </span>
+                    <br>
+                    <span style="font-size:13px; font-family:Arial">Magento2 ! - O melhor e-commerce. </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+{{template config_path="design/email/footer_template"}}

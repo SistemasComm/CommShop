@@ -1,0 +1,105 @@
+<?php
+if($this->getconfPanel('shippingquoteproductpage/geral/ativarmodulo')):
+    $pais = $this->getconfPanel('shippingquoteproductpage/loja/pais');
+    $estado = $this->getconfPanel('shippingquoteproductpage/loja/estado');
+    $cidade = $this->getconfPanel('shippingquoteproductpage/loja/cidade');
+    $popup = $this->getconfPanel('shippingquoteproductpage/loja/popup');
+    $txtlabelink = $this->getconfPanel('shippingquoteproductpage/loja/txtlabelink');
+    $txtlabeltitle = $this->getconfPanel('shippingquoteproductpage/loja/txtlabeltitle');
+    $mask_postcode = $this->getconfPanel('shippingquoteproductpage/loja/mask_postcode');
+    $usar_bloco_statico = $this->getconfPanel('shippingquoteproductpage/loja/usar_bloco_statico');
+
+if((int)$block->getBlockView() == (int)$usar_bloco_statico): 
+
+    if($this->isSalable()): ?>
+      <?php   if($popup == 1): ?>
+<div id="modal-cep-mestremage" class="modal-interna">
+
+    <div class="modal-interna-content">
+
+        <div class="modal-interna-header">
+            <span class="close-modal">&times</span>
+            <h2 id="modal-header">  <?=__($txtlabelink)?></h2>
+        </div>
+
+        <div class="modal-interna-body" id="modal-body">
+            <?php endif; ?>
+        <div id="simularFrete">
+            <div class="product-options-wrapper" id="product-options-wrapper" >
+                <div class="fieldset" tabindex="0">
+                    <?php  if($pais == 1): ?>
+                        <div class="field country">
+                            <label class="label" for="country"><span><?php /* @escapeNotVerified */ echo __('Country') ?></span></label>
+                            <div class="control">
+                                <select id="country">
+                                    <?php echo  $this->getCountry()?>
+                                </select>
+                            </div>
+                        </div>
+                    <?php endif;
+                    if($estado == 1 && $pais == 1):
+                        echo '<div class="field region" id="region"></div>';
+                    elseif($estado == 1 && $pais == 0):
+                        echo ' <label class="label" for="state"><span>' . __('State/Province') . '</span></label>
+                                <div class="control">
+                                     <input type="text" id="state" />
+                                </div>';
+                    endif;
+
+                    if($cidade == 1): ?>
+                        <div class="field city">
+                            <label class="label" for="country"><span><?php /* @escapeNotVerified */ echo __('City') ?></span></label>
+                            <div class="control">
+                                <input type="text" class="input-text" id="city" required="required" />
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                    <div class="field postcode">
+                        <label class="label-mm" ><span><?php /* @escapeNotVerified */ echo __($txtlabeltitle) ?></span></label>
+                        <div class="control">
+                            <input type="text" class="input-text" id="cep" inputmode="numeric" maxlength="<?=($mask_postcode ? 9:8) ?>"  onkeyup="mask(this, mcep);" required="required" />
+                            <input type="button" value="<?=__( $this->getconfPanel('shippingquoteproductpage/loja/txtsearch') ? $this->getconfPanel('shippingquoteproductpage/loja/txtsearch') : "search" );?>" class="action primary" id="sendFrete" disabled="disabled"  />
+                            <?php if($this->getLocale() == 'pt_BR')
+                                echo '<span class="link-cep-br"><a href="https://buscacepinter.correios.com.br/app/endereco/index.php" target="_blank">Não sabe o CEP? Procure aqui</a></span>';  ?>
+                        </div>
+                    </div>
+                    <ul id="containerFrete"  style="display: none"> </ul>
+
+                </div>
+            </div>
+        </div>
+        <?php   if($popup == 1): ?>
+        </div>
+
+    </div>
+
+</div>
+       <p class="modal-buscar-cep"> <span id="link-buscar-cep" style="cursor: pointer;"> <?=__($txtlabelink)?></span></p>
+    <?php endif; ?>
+    <?php endif; ?>
+    <?=$this->getScripts()?>
+    <script>
+        var base_url_mm = "<?= $this->getUrl('rest/V1/shippingquoteproductpage'); ?>";
+        var is_mask_postcode = '<?=$mask_postcode?>';
+        function mask(o,f){
+            v_obj=o;
+            v_fun=f;
+            setTimeout('execmascara()',1)
+        }
+
+        function execmascara(){
+            v_obj.value=v_fun(v_obj.value)
+        }
+
+        function mcep(v){
+            if(is_mask_postcode != '1'){
+                return v
+            }
+            v=v.replace(/\D/g,"");
+            v=v.replace(/^(\d{5})(\d)/,"$1-$2");
+            return v
+        }
+    </script>
+<?php endif; ?>
+<?php endif; ?>

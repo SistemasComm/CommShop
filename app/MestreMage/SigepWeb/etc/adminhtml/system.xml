@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author      Mestre Magento
+ * @copyright   2018 MestreMage (https://mestremage.com.br)
+ * @license     https://mestremage.com.br Copyright
+ *
+ * @link        https://mestremage.com.br/
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="mestremage" translate="label" sortOrder="700"  class="mestre-magento-tab">
+            <label>Mestre Mage</label>
+        </tab>
+        <section id="section_module_sigepweb" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Sigep Web</label>
+            <tab>mestremage</tab>
+            <resource>MestreMage_SigepWeb::config</resource>
+            <group id="sigepweb" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>Sigep Web</label>
+                <field id="active" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+				<field id="active_hash" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Chave de ativação</label>
+				</field>                
+                <field id="log" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Log</label>
+                    <comment>Generated in directory [ROOT_MAGENTO]/var/log/sigepweb.log</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="ambiente_type" translate="Module" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Tipo de ambiente</label>
+                    <source_model>MestreMage\SigepWeb\Model\Config\Source\Ambiente</source_model>
+                </field>
+
+                <field id="usuario" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="40" translate="label" type="text">
+                    <label>Usuario</label>
+                </field>
+                <field id="senha" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="50" translate="label" type="text">
+                    <label>Senha</label>
+                </field>
+                <field id="cod_administrativo" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="60" translate="label" type="text">
+                    <label>Cod administrativo</label>
+                </field>
+                <field id="numero_contrato" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="70" translate="label" type="text">
+                    <label>Numero contrato</label>
+                </field>
+                <field id="cartao_postagem" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="80" translate="label" type="text">
+                    <label>Cartao postagem</label>
+                </field>
+                <field id="cnpj_empresa" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="90" translate="label" type="text">
+                    <label>cnpj_empresa</label>
+                </field>                
+                <field id="diretoria" translate="Module" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Direroria</label>
+                    <source_model>MestreMage\SigepWeb\Model\Config\Source\DiretoriaList</source_model>
+                </field>
+                <field id="shipping_method_default" translate="Module" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Forma de entrega Padrão</label>
+                    <source_model>MestreMage\SigepWeb\Model\Config\Source\ShippingMethodDefault</source_model>
+                </field>
+                <field id="application_icon" translate="label" type="Magento\Config\Block\System\Config\Form\Field\File" sortOrder="120" showInDefault="1" showInWebsite="1" >
+                    <label>Logo para Etiqueta</label>
+                    <upload_dir config="system" scope_info="1">sigepweb</upload_dir>
+                    <backend_model>Magento\Config\Model\Config\Backend\File</backend_model>
+                    <comment><![CDATA[ Tamanho da imagem deve ser 120x100. ]]></comment>
+                </field>
+                <field id="nome_cliente" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="130" translate="label" type="text">
+                    <label>Nome Cliente</label>
+                </field>
+                <field id="cnpj_remetente" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="140" translate="label" type="text">
+                    <label>CNPJ</label>
+                </field>
+                <field id="cep_origem" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="150" translate="label" type="text">
+                    <label>CEP de origem</label>
+                </field>
+                <field id="endereco_remetente" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="160" translate="label" type="text">
+                    <label>Endereco</label>
+                </field>
+                <field id="numero_remetente" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="170" translate="label" type="text">
+                    <label>Numero</label>
+                </field>
+                <field id="compl_remetente" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="180" translate="label" type="text">
+                    <label>Complemento</label>
+                </field>
+                <field id="bairro_remetente" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="190" translate="label" type="text">
+                    <label>Bairro</label>
+                </field>
+                <field id="cidade_remetente" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="200" translate="label" type="text">
+                    <label>Cidade</label>
+                </field>
+                <field id="uf_remetente" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="210" translate="label" type="text">
+                    <label>UF</label>
+                </field>
+                <field id="fone_remetente" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="220" translate="label" type="text">
+                    <label>Telefone</label>
+                </field>
+                <field id="weight_default" translate="Module" type="text" sortOrder="230" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Peso Padrão</label>
+                </field>
+                <field id="height_default" translate="Module" type="text" sortOrder="240" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Altura Padrão</label>
+                </field>
+                <field id="width_default" translate="Module" type="text" sortOrder="250" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Largura Padrão</label>
+                </field>
+                <field id="length_default" translate="Module" type="text" sortOrder="260" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Comprimento Padrão</label>
+                </field>
+                <field id="sigepweb_altura" translate="Module" type="text" sortOrder="270" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>ID Atributo altura</label>
+                    <comment>O ID do atributo esta em: Loja > aba atributos produto primeira coluna do grid Attribute Code</comment>
+                </field>
+                <field id="sigepweb_comprimento" translate="Module" type="text" sortOrder="280" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>ID Atributo comprimento</label>
+                    <comment>O ID do atributo esta em: Loja > aba atributos produto primeira coluna do grid Attribute Code</comment>
+                </field>
+                <field id="sigepweb_largura" translate="Module" type="text" sortOrder="290" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>ID Atributo largura</label>
+                    <comment>O ID do atributo esta em: Loja > aba atributos produto primeira coluna do grid Attribute Code</comment>
+                </field>
+                <field id="sort_order" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="300" translate="label" type="text">
+                    <label>Sort Order</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

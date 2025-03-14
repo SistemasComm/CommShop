@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+<system>
+    <tab id="mestremage" translate="label" sortOrder="700"  class="mestre-magento-tab">
+        <label>Mestre magento</label>
+    </tab>
+    <section id="shippingquoteproductpage" translate="label" sortOrder="500" showInDefault="1" showInWebsite="1" showInStore="1">
+        <class>separator-top</class>
+        <label>Shipping Quote Product Page</label>
+        <tab>mestremage</tab>
+        <resource>MestreMage_ShippingQuoteProductPage::config</resource>
+        <group id="geral" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>General</label>
+            <field id="ativarmodulo" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Enable</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+            <field id="active_hash" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>Chave de ativação</label>
+			</field> 
+            <field id="log" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Log</label>
+                <comment>Generated in directory [ROOT_MAGENTO]/var/log/</comment>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+        </group>
+        <group id="loja" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>settings</label>
+            <field id="pais" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Show Country</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+            <field id="estado" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Show Region</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+            <field id="cidade" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Show City</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+            <comment>is a necessary field for calculating freight in some countries</comment>
+            <field id="popup" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Open in PopUP</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+
+            <field id="mask_postcode" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Formatação de CEP</label>
+                <comment>Formata o campo de CEP para 00000-000 </comment>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+
+            <field id="txtlabeltitle" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Label title</label>
+            </field>
+
+            <field id="txtlabelink" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Label link</label>
+            </field>
+
+            <field id="txtprodconf" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Alert to select</label>
+                <comment>Remember a customer to select product options.</comment>
+            </field>
+            <field id="txterrocep" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Label Zip code error</label>
+            </field>
+            <field id="txtsearch" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Label Search Buttom</label>
+            </field>
+            <field id="txtloading" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Label Searching Buttom</label>
+            </field>
+            <field id="usar_bloco_statico" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Usar em Bloco statico</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                  <comment><![CDATA[ Adicione o codigo abaixo em um bloco estatico na pagina do produto. <textarea> {{block class="MestreMage\ShippingQuoteProductPage\Block\Catalog\Product\View\CalcularFrete" block_view="1" template="MestreMage_ShippingQuoteProductPage::catalog/product/view/frete.phtml"}}</textarea>  ]]></comment>
+            </field>
+        </group>
+
+    </section>
+</system>
+</config>

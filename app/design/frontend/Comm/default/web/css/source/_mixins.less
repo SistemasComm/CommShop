@@ -1,0 +1,19 @@
+.image(@url, @width, @height){
+    display: block;
+    width: @width;
+    height: @height;
+    background-image: url('@{baseDir}images/@{url}');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.max-lines(@height, @line) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: @height;
+    line-height: @line;
+    height: @line * @height;
+}

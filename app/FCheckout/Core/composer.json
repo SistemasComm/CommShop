@@ -1,0 +1,22 @@
+{
+    "name": "mestremage/module-Core",
+    "description": "core",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Mestre Magento",
+            "email": "contato@modulomagento.com.br"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "FCheckout\\Core\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Anymarket\Anymarket\Api\VersionInterface" type="Anymarket\Anymarket\Model\VersionMethod"/>
+
+	<preference for="Anymarket\Anymarket\Api\ShippingMethodInterface" type="Anymarket\Anymarket\Model\ShippingMethod"/>
+	<preference for="Anymarket\Anymarket\Api\PaymentMethodInterface" type="Anymarket\Anymarket\Model\PaymentMethod"/>
+	<preference for="Anymarket\Anymarket\Api\QuoteManagementInterface" type="Anymarket\Anymarket\Model\QuoteManagement"/>
+	<preference for="Anymarket\Anymarket\Api\ProductManagementInterface" type="Anymarket\Anymarket\Model\ProductManagement"/>
+	<preference for="Anymarket\Anymarket\Api\ConfigurationManagementInterface" type="Anymarket\Anymarket\Model\ConfigurationManagement"/>
+	<preference for="Anymarket\Anymarket\Api\OrderControlManagementInterface" type="Anymarket\Anymarket\Model\OrderControlManagement"/>
+	<preference for="Anymarket\Anymarket\Api\RegionInterface" type="Anymarket\Anymarket\Model\Region"/>
+	<preference for="Anymarket\Anymarket\Api\FeedManagementInterface" type="Anymarket\Anymarket\Model\FeedManagement"/>
+	<preference for="Anymarket\Anymarket\Api\Data\AnymarketCartItemsInterface" type="Anymarket\Anymarket\Model\Data\AnymarketCartItems"/>
+	<preference for="Anymarket\Anymarket\Api\Data\AnymarketConfigurationInterface" type="Anymarket\Anymarket\Model\Data\AnymarketConfiguration"/>
+	<preference for="Anymarket\Anymarket\Api\Data\AnymarketOrderControlInterface" type="Anymarket\Anymarket\Model\Data\AnymarketOrderControl"/>
+	<preference for="Anymarket\Anymarket\Api\OrderRepositoryInterface" type="Anymarket\Anymarket\Model\OrderRepository"/>
+	<type name="Anymarket\Anymarket\Model\OrderRepository">
+        <arguments>
+            <argument name="metadata" xsi:type="object">orderMetadata</argument>
+        </arguments>
+    </type>
+    <virtualType name="orderMetadata" type="Magento\Sales\Model\ResourceModel\Metadata">
+        <arguments>
+            <argument name="resourceClassName" xsi:type="string">Magento\Sales\Model\ResourceModel\Order</argument>
+            <argument name="modelClassName" xsi:type="string">Magento\Sales\Model\Order</argument>
+        </arguments>
+    </virtualType>
+
+	 <type name="Magento\InventoryApi\Api\SourceItemsSaveInterface">
+        <plugin name="callback_to_any_catalog_inventory_at_source_items_save"
+                type="Anymarket\Anymarket\Plugin\CallbackToAnyCatalogInventoryAtSourceItemsSavePlugin"/>
+    </type>
+</config>

@@ -1,0 +1,21 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package Store Pickup with Locator for Magento 2
+ */ /** @var \Amasty\StorePickupWithLocator\Block\Component\PickupDetails $block */ ?>
+
+<div data-bind="scope: 'amstorepickup'">
+    <!-- ko template: getTemplate() -->
+    <!-- /ko -->
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "Magento_Ui/js/core/app": <?= /* @noEscape */ $block->getJsLayout();?>
+            }
+        }
+    </script>
+    <script>
+        window.checkoutConfig = <?= /* @noEscape */ $block->getJsonCheckoutConfig() ?>;
+    </script>
+</div>

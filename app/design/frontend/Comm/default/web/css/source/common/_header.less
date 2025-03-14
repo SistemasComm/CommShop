@@ -1,0 +1,195 @@
+& when (@media-common = true) {
+    .page-header {
+        @media @768 {
+            margin-bottom: 0px;
+        }
+        .header.content {
+            display: flex;
+            align-items: center;
+            padding-bottom: 20px;
+            padding-top: 20px;
+
+            @media @768 {
+                flex-wrap: wrap;
+            }
+        }
+        .action.nav-toggle {
+            float: none;
+            margin-right: 16px;
+            position: static;
+            z-index: auto;
+
+            &:before {
+                color: @primary-color;
+                font-weight: 600;
+            }
+        }
+        .logo {
+            float: none;
+            margin: 0 32px 0 0;
+
+            @media @768 {
+                margin: 0;
+            }
+        }
+        .block-search {
+            float: none;
+            padding: 0;
+            flex: 1;
+
+            @media @768 {
+                flex: initial;
+                order: 100;
+                width: 100%;
+                margin-top: 12px;
+            }
+            #search_mini_form {
+                position: relative;
+            }
+            input {
+                color: rgb(87, 87, 87);
+                padding: 14px 44px 14px 14px;
+                box-sizing: border-box;
+                height: auto;
+                border-radius: 4px;
+            }
+            .action.search {
+                padding: 0;
+                background: transparent;
+                border: 0;
+                box-shadow: none;
+                font-size: 0;
+                .image('search.svg', 23px, 23px);
+                position: absolute;
+                top: 50%;
+                right: 10px;
+                transform: translate(0, -50%);
+
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
+        }
+        .login-block {
+            display: flex;
+            align-items: center;
+            margin-left: 32px;
+            color: @primary-color;
+            position: relative;
+
+            @media @768 {
+                margin-left: auto;
+            }
+            a {
+                color: @primary-color;
+            }
+            .icon {
+                .image('user.png', 29px, 36.7px);
+
+                @media @768 {
+                    width: 21px;
+                    height: 26px;
+                    cursor: pointer;
+                }
+            }
+            .text {
+                margin-left: 16px;
+
+                @media @768 {
+                    display: none !important;
+                }
+            }
+            .login-text {
+                font-weight: 700;
+                margin-bottom: 4px;
+            }
+            .login-text-enter {
+                font-weight: 700;
+                margin-bottom: 4px;
+            }
+            .extra-text {
+                font-size: 12px;
+                margin-bottom: 0;
+            }
+            .popover {
+                display: none;
+                position: absolute;
+                top: calc(100% + 5px);
+                background: #fff;
+                padding: 4px 0;
+                border: 1px solid #ddd;
+                list-style: none;
+                margin: 0;
+                z-index: 4;
+                width: 105px;
+                left: 50%;
+                transform: translate(-50%, 0);
+
+                @media @768g {
+                    display: none !important;
+                }
+                &.active {
+                    display: block;
+                }
+                li {
+                    margin-bottom: 0;
+                }
+                a {
+                    display: block;
+                    padding: 4px 10px;
+
+                    &:hover {
+                        background: #eee;
+                    }
+                }
+            }
+        }
+        .minicart-wrapper {
+            float: none;
+            margin: 0 0 0 42px;
+
+            @media @768 {
+                margin: 0 0 0 25px;
+            }
+            .action.showcart {
+                display: block;
+
+                &:before {
+                    content: '';
+                    .image('cart.png', 46.3px, 38px);
+
+                    @media @768 {
+                        width: 31px;
+                        height: 26px;
+                    }
+                }
+                &:hover {
+                    opacity: 0.8;
+                }
+                .counter.qty{
+                    border-radius: 50%;
+                    position: absolute;
+                    top: -10px;
+                    right: -10px; 
+                }
+            }
+            
+            .block-minicart {
+                &:before {
+                    right: 22px;
+
+                    @media @768 {
+                        right: 16px;
+                    }
+                }
+                &:after {
+                    right: 21px;
+
+                    @media @768 {
+                        right: 15px;
+                    }
+                }
+            }
+        }
+    }
+}

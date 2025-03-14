@@ -1,0 +1,22 @@
+{
+    "name": "mestremage/module-shippingquoteproductpage",
+    "description": "Shipping Quote Product Page",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Mestre Magento",
+            "email": "suporte@mestremage.com.br"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "MestreMage\\ShippingQuoteProductPage\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

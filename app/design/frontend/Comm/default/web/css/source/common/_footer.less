@@ -1,0 +1,26 @@
+.page-footer{
+    .footer{
+        &.content{
+            ul{
+                li{
+                    a{
+                        color: @primary-color;
+                    }
+                }
+            }
+            .accordion h3.heading{
+                font-size: 14px;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+            @media @768{
+                .flex-two{
+                    flex-direction: column;
+                }	
+                .footer.content {
+                    padding-top: 0px;
+                }
+            }
+        }
+    } 
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\User\Block\User\Edit\Tab\Main">
+        <plugin name="admin_user_cpf" type="Commshop\Admincpf\Plugin\Block\Adminhtml\User\Edit\Tab\CpfField" sortOrder="1"/>
+    </type>
+    <type name="Magento\User\Model\User">
+        <plugin name="save_admin_cpf" type="Commshop\Admincpf\Plugin\Model\User"/>
+    </type>
+</config>

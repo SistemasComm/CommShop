@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <clearsale_base>
+            <address_mapping>
+                <address_street_map>0</address_street_map>
+                <address_number_map>1</address_number_map>
+                <address_neighborhood_map>2</address_neighborhood_map>
+                <address_complement_map>3</address_complement_map>
+            </address_mapping>
+            <settings>
+                <clearsale_cpf_cnpj>taxvat</clearsale_cpf_cnpj>
+                <clearsale_customer_group>0</clearsale_customer_group>
+            </settings>
+        </clearsale_base>
+    </default>
+</config>

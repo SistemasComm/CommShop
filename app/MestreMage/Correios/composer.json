@@ -1,0 +1,22 @@
+{
+    "name": "mestremage/module-correios",
+    "description": "Modulo de entrega Correios",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Mestre Magento",
+            "email": "suporte@mestremagento.com.br"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "MestreMage\\Correios\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

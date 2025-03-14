@@ -1,0 +1,110 @@
+<div class="admin__page-section-item-title">
+    <span class="title"><?php /* @escapeNotVerified */ echo __('Chargeback Marking') ?></span>
+</div>
+<div id="order_chargeback_block" class="edit-order-chargeback">
+    <div class="order_chargeback_block" id="chargeback_form">
+        <div class="admin__field admin__field-option">
+            <input name="chargeback[has_chargeback]"
+                   type="checkbox"
+                   id="has_chargeback"
+                   class="admin__control-checkbox" />
+            <label class="admin__field-label" for="has_chargeback">
+                <?php /* @escapeNotVerified */ echo __('Do you want to mark this order with a chargeback?') ?>
+            </label>
+        </div>
+
+        <div class="admin__field">
+            <label for="chargeback_comment" class="admin__field-label">
+                <?php /* @escapeNotVerified */ echo __('Message') ?>
+            </label>
+            <div class="admin__field-control">
+                    <textarea name="chargeback[comment]"
+                              rows="3"
+                              cols="5"
+                              id="chargeback_comment"
+                              class="admin__control-textarea disabled"
+                              disabled="disabled"></textarea>
+            </div>
+        </div>
+
+        <div class="admin__field">
+            <div class="order-fraud-insight-chargeback-actions">
+                <?php echo $block->getChildHtml('submit_button') ?>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    require([
+        'jquery'
+    ], function ($) {
+        'use strict';
+
+        var cbx = $('#has_chargeback');
+
+        cbx.on('change', function () {
+            var formElms = $(this).parent().parent().find('input[type=text], textarea, button');
+            if ($(this).prop('checked') == true) {
+                formElms.prop('disabled', false).removeClass('disabled');
+            } else {
+                formElms.prop('disabled', true).addClass('disabled');
+            }
+        });
+    });
+
+    function submitChargebackAndReloadArea(area, url) {
+        if($(area)) {
+            var fields = $(area).select('input', 'select', 'textarea');
+            var data = Form.serializeElements(fields, true);
+            url = url + (url.match(new RegExp('\\?')) ? '&isAjax=true' : '?isAjax=true');
+            new Ajax.Request(url, {
+                parameters: $H(data),
+                loaderArea: area,
+                onSuccess: function(transport) {
+                    try {
+                        if (transport.responseText.isJSON()) {
+                            var response = transport.responseText.evalJSON()
+                            if (response.error) {
+                                alert(response.message);
+                            }
+                            if(response.ajaxExpired && response.ajaxRedirect) {
+                                setLocation(response.ajaxRedirect);
+                            }
+                        } else {
+                            $(area).update(transport.responseText);
+                            reloadCommentArea($('order_history_block'));
+                        }
+                    }
+                    catch (e) {
+                        $(area).update(transport.responseText);
+                    }
+                }
+            });
+        }
+    }
+
+    function reloadCommentArea(area) {
+        if ($(area)) {
+            new Ajax.Request("<?php echo $block->getReloadCommentUrl() ?>", {
+                onSuccess: function(transport) {
+                    try {
+                        if (transport.responseText.isJSON()) {
+                            var response = transport.responseText.evalJSON()
+                            if (response.error) {
+                                alert(response.message);
+                            }
+                            if(response.ajaxExpired && response.ajaxRedirect) {
+                                setLocation(response.ajaxRedirect);
+                            }
+                        } else {
+                            $(area).update(transport.responseText);
+                        }
+                    }
+                    catch (e) {
+                        $(area).update(transport.responseText);
+                    }
+                }
+            });
+        }
+    }
+</script>

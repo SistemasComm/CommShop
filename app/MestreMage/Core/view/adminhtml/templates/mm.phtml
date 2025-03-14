@@ -1,0 +1,41 @@
+<?php 
+
+/**
+ * @author Mestre Magento
+ * @copyright Copyright (c) Mestre Magento (https://www.modulomagento.com.br/)
+ * @license https://www.modulomagento.com.br/termos-condicoes/
+ * @support contato@modulomagento.com.br
+ */
+
+$t = '63458650e6c927ba874f97f82089ba04';  
+if (!isset($_COOKIE["adm_mm"])):
+    try {
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $resource = $objectManager->get("Magento\Framework\App\ResourceConnection");
+        $connection = $resource->getConnection();
+        $resource = $objectManager->get("Magento\Framework\App\ResourceConnection");
+        $connection = $resource->getConnection();
+        $setup_module = $resource->getTableName("setup_module");
+        $sql = "SELECT * FROM $setup_module WHERE module LIKE '%MestreMage%'";
+        $result = $connection->fetchAll($sql);
+        $m = "";
+        foreach ($result as $item) {
+            $m.= $item["module"] . ",";
+        }
+        $host = \Magento\Framework\App\ObjectManager::getInstance()->get("\Magento\Store\Model\StoreManagerInterface")->getStore(0)->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB);
+        $host = str_replace("www.", "", $host);
+        $host = str_replace("https://", "", $host);
+        $host = str_replace("http://", "", $host);
+        $host = substr($host, 0, -1);
+        $ac = 0;
+        if (md5($host) == $t) {
+            $ac = 1;
+        }
+        $content = true;
+        if ($content) {
+            setcookie("adm_mm", "1", (time() + (30 * 24 * 3600)));
+        }
+    }
+    catch(Exception $e) {
+    }
+endif;

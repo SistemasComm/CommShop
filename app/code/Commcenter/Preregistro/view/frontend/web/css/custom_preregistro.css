@@ -1,0 +1,64 @@
+h1.page-title{color: #ffc34f;}
+.preregistro-index-index .page-main {
+    max-width: 100% !important;
+    padding: 0;
+}
+.preregistro-index-index .img-full img {
+    max-width: 100%;
+    width: 100%;
+}
+.preregistro-index-index .page-main .container {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+.preregistro-index-index .page-main .container p{
+    text-align: center;
+font-size: 1.5vw;
+margin: 0 auto;
+width: 53%;
+margin-top: 40px;
+margin-bottom: 40px;
+}
+/* Estilos para o formulário */
+#commcenter-preregistro-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 100%;
+}
+
+#commcenter-preregistro-form .fieldset {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+}
+
+#commcenter-preregistro-form .field {
+    width: 48%; /* 48% da largura para caber dois campos lado a lado */
+    margin-bottom: 20px;
+}
+
+#commcenter-preregistro-form .field.terms {
+    width: 100%; /* O campo de termos deve ocupar 100% da largura */
+}
+
+.actions-toolbar {
+    width: 100%; /* O botão deve ficar abaixo dos campos */
+}
+
+.actions-toolbar button {
+    padding: 10px 20px;
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* Estilos para dispositivos móveis */
+@media (max-width: 768px) {
+    #commcenter-preregistro-form .field {
+        width: 100%; /* No mobile, os campos ocupam 100% da largura */
+    }
+}

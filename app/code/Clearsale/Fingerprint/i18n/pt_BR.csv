@@ -1,0 +1,8 @@
+"Settings", "Configurações",
+"Yes", "Sim",
+"No", "Não",
+"Google Tag Manager (GTM)","Google Tag Manager (GTM)"
+"App Name", "Nome do App",
+"The fingerprint module is responsible for identifying and detecting the device that is being used to make the purchase in the store.","O módulo do fingerprint é responsável por identificar e detectar o dispositivo que está sendo utilizado para realizar a compra na loja."
+"Field to activate Google Tag Manager if you have it in your store.","Campo para ativar o Google Tag Manager caso você o possua em sua loja."
+"Field where the Fingerprint app code provided by Clearsale is filled in.","Campo onde é preenchido o código do app do Fingerprint fornecido pela Clearsale."

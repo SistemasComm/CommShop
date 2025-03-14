@@ -1,0 +1,34 @@
+
+    <div id="wrap">
+        <div class="panel-body">
+            <form class="form-horizontal" action="/rest/all/V1/mestremage-correios/importexport" method="post"  enctype="multipart/form-data">
+                <div class="form-group col-md-6">
+                <h2>Selecione um arquivo csv</h2>
+                    <div class="col-md-4">
+                        <input type="file" required name="file" id="file" class="input-large">
+                    </div>
+                </div>
+                <div class="form-group">
+                <br>
+                    <div class="col-md-4">
+                        <button type="submit" id="req1" value="1" name="req" class="btn btn-primary" >Importar csv</button>
+                    </div>
+                </div>
+            </form>
+
+            <form class="form-horizontal" action="/rest/all/V1/mestremage-correios/importexport" method="post"  enctype="multipart/form-data">
+                <div class="form-group col-md-6">
+                <h2>Download </h2>
+                        <button type="submit" id="req2" value="2" name="req" class="btn btn-segundary" >Download csv</button>
+                    </div>
+            </form>
+        </div>
+
+    </div>
+<style>
+form.form-horizontal {
+    padding: 20px;
+    border: 1px solid #aaa6a0;
+    margin: 20px;
+}
+</style>

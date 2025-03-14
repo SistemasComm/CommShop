@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+
+/**
+ * @author Mestre Magento
+ * @copyright Copyright (c) Mestre Magento (https://www.modulomagento.com.br/)
+ * @license https://www.modulomagento.com.br/termos-condicoes/
+ * @support contato@modulomagento.com.br
+ */
+
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="FCheckout_Core::css/main.css"/>
+        <link src="FCheckout_Core::js/mm-script.js"/>
+    </head>
+    <body>
+        <referenceContainer name="page.wrapper">
+            <block class="Magento\Framework\View\Element\Template" name="footer.mm.block" after="-" template="FCheckout_Core::mm.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,42 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package Affiliate for Magento 2
+ */
+/** @var \Amasty\Affiliate\Block\Account\Refer $block */
+/** @var \Magento\Framework\Escaper $escaper */
+?>
+
+<?php if ($block->showLinks()): ?>
+    <div class="a2a_kit a2a_kit_size_32 a2a_default_style affiliate_social_buttons">
+        <a class="a2a_button_twitter"></a>
+        <a class="a2a_button_google_gmail"></a>
+        <a class="a2a_button_print"></a>
+        <a class="a2a_button_linkedin"></a>
+        <a class="a2a_dd"></a>
+    </div>
+
+    <script>
+        function addToAnyOnShare(shareData) {
+            var affiliateUrl = new URL(shareData.url);
+            affiliateUrl.searchParams.set('referring_service', shareData.serviceCode);
+            affiliateUrl.searchParams.set(
+                '<?= $escaper->escapeHtml($block->getUrlAccountParameter()) ?>',
+                '<?= $escaper->escapeHtml($block->getReferringCode()) ?>'
+            );
+
+            shareData.url = affiliateUrl.toString();
+
+            return shareData;
+        }
+
+        var a2a_config = a2a_config || {};
+        a2a_config.callbacks = a2a_config.callbacks || [];
+        a2a_config.callbacks.push({
+            share: addToAnyOnShare,
+        });
+    </script>
+
+    <script async src="https://static.addtoany.com/menu/page.js"></script>
+<?php endif; ?>

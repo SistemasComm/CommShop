@@ -1,0 +1,298 @@
+"Save and Continue Edit","Salvar e Continuar Editando"
+Edit,Editar
+"Manage Labels","Gerenciar Etiquetas"
+Label,Etiqueta
+Properties,Propriedades
+"Attribute Properties","Propriedades do Atributo"
+"Attribute Code","Código do Atributo"
+"The code is used internally. Make sure you don't use spaces or more than %1 symbols.","O código é usado internamente. Certifique-se de não usar espaços ou mais de %1 símbolos."
+"Default Label","Etiqueta Padrão"
+"Default label","Etiqueta padrão"
+"Catalog Input Type for Store Owner","Tipo de Entrada de Catálogo para o Proprietário da Loja"
+"Manage Options (Values of Your Attribute)","Gerenciar Opções (Valores do Seu Atributo)"
+Options,Opções
+"Text Field","Campo de Texto"
+Yes/No,Sim/Não
+"Multiple Select","Seleção Múltipla"
+Dropdown,Menu suspenso
+"Attribute Information","Informações do Atributo"
+"Location Management","Gerenciamento de Localização"
+"Add Location","Adicionar Localização"
+"Are you sure you want to do this?","Você tem certeza de que deseja fazer isso?"
+Delete,Excluir
+Disabled,Desativado
+Enabled,Ativado
+Reset,Redefinir
+Save,Salvar
+"Available Products","Produtos Disponíveis"
+"Apply the rule only if the following conditions are met (leave blank for all products).","Aplique a regra somente se as seguintes condições forem atendidas (deixe em branco para todos os produtos)."
+Conditions,Condições
+"Location Attributes","Atributos de Localização"
+"Please Select","Por favor, selecione"
+"All Store Views","Todas as Visualizações de Loja"
+"Edit Review","Editar Resenha"
+Reviews,Resenhas
+"Review Details","Detalhes da Resenha"
+"<a href=""%1"" onclick=""this.target='blank'"">%2 %3</a>","<a href=""%1"" onclick=""this.target='blank'"">%2 %3</a>"
+Author,Autor
+Rating,Classificação
+Status,Status
+Review,Resenha
+mi,mi
+km,km
+"Attribute has been deleted.","O atributo foi excluído."
+"This item no longer exists.","Este item não existe mais."
+"Edit Attribute","Editar Atributo"
+"New Attribute","Novo Atributo"
+"A total of %1 record(s) have been deleted.","Um total de %1 registro(s) foi(ram) excluído(s)."
+"Attribute with the same attribute code exists.","Já existe um atributo com o mesmo código de atributo."
+"The wrong data is specified.","Os dados incorretos foram especificados."
+"Record has been successfully saved","O registro foi salvo com sucesso"
+"Something went wrong while saving data. Please review the error log.","Ocorreu um erro ao salvar os dados. Por favor, reveja o registro de erros."
+"Store Locator","Localizador de Lojas"
+"You deleted the item.","Você excluiu o item."
+"We can't delete item right now. Please review the log and try again.","Não é possível excluir o item no momento. Por favor, reveja o registro e tente novamente."
+"We can't find an item to delete.","Não podemos encontrar um item para excluir."
+"Please select a location to duplicate.","Por favor, selecione uma localização para duplicar."
+"The location has been duplicated. Please feel free to activate it.","A localização foi duplicada. Sinta-se à vontade para ativá-la."
+"Something went wrong while saving the item data. Please review the error log.","Ocorreu um erro ao salvar os dados do item. Por favor, reveja o registro de erros."
+"Edit Location","Editar Localização"
+"New Location","Nova Localização"
+Locations,Localizações
+"Please correct the data sent.","Por favor, corrija os dados enviados."
+"Something went wrong while saving the location.","Ocorreu um erro ao salvar a localização. Por favor, reveja o registro de erros."
+"You deleted the location(s).","Você excluiu a(s) localização(ões)."
+"You changed the location(s).","Você alterou a(s) localização(ões)."
+"We can't delete location(s) right now. Please review the log and try again.","Não é possível excluir a(s) localização(ões) agora. Por favor, reveja o registro e tente novamente."
+"We can't find a location(s) to delete.","Não podemos encontrar uma(s) localização(ões) para excluir."
+"The wrong item is specified.","O item errado foi especificado."
+"You saved the item.","Você salvou o item."
+"You deleted the review.","Você excluiu a resenha."
+"We can't delete review right now. Please review the log and try again.","Não é possível excluir a resenha no momento. Por favor, reveja o registro e tente novamente."
+"Location Reviews","Resenhas de Localização"
+"Edit Location Review","Editar Resenha de Localização"
+"Locations Reviews","Resenhas de Localizações"
+"Changes Saved","Alterações Salvas"
+"%1 review(s) was deleted","%1 resenha(s) foi(foram) excluída(s)"
+"%1 review(s) was failed to delete","Não foi possível excluir %1 resenha(s)"
+"Status was changed for %1 review(s)","Status foi alterado para %1 resenha(s)"
+"Failed to change status for %1 review(s)","Falha ao alterar o status para %1 resenha(s)"
+"An error has occurred","Ocorreu um erro"
+"Review has been saved.","A resenha foi salva."
+"You deleted the schedule.","Você excluiu o horário."
+"We can't delete schedule right now. Please review the log and try again.","Não é possível excluir o horário agora. Por favor, reveja o registro e tente novamente."
+"We can't find a schedule to delete.","Não podemos encontrar um horário para excluir."
+"Edit Location Schedule","Editar Horário de Localização"
+"New Location Schedule","Novo Horário de Localização"
+"Location Schedules","Horários de Localização"
+"You saved the schedule.","Você salvou o horário."
+"Review has been placed","A resenha foi publicada"
+Monday,Segunda-feira
+Tuesday,Terça-feira
+Wednesday,Quarta-feira
+Thursday,Quinta-feira
+Friday,Sexta-feira
+Saturday,Sábado
+Sunday,Domingo
+"More permissions are needed to save this item.","São necessárias mais permissões para salvar este item."
+"More permissions are needed to save this location.","São necessárias mais permissões para salvar esta localização."
+"More permissions are needed to delete this location.","São necessárias mais permissões para excluir esta localização."
+No,Não
+Yes,Sim
+"No Conditions","Sem Condições"
+"Product Attribute","Atributo de Produto"
+Kilometers,Quilômetros
+Miles,Milhas
+"Allow User To Choose","Permitir que o Usuário Escolha"
+Slider,Controle deslizante
+Pending,Pendente
+Approved,Aprovado
+Declined,Recusado
+24h,24 horas
+12h,12 horas
+"Read More","Leia Mais"
+Closed,Fechado
+"Break Time","Tempo de Pausa"
+"Available In Stores","Disponível nas Lojas"
+"File directory '%1' is not readable.","O diretório de arquivo '%1' não é legível."
+"File directory '%1' is not writable.","O diretório de arquivo '%1' não é gravável."
+"An error has happened while detecting geo-position data by Google. The error is: status","Ocorreu um erro ao detectar dados de geo-posição pelo Google. O erro é: status"
+"Unable to save review with ID %1. Error: %2","Não é possível salvar a resenha com ID %1. Erro: %2"
+"Unable to save new review. Error: %1","Não é possível salvar uma nova resenha. Erro: %1"
+"Review with specified ID ""%1"" not found.","Resenha com o ID especificado ""%1"" não encontrada."
+"Unable to remove review with ID %1. Error: %2","Não é possível remover a resenha com ID %1. Erro: %2"
+"Unable to remove review. Error: %1","Não é possível remover a resenha. Erro: %1"
+"Schedule with ID %id does not exist.","O horário com ID %id não existe."
+"There is no sample file for this entity.","Não há um arquivo de exemplo para esta entidade."
+Open,Aberto
+"Please select","Por favor, selecione"
+"Open Time","Horário de Abertura"
+"Start of Break","Início do Intervalo"
+"End of Break","Fim do Intervalo"
+"Close Time","Horário de Fechamento"
+"Add Option","Adicionar Opção"
+"Sort Option","Classificar Opção"
+" can be found at the following stores:&nbsp;"," pode ser encontrado(a) nas seguintes lojas:&nbsp;"
+"Current location","Localização atual"
+"Search Radius","Raio de Busca"
+"Locate Nearby","Localizar Próximo"
+Filter,Filtro
+Distance:,Distância:
+"Items %1 to %2 of %3 total","Itens %1 a %2 de um total de %3"
+"%1 Item","%1 Item"
+"%1 Item(s)","%1 Item(s)"
+Page,Página
+Previous,Anterior
+"You're currently reading page","Você está atualmente lendo a página"
+Next,Próxima
+Show,Mostrar
+"per page","por página"
+"Additional Information","Informações Adicionais"
+Directions,Instruções
+"Zip: ","CEP: "
+"Country: ","País: "
+"State: ","Estado: "
+"City: ","Cidade: "
+"Address: ","Endereço: "
+Photos,Fotos
+" reviews"," resenhas"
+"Write a review","Escrever uma resenha"
+"See full review","Ver a resenha completa"
+"You're reviewing:","Você está avaliando:"
+"* Required Fields","* Campos Obrigatórios"
+"Your Rating","Sua Avaliação"
+"%1 %2","%1 %2"
+"Submit Review","Enviar Resenha"
+"Work Time Today:","Horário de Trabalho Hoje:"
+"Make base","Criar base"
+"Delete image","Excluir imagem"
+Collapse,Recolher
+"Sorry, Google failed to get directions and answered with status: ","Desculpe, o Google falhou ao obter direções e respondeu com o status: "
+"Sorry, there is no available view of the street yet.","Desculpe, ainda não há uma vista disponível da rua."
+"Sorry we're unable to display the nearby stores because the ""Use browser location"" or ""Use Geo IP"" options are disabled in the module settings. Please, contact the administrator.","Desculpe, não podemos exibir as lojas próximas porque as opções ""Usar localização do navegador"" ou ""Usar Geo IP"" estão desativadas nas configurações do módulo. Por favor, entre em contato com o administrador."
+"You need to choose address from the dropdown with suggestions.","Você precisa escolher um endereço no menu suspenso de sugestões."
+"Select Some Options","Selecione Algumas Opções"
+"Sorry, no locations were found.","Desculpe, nenhuma localização foi encontrada."
+"Please select one of each of the ratings above.","Por favor, selecione uma de cada uma das classificações acima."
+General,Geral
+"Google API Key","Chave da API do Google"
+"Enable Location Pages","Ativar Páginas de Localização"
+"Enable Customers Reviews for Locations","Ativar Resenhas de Clientes para Localizações"
+"Show Store Locator's Link on Product Pages","Mostrar o Link do Localizador de Lojas nas Páginas de Produtos"
+"'Available in Stores' Link Text","Texto do Link 'Disponível nas Lojas'"
+"Open 'Available in Stores' Page in a New Tab","Abrir Página 'Disponível nas Lojas' em uma Nova Guia"
+Title,Título
+"Add Store Locator Link to the Toolbar","Adicionar Link do Localizador de Lojas à Barra de Ferramentas"
+"Add Store Locator Link to the Footer","Adicionar Link do Localizador de Lojas ao Rodapé"
+"Map and Customer's Geolocation","Mapa e Geolocalização do Cliente"
+"Use Browser Location","Usar Localização do Navegador"
+"Use Geo IP","Usar Geo IP"
+"Show Nearest Location by Default","Mostrar Localização Mais Próxima por Padrão"
+"Map Zoom","Zoom do Mapa"
+"Enable Clustering","Ativar Agrupamento"
+"Autosuggestions Click Search","Clique nas Sugestões para Pesquisar.
+                        Se definido como NÃO, a pesquisa ocorre após pressionar o botão 'Enter'."
+"Store Locator Page","Página do Localizador de Lojas"
+"Main Settings","Configurações Principais"
+"URL Key","Chave de URL"
+"Meta Title","Meta Título"
+"Meta Description","Meta Descrição"
+"Number of Locations on a Page","Número de Localizações por Página"
+"Description Length Limit","Limite de Tamanho da Descrição"
+"Address Autosuggestion Restrictions","Restrições de Sugestões de Endereço"
+"Use o campo se você precisar mostrar apenas países específicos na lista de endereços oferecidos para o campo 'Localização Atual' na página de Localizador de Lojas.
+                            Lembre-se de que o serviço do Google permite escolher no máximo 5 países (você pode encontrar mais informações <a href=""https://developers.google.com/maps/documentation/javascript/places-autocomplete#add_autocomplete"" target=""_blank"">aqui</a>).
+                            Ou deixe o campo em branco para mostrar todos os países possíveis na lista de endereços oferecidos."
+"General Visual Settings","Configurações Visuais Gerais"
+"Distance Units","Unidades de Distância"
+"Radius Type","Tipo de Raio"
+"Minimum Value for Radius Range","Valor Mínimo para a Faixa de Raio"
+"Maximum Value for Radius Range","Valor Máximo para a Faixa de Raio"
+"Se você deseja usar outros raios de pesquisa, você pode listá-los acima, separados por vírgula."
+"Google Mark Template","Modelo de Marcador do Google"
+"Store List Template","Modelo de Lista de Lojas"
+"Sidebar Store List Visual Configuration","Configuração Visual da Lista de Lojas na Barra Lateral"
+"Day Off Text","Texto de Dia de Folga"
+"Break Time Text","Texto de Tempo de Pausa"
+"Time Format","Formato de Hora"
+"Show Distance to the Location","Mostrar Distância até a Localização"
+"Collapse Locations Filter by Default","Recolher Filtro de Localizações por Padrão"
+"Amasty Store Locator","Localizador de Lojas da Amasty"
+"Show Store List On Widget","Mostrar Lista de Lojas no Widget"
+"Show NearBy And Radius Filter","Mostrar Filtro de Próximas e Raio"
+"Automatic positioning to the nearest location","Posicionamento automático para a localização mais próxima"
+"Widget Description","Descrição do Widget"
+"Enable Widget Block Wrapping","Ativar Envoltório de Bloco do Widget"
+"Defina 'Não' para desativar o envoltório do bloco do mapa com o conteúdo da página."
+"Add New Attribute","Adicionar Novo Atributo"
+"Delete selected items?","Excluir itens selecionados?"
+ID,ID
+"Input Type","Tipo de Entrada"
+"Store Locator Location","Localização do Localizador de Lojas"
+Back,Voltar
+"General Information","Informações Gerais"
+"Location Name","Nome da Localização"
+"Store View","Visualização da Loja"
+Position,Posição
+"Short Description","Descrição Curta"
+"
+                        Se definido, um pop-up e uma lista de lojas na página do localizador de lojas mostrarão a descrição curta.
+                    ","
+                        Se definido, um pop-up e uma lista de lojas na página do localizador de lojas mostrarão a descrição curta.
+                    "
+Description,Descrição
+Address,Endereço
+Country,País
+State/Province,Estado/Província
+City,Cidade
+Zip,CEP
+"Phone Number","Número de Telefone"
+"E-mail Address","Endereço de E-mail"
+"Website URL","URL do Website"
+"Por favor, defina a URL para websites externos no formato: http://www.exemplo.com"
+"Location On Map","Localização no Mapa"
+Latitude,Latitude
+"Valores válidos de latitude estão entre -85 e 85 graus."
+Longitude,Longitude
+"Valores válidos de longitude estão entre -180 e 180 graus."
+"Marker Image","Imagem do Marcador"
+"
+                        A imagem será redimensionada para 27x43 px. Tipos de arquivo permitidos: jpg jpeg gif png. Gif pode ter apenas um quadro.
+                    ","
+                        A imagem será redimensionada para 27x43 px. Tipos de arquivo permitidos: jpg jpeg gif png. Gif pode ter apenas um quadro.
+                    "
+Preview,Visualizar
+"Image Gallery","Galeria de Imagens"
+"Images of Location","Imagens da Localização"
+"
+                        Tipos de arquivo permitidos: jpg jpeg gif png. Gif pode ter apenas um quadro.
+                    ","
+                        Tipos de arquivo permitidos: jpg jpeg gif png. Gif pode ter apenas um quadro.
+                    "
+"Product Conditions","Condições do Produto"
+"Choose Condition Type","Escolher Tipo de Condição"
+"Meta Information","Informação Meta"
+"Meta Robots","Meta Robots"
+Canonical,Canônico
+"Store Schedule","Horário de Loja"
+"Show Schedule","Mostrar Horário"
+"-- Please Select --","-- Por favor, selecione --"
+"Add New","Adicionar Novo"
+Enable,Ativar
+Disable,Desativar
+"Delete items","Excluir itens"
+"Are you sure you want to delete selected items?","Você tem certeza de que deseja excluir os itens selecionados?"
+"Store Views","Visualizações de Loja"
+Name,Nome
+Approve,Aprovar
+Decline,Recusar
+Id,Id
+"Location Id","ID da Localização"
+"Customer Name","Nome do Cliente"
+"Customer Email","E-mail do Cliente"
+"Date Placed","Data de Colocação"
+"Date Published","Data de Publicação"
+"Store Locator Schedule","Horário do Localizador de Lojas"
+"Schedule Name","Nome do Horário"
+"Add New Schedule","Adicionar Novo Horário"
+Schedule,Horário

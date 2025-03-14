@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="printpostcodtags" frontName="printpostcodtags">
+            <module name="MestreMage_SigepWeb"/>
+        </route>
+        <route id="mestremage_sigepweb" frontName="customtabsigepweb">
+            <module name="MestreMage_SigepWeb" />
+        </route>
+    </router>
+</config>

@@ -1,0 +1,66 @@
+& when (@media-common = true) {
+//hack grid title
+.cms-home .page-main{
+    max-width: 100% !important;
+}
+.nav-sections{
+    margin-bottom: 0 !important;
+}
+.sidebar-main {
+    padding-right: 10px !important;
+}
+
+.widget{
+    .block-title{
+        padding-top: 20px;
+        strong{
+            font-weight: 700;
+            font-size: 25px;
+        }
+    }
+}
+
+.box-tocart{
+    .fieldset{
+        display: flex;
+        flex-flow: row wrap;
+        align-content: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .action{
+        &.tocart{
+            width: 100% !important;
+        }
+    }
+}
+
+.cart{
+    &.table-wrapper{
+        .col.qty{
+            min-width: 150px;
+        }
+        .actions-toolbar{
+            > .action-edit:before,
+            > .action-delete:before{
+                font-size: 40px;
+            }
+        }
+        @media @768{
+            .col.qty{
+                width: 25%;
+                .input-text{
+                    height: 30px;
+                    width: 40px;
+                }
+            } 
+        }
+    }
+}
+@media @768{
+    label.sorter-label{
+        display: none;
+    }
+}
+}

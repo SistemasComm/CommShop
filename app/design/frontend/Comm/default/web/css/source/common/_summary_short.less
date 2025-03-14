@@ -1,0 +1,49 @@
+& when (@media-common = true) {
+    .product-reviews-summary.short {
+        line-height: 1;
+
+        .rating-summary {
+            line-height: 1;
+        }
+        .rating-result {
+            width: auto;
+            position: relative;
+
+            &:before {
+                content: unset;
+            }
+            .star-empty {
+                display: flex;
+
+                span {
+                    .image("star-empty.svg", 12px, 12px);
+                    &:not(:last-child) {
+                        margin-right: 3px;
+                    }
+                }
+            }
+            .star-full {
+                display: flex;
+                position: absolute;
+                overflow: hidden;
+                top: 0;
+                left: 0;
+
+                span {
+                    flex-shrink: 0;
+                    .image("star-full.svg", 12px, 12px);
+                    &:not(:last-child) {
+                        margin-right: 3px;
+                    }
+                }
+            }
+        }
+        .reviews-actions {
+            margin-top: 1px;
+        }
+        .action.view {
+            color: #a0a0a0;
+        }
+    }
+    
+}

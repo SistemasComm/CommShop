@@ -1,0 +1,661 @@
+/* reset */
+.osc:is(div, .col, .groupe-col, .col-1, .col-2, .col-3, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, acronym, address, big, cite, code,del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var,b, u, i, center,dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td,article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,time, mark, audio, video,table,tr,td) {
+	margin: 0 !important;
+	padding: 0 !important;
+	border: 0 !important;
+	font-size: 100% !important;
+	font: inherit !important;
+	vertical-align: baseline !important;
+	border-collapse: collapse !important;
+	border-spacing: 0 !important;
+}
+
+/* MestreMage - One Step Checkout */
+div#checkout>.messages {
+    float: left;
+    width: 100%;
+}
+
+.osc .checkout-payment-method .payment-method-billing-address .billing-address-details {
+    display: none;
+}
+
+.osc #co-payment-form ._active button.checkout {
+    display: none;
+}
+
+.osc #co-payment-form .checkout-agreements {
+    display: none;
+}
+
+.osc #opc-sidebar .action.primary {
+    width: 100%;
+}
+
+.osc {
+    padding: 20px 0;
+    background: #ffffff;
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+}
+
+.osc>.col {
+    width: 33.3333%;
+    float: left;
+    padding: 0 20px;
+}
+
+.rtl-layout .osc>.col {
+    float: right;
+}
+
+.osc ul,
+.osc ol {
+    padding: 0;
+    list-style: none;
+}
+
+.osc input[type="text"],
+.osc input[type="password"],
+.osc input[type="url"],
+.osc input[type="tel"],
+.osc input[type="search"],
+.osc input[type="number"],
+.osc input[type="datetime"],
+.osc input[type="email"] {
+    height: 45px;
+    line-height: 32px;
+    background-color: #f5f5f5;
+    border: 1px solid #efefef;
+}
+
+.osc select {
+    height: 45px;
+}
+
+.rtl-layout .osc .step-title {
+    padding: 8px 40px 8px 40px;
+}
+
+.checkout-billing-address {
+    float: left;
+    margin-top: 20px;
+}
+
+.osc .step-title:before {
+    position: absolute;
+    left: 7px;
+    top: 5px;
+    font-family: 'Pe-icon-7-stroke';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 26px;
+}
+
+.rtl-layout .osc .step-title:before {
+    left: unset;
+    right: 7px;
+}
+
+.osc .fieldset>.field>.label {
+    font-weight: 500;
+}
+
+.osc .table-checkout-shipping-method {
+    min-width: 100%;
+}
+
+.osc .form.methods-shipping {
+    padding: 10px 0;
+}
+
+.osc .form.methods-shipping .table-checkout-shipping-method tbody td {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.osc .shipping-address-item {
+    border: 2px solid transparent;
+    line-height: 30px;
+    margin: 0 0 2rem;
+    transition: 0.3s border-color;
+    position: relative;
+    vertical-align: top;
+    word-wrap: break-word;
+}
+
+.osc .shipping-address-item.selected-item {
+    border-color: #ff5501;
+}
+
+.osc .shipping-address-item.selected-item:after {
+    background: #ff5501;
+    color: #ffffff;
+    font-family: 'icons-blank-theme';
+    height: 27px;
+    width: 29px;
+    font-size: 27px;
+    line-height: 21px;
+    padding-top: 2px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+}
+
+.osc .shipping-address-item.selected-item .action-select-shipping-item {
+    visibility: hidden;
+}
+
+.osc .checkout-payment-method .step-title {
+    margin-bottom: 20px;
+}
+
+.osc .checkout-payment-method .payment-method-title {
+    border: 0 !important;
+    padding: 0 0 5px;
+}
+
+.osc .checkout-payment-method .billing-address-details {
+    border: 1px solid #e1e1e1;
+}
+
+.osc .checkout-payment-method .billing-address-details>span {
+    display: block;
+    padding-bottom: 10px;
+}
+
+.osc .checkout-payment-method .billing-address-details>br {
+    display: none;
+}
+
+.osc .checkout-payment-method .payment-option-title {
+    border-top: 0;
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 3px;
+    margin-bottom: 5px;
+}
+
+.osc .checkout-payment-method .payment-option-title .action-toggle {
+    display: block;
+}
+
+.osc .checkout-payment-method .payment-option-title .action-toggle:after {
+    float: right;
+    line-height: 20px;
+}
+
+.rtl-layout .osc .checkout-payment-method .payment-option-title .action-toggle:after {
+    float: left;
+}
+
+.osc .checkout-payment-method .payment-method-content {
+    padding-bottom: 0;
+}
+
+.osc .checkout-payment-method .payment-method-billing-address {
+    margin-bottom: 0;
+}
+
+.osc .checkout-payment-method .payment-group {
+    margin-bottom: 20px;
+}
+
+.osc .checkout-payment-method .payment-option-inner {
+    margin: 10px 0;
+}
+
+.osc .checkout-payment-method .payment-option-inner .field>.label {
+    margin: 0 0 8px;
+    display: inline-block;
+}
+
+.osc .checkout-payment-method .billing-address-form {
+    margin-bottom: 20px;
+    margin-top: -10px;
+}
+
+.osc .payment-method {
+    padding: 10px;
+}
+
+.osc #opc-sidebar .opc-block-summary {
+    padding: 0;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    -o-box-shadow: none;
+    -ms-box-shadow: none;
+}
+
+.osc #opc-sidebar .opc-block-summary .table-totals .grand strong {
+    font-size: 16px;
+}
+
+.osc #opc-sidebar .opc-block-summary .minicart-items .product-item-name {
+    font-size: 12px;
+}
+
+.osc #opc-sidebar .opc-block-summary .items-in-cart>.title,
+.osc #opc-sidebar .opc-block-summary .minicart-items .product-item,
+.osc #opc-sidebar .opc-block-summary .minicart-items .product-item:not(:first-child) {
+    border-color: #e1e1e1;
+}
+
+.osc #opc-sidebar .actions-toolbar {
+    width: 100%;
+}
+
+.osc #opc-sidebar .actions-toolbar .primary {
+    width: 100%;
+    margin: 0;
+}
+
+.osc #opc-sidebar .actions-toolbar .primary .action.primary {
+    border-radius: 25px;
+    font-size: 20px;
+    background: #19c338 !important;
+    border: 1px solid #33c319 !important;
+}
+
+@media (max-width: 991px) {
+    .osc>.col {
+        width: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+    .checkout-payment-method .payment-methods,
+    .checkout-payment-method .payment-option {
+        margin: 0;
+    }
+}
+
+.opc-block-summary {
+    background: #ffffff;
+}
+
+.groupe-col li {
+    list-style: none;
+}
+
+fieldset.fieldset {
+    display: contents;
+}
+
+input#mestremagentobl_cpf,
+input#mestremagentocc_cpf,
+input#mestremagentocc_fullname,
+.checkout-payment-method .ccard .number .input-text {
+    width: 100% !important;
+}
+
+.fieldset>.field,
+.fieldset>.fields>.field {
+    margin: 5 0 0 !important;
+}
+
+.osc div#checkout-step-shipping {
+    padding-top: 15px
+}
+
+.osc span.note {
+    font-size: 10px !important;
+    color: #909090;
+}
+
+.osc div[name="shippingAddress.firstname"] {
+    width: 47%;
+    float: left;
+}
+
+.osc div[name="shippingAddress.lastname"] {
+    width: 47%;
+    float: left;
+    padding-left: 10px;
+}
+
+.osc div[name="shippingAddress.telephone"] {
+    clear: both;
+    float: left;
+    width: 47%;
+}
+
+.osc div[name="shippingAddress.fax"] {
+    float: left;
+    width: 47%;
+    padding-left: 10px;
+}
+
+.osc div[name="shippingAddress.telephone"] .field-tooltip,
+.osc div[name="shippingAddress.fax"] .field-tooltip {
+    display: none;
+}
+
+.osc div[name="shippingAddress.telephone"] .control._with-tooltip input,
+.osc div[name="shippingAddress.fax"] .control._with-tooltip input {
+    width: 100% !important;
+}
+
+.osc div[name="shippingAddress.postcode"] {
+    float: left;
+    width: 100%
+}
+
+.osc div[name="shippingAddress.street.0"] {
+    float: left;
+    width: 70%
+}
+
+.osc div[name="shippingAddress.street.1"] {
+    float: left;
+    padding-left: 10px;
+    width: 24%
+}
+
+.osc div[name="shippingAddress.street.2"] {
+    float: left;
+    width: 47%
+}
+
+.osc div[name="shippingAddress.street.3"] {
+    float: left;
+    padding-left: 10px;
+    width: 47%
+}
+
+.osc div[name="shippingAddress.city"] {
+    float: left;
+    width: 47%
+}
+
+.osc div[name="shippingAddress.region_id"] {
+    float: left;
+    padding-left: 10px;
+    width: 47%
+}
+
+.osc div[name="shippingAddress.region_id"] select {
+    height: 45px;
+}
+
+.osc div[name="shippingAddress.country_id"] select {
+    height: 45px;
+}
+
+.osc div[name="shippingAddress.country_id"] select {
+    float: unset;
+    clear: both;
+}
+
+/* NOVO CSS */
+
+.osc div[name="shippingAddress.country_id"] .control,
+.osc div[name="shippingAddress.drop_down"] .control,
+.osc div[name="shippingAddress.company"] .control,
+.osc div[name="shippingAddress.vat_id"] .control {
+    float: unset !important;
+}
+
+.osc div[name="shippingAddress.drop_down"] {
+    width: 40% !important;
+    float: left !important;
+}
+
+.osc div[name="shippingAddress.vat_id"] {
+    width: 54% !important;
+    float: left !important;
+    margin-left: 10px !important;
+}
+
+.osc div[name="code-password"] {
+    width: 47% !important;
+    float: left !important;
+    clear: both;
+}
+
+.osc div[name="code-confirm_password"] {
+    width: 47% !important;
+    float: left !important;
+    margin-left: 10px !important;
+}
+
+.osc span.mm-msg-validation,
+.osc span.mm-msg-validation-confirm {
+    height: 20px;
+}
+
+/* remove o layout de click no telefone */
+.checkout-index-index .shipping-address-item a {
+    color: unset !important;
+    text-decoration: unset !important;
+    cursor: auto !important;
+}
+
+.checkout-index-index .shipping-address-item a:hover,
+.checkout-index-index .shipping-address-item a:visited {
+    color: unset !important;
+    text-decoration: unset !important;
+    cursor: auto !important;
+}
+
+/* BOTAO DE LOGIN */
+.authentication-wrapper {
+    clear: both;
+    float: left;
+    text-align: center;
+    margin: 10px 0 0 0;
+}
+
+.authentication-wrapper button span {
+    display: none;
+}
+
+button.action.action-auth-toggle {
+    background: #777;
+    width: 100%;
+    padding: 2%;
+    color: #fff;
+}
+
+span.mm-msg-validation,
+span.mm-msg-validation-confirm {
+    font-size: 11px;
+    float: left;
+    width: 100%;
+    color: red;
+}
+
+
+@media (max-width: 992px) {
+    .groupe-col {
+        float: left;
+        width: 100% !important;
+    }
+
+    .authentication-wrapper {
+        width: 100%;
+    }
+}
+
+.step-title.b-title.h3:before {
+    margin: 6px;
+    vertical-align: baseline;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.opc-block-summary>.title:before {
+    margin: 0px 10px 0px -20px;
+    vertical-align: baseline;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.billing-address-details {
+    display: none;
+}
+
+.fieldset>.field:not(.choice)>.label {
+    padding: 6px 15px 0 0;
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
+    float: left;
+}
+
+.fieldset>.field:not(.choice)>.control {
+    width: 100%;
+    float: left;
+}
+
+.osc .step-title,
+.osc #opc-sidebar .opc-block-summary>.title {
+    font-size: 0;
+    height: 30px;
+}
+
+.control.captcha-image button:before {
+    content: "";
+}
+
+.control.captcha-image button span {
+    display: block;
+}
+
+
+/* abaixo dos layouts */
+
+.groupe-col {
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+
+.opc-block-summary {
+    border: none;
+}
+
+/* mensagem de erro para mobile */
+@media only screen and (max-width: 992px) {
+    .payment-method-content .messages {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        z-index: 9999;
+    }
+}
+
+.checkout-container div#MensagemErro:nth-child(3) {
+    display: none !important;
+}
+
+.street.mestremage-address-lines {
+    display: block !important;
+    margin: 0px !important;
+}
+
+.groupe-col.col-3 {
+    position: sticky !important;
+    margin-top: 0px !important;
+    top: 10px !important;
+}
+
+.checkout-index-index .mestremage-address-lines {
+    clear: both !important;
+}
+
+.table-checkout-shipping-method {
+    margin-left: 10px !important;
+}
+
+.table-checkout-shipping-method tbody tr td {
+    border: 0px !important;
+    height: 30px !important;
+}
+
+/* Ajusta os métodos de entrega */
+.table-checkout-shipping-method tr {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-content: flex-start !important;
+    justify-content: flex-start !important; 
+}
+
+.table-checkout-shipping-method tr .col.col-carrier { display: none !important; }
+
+/* INCIO - Ajusta larguras dos campos */
+.osc #shipping-new-address-form,
+.osc #shipping-new-address-form .mestremage-address-lines,
+.osc #shipping-new-address-form .street .control
+{
+    display: flex !important;
+    flex-direction: row !important;
+    clear: both !important;
+    flex-wrap: wrap !important;
+}
+
+.osc #shipping-new-address-form .mestremage-address-lines,
+.osc #shipping-new-address-form .street
+{
+    width: 100% !important;
+}
+
+/* campos da esquerda */
+.osc div[name="code-password"],
+.osc div[name="shippingAddress.firstname"],
+.osc div[name="shippingAddress.street.0"],
+.osc div[name="shippingAddress.street.2"],
+.osc div[name="shippingAddress.city"],
+.osc div[name="shippingAddress.drop_down"]
+{
+    flex-grow: 0;
+    padding-right: 10px;
+}
+
+/* campos da direita */
+.osc div[name="code-confirm_password"],
+.osc div[name="shippingAddress.lastname"],
+.osc div[name="shippingAddress.fax"],
+.osc div[name="shippingAddress.street.3"],
+.osc div[name="shippingAddress.region_id"],
+.osc div[name="shippingAddress.vat_id"]
+{
+    flex-grow: 1;
+    width: 47% !important;
+    margin: unset !important;
+    padding: unset !important;
+}
+
+/* campos largura 100% */
+.osc div[name="shippingAddress.company"],
+.osc div[name="shippingAddress.telephone"],
+.osc div[name="shippingAddress.mm_dob"],
+.osc div[name="shippingAddress.mm_gender"],
+.osc div[name="shippingAddress.razao_social"],
+.osc div[name="shippingAddress.inscricao_estadual"],
+.osc div[name="shippingAddress.country_id"]
+{
+    width: 100% !important;
+}
+
+/* campos menores */
+.osc div[name="shippingAddress.street.1"]
+{
+    flex-grow: 1;
+    width: 10% !important;
+    margin: unset !important;
+    padding: unset !important;
+}
+/* FIM - Ajusta larguras dos campos */
