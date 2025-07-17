@@ -9,7 +9,8 @@ interface ProductInterface
      * @param string $sku
      * @param int $quantity
      * @param float $price
+     * @param string $slug
      * @return string
      */
-    public function postProduct($sku, $quantity, $price);
+    public function postProduct($sku, $quantity, $price, $slug);
 }

@@ -1,8 +1,12 @@
 <?php
 
+ini_set('memory_limit', '1024M');
+
 $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 $customerObj = $objectManager->create('Magento\Customer\Model\ResourceModel\Customer\Collection');
 $collection = $customerObj->addAttributeToSelect('taxvat')->load();
+//$collection = $collection->getFirstItem();
+
 $customerSession = $objectManager->create('Magento\Customer\Model\Session');
 $customerRepository = $objectManager->create('Magento\Customer\Api\CustomerRepositoryInterface');
 
@@ -16,8 +20,8 @@ if (isset($_REQUEST['atr_lbl']) && isset($_REQUEST['atr_value'])) {
 } else {
 
     $taxvat = array();
-    foreach ($collection as $item) {
-        $taxvat[] = soNumero($item->getData('taxvat'));
+    foreach ($collection as $item) 
+      $taxvat[] = soNumero($item->getTaxvat());
     }
 
     if (in_array(soNumero($_REQUEST['taxvat']), $taxvat)) {

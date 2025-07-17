@@ -70,9 +70,15 @@ class CustomerRegisterBefore implements ObserverInterface
                 if ($request->getFullActionName() == 'customer_account_createpost') {
                     $customer = $observer->getCustomer();
                     $taxvat = $customer->getData('taxvat');
-                    $customerCollection = $this->_customerCollectionFactory->create();
-                    $collection = $customerCollection->addAttributeToSelect('taxvat')->load();
-                    foreach ($collection as $item) {
+//                    $customerCollection = $this->_customerCollectionFactory->create();
+//                    $collection = $customerCollection->addAttributeToSelect('taxvat');
+  
+            $collection =  $this->_customerCollectionFactory->create()
+            ->addAttributeToSelect('taxvat')
+            ->addAttributeToFilter('taxvat', ['eq' => $taxvat])
+            ->setPageSize(1);
+
+                  foreach ($collection as $item) {
                         if ($this->onlyNumber($item->getData('taxvat')) == $this->onlyNumber($taxvat)) {
                             $this->isTaxvatRegister($taxvat);
                             break;

@@ -9,6 +9,7 @@ use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Psr\Log\LoggerInterface;
+use Magento\Quote\Model\QuoteFactory;
 
 class View extends Action
 {
@@ -16,18 +17,21 @@ class View extends Action
     protected $productRepository;
     protected $productFactory;
     protected $logger;
+    protected $quoteFactory;
 
     public function __construct(
         Context $context,
         Cart $cart,
         ProductRepository $productRepository,
         ProductFactory $productFactory,
-        LoggerInterface $logger
+        LoggerInterface $logger,
+        QuoteFactory $quoteFactory
     ) {
         $this->cart = $cart;
         $this->productRepository = $productRepository;
         $this->productFactory = $productFactory;
         $this->logger = $logger;
+        $this->quoteFactory = $quoteFactory;
         parent::__construct($context);
     }
 
@@ -48,6 +52,7 @@ class View extends Action
             $sku = $productData->getSku();
             $quantity = $productData->getQuantity();
             $price = $productData->getPrice();
+            $slug = $productData->getSlug();
 
             $product = $this->productRepository->get($sku);
             $params = [
@@ -63,13 +68,21 @@ class View extends Action
             }
             $this->cart->save();
 
+            if ($slug) {
+                $quoteId = $this->cart->getQuote()->getId();
+                $quote = $this->quoteFactory->create()->load($quoteId);
+                $quote->setData('slug', $slug);
+
+                $quote->save();
+            }
+
             $productData->setStatus(1);
             $productData->save();
 
             $this->messageManager->addSuccessMessage(__('Produto adicionado ao carrinho!'));
 
             $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-            return $resultRedirect->setPath('checkout/cart');
+            return $resultRedirect->setPath('checkout');
 
         } catch (NoSuchEntityException $e) {
             $this->logger->critical($e->getMessage());

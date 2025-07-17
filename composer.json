@@ -21,11 +21,13 @@
     "version": "2.4.3",
     "require": {
         "crankycyclops/m2-module-discount-code-url": "^1.0",
+        "frenet/frenet-magento2": "^2.4.6",
         "getnetadquirencia/payment-magento": "~101",
         "magento/composer-dependency-version-audit-plugin": "~0.1",
         "magento/composer-root-update-plugin": "~2.0",
         "magento/module-admin-adobe-ims": "^100.4",
         "magento/module-page-builder": "2.2.2",
+        "magento/page-builder": "^1.7",
         "magento/product-community-edition": "^2.4.4",
         "mageplaza/module-smtp": "^4.7",
         "magiccart/magicmenu": "^1.0",
