@@ -1,0 +1,7 @@
+<div class="product-description">
+    <?php 
+        /* @escapeNotVerified */ 
+        echo $this->helper('Magento\Catalog\Helper\Output')
+                  ->productAttribute($block->getProduct(), $block->getProduct()->getDescription(), 'description');
+    ?>
+</div>

@@ -206,8 +206,24 @@ class Correios extends \Magento\Shipping\Model\Carrier\AbstractCarrier implement
             if (!ModulesManagement::testModule($this->getConfig(\base64_decode('Y2FycmllcnMvY29ycmVpb3MvYWN0aXZlX2hhc2g=')), 'MestreMage_Correios')) return false;
             $correiosMethodReturn = [];
             $servicoCodigo = [];
-            foreach ($modalidade_frete as $correiosMethod) {
+	    foreach ($modalidade_frete as $correiosMethod) {
+
+		  //  if($correiosMethod == '40010')
+		//	    $correiosMethod  = '04014';
+
+                    // if($correiosMethod == '41106')
+                       //     $correiosMethod = '04510';
+
                 $correiosMethod = $this->getServiceToPopulate($correiosMethod, $this->formatZip($dest_postcode));
+
+
+
+		     //if($correiosMethod["servico_codigo"] == '40010')
+                       //     $correiosMethod["servico_codigo"]  = '04014';
+
+                     //if($correiosMethod["servico_codigo"] == '41106')
+                     //       $correiosMethod["servico_codigo"] = '04510';
+
 
 
 

@@ -6,10 +6,19 @@
         <column name="quantity" xsi:type="int" nullable="false" comment="Quantity"/>
         <column name="price" xsi:type="decimal" scale="4" precision="12" nullable="false" comment="Price"/>
         <column name="hashurl" xsi:type="varchar" length="255" nullable="false" comment="Hash URL"/>
+        <column name="slug" xsi:type="varchar" length="255" nullable="false" comment="Slug Id"/>
         <column name="created_at" xsi:type="timestamp" nullable="false" on_update="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
         <column name="status" xsi:type="smallint" nullable="false" default="0" comment="Status"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="id"/>
         </constraint>
+    </table>
+
+    <table name="quote">
+        <column xsi:type="varchar" name="slug" nullable="true" length="255" comment="Slug Id"/>
+    </table>
+
+    <table name="sales_order">
+        <column xsi:type="varchar" name="slug" nullable="true" length="255" comment="Slug Id"/>
     </table>
 </schema>

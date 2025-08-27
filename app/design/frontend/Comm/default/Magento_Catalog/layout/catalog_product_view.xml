@@ -2,9 +2,43 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
         <css src="Magento_Catalog::css/custom.css" />
+        <css src="Magento_Catalog::css/product.css" />
     </head>
     <body>
-       <!-- <move element="page.main.title" destination="content" before="product.info.media"/> -->
-       <referenceBlock name="view.addto.compare" remove="true" />
+        <move element="product.info.stock.sku" destination="page.main.title" before="-"/>
+
+        <move element="reviews.tab" destination="product.info.custom.wrapper" after="technical.sheet.custom"/>
+
+        <referenceContainer name="content">
+            <container name="product.info.custom.wrapper" 
+                       as="product_custom_wrapper"
+                       htmlTag="div" 
+                       htmlClass="product-details-info"
+                       after="product.info.media">
+
+                <block class="Magento\Catalog\Block\Product\View" 
+                       name="description.custom" 
+                       template="Magento_Catalog::product/view/description.phtml" />
+
+                <block class="Magento\Catalog\Block\Product\View" 
+                       name="short.description.custom" 
+                       template="Magento_Catalog::product/view/short-description.phtml" />
+
+                <block class="Magento\Catalog\Block\Product\View" 
+                       name="technical.sheet.custom" 
+                       template="Magento_Catalog::product/technical_sheet.phtml" />
+            </container>
+        </referenceContainer>
+
+        <referenceContainer name="header.container">
+            <block class="Magento\Framework\View\Element\Template" name="custom.slide.categories.product" template="Magento_Theme::slide-categories.phtml" after="logo" />
+        </referenceContainer>
+
+        <referenceBlock name="product.attributes" remove="true" /> 
+        <referenceBlock name="product.info.overview" remove="true" />
+        <referenceBlock name="view.addto.compare" remove="true" />
+        
+        <referenceBlock name="product.info.details" remove="true" />
+
     </body>
 </page>

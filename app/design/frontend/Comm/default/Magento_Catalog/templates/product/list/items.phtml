@@ -211,8 +211,23 @@ $_item = null;
                             <div class="widget discount">
                             <span>
                                 <?php
-                                    if ($specialprice) {
-                                        if ($today >= strtotime($specialPriceFromDate) && $today <= strtotime($specialPriceToDate) || $today >= strtotime($specialPriceFromDate) && is_null($specialPriceToDate)) { ?>
+
+if ($specialprice) {
+    $fromDateValid = !empty($specialPriceFromDate);
+    $toDateValid = !empty($specialPriceToDate);
+
+    if (
+        ($fromDateValid && $toDateValid && $today >= strtotime($specialPriceFromDate) && $today <= strtotime($specialPriceToDate)) ||
+        ($fromDateValid && !$toDateValid && $today >= strtotime($specialPriceFromDate))
+    ) {
+       
+?>
+
+
+
+
+
+
                                             <?php if($sale) { echo $sale.'% off'; } else {echo __('Sale');} ?>
                                         <?php }
                                     }

@@ -83,7 +83,7 @@ class WhatsAppViewModel implements \Magento\Framework\View\Element\Block\Argumen
         $phone  = $this->getPhone();
         $text   = $this->getWelcome();
         $browser= $this->getDeviceType();
-        $isoCode= substr($this->_store->getLocaleCode(), 0, 2);
+        $isoCode= substr($this->_store->getLocaleCode() ?? '', 0, 2);
 
         //verificar o device
         if ($browser=="mobile")

@@ -31,7 +31,7 @@ use Magento\Framework\App\Action\Action;
         <div class="block-content">
             <?= /* @noEscape */ '<!-- ' . $image . '-->' ?>
             <div class="products-<?= /* @noEscape */ $mode ?> <?= /* @noEscape */ $mode ?>">
-                <ol class="owl-carousel owl-theme product-items <?= /* @noEscape */ $type ?>" data-mage-init='{"Loja_ProductListSlider/js/slider-grid": {}}'>
+                <ol class="owl-carousel owl-theme custom-products-items product-items <?= /* @noEscape */ $type ?>" data-mage-init='{"Loja_ProductListSlider/js/slider-grid": {}}'>
                     <?php $iterator = 1; ?>
                     <?php foreach ($items as $_item) : ?>
                         <?= /* @noEscape */ ($iterator++ == 1) ? '<li class="product-item">' : '</li><li class="product-item">' ?>
@@ -48,25 +48,24 @@ use Magento\Framework\App\Action\Action;
                             if($sale < 100):
                         ?>
                         <div class="widget discount">
-                        <span>
-                            <?php
-                                if ($specialprice) {
-    $fromDate = !empty($specialPriceFromDate) ? strtotime($specialPriceFromDate) : false;
-    $toDate = !empty($specialPriceToDate) ? strtotime($specialPriceToDate) : false;
+                            <span>
+                                <?php
+                                    if ($specialprice) {
+                                        $fromDate = !empty($specialPriceFromDate) ? strtotime($specialPriceFromDate) : false;
+                                        $toDate = !empty($specialPriceToDate) ? strtotime($specialPriceToDate) : false;
 
-    if (($fromDate && $toDate && $today >= $fromDate && $today <= $toDate) ||
-        ($fromDate && !$toDate && $today >= $fromDate)) { ?>
-        <?php if($sale) { echo $sale . '% off'; } else { echo __('Sale'); } ?>
-    <?php }
-}
-                            ?>
-                        </span>
+                                        if (($fromDate && $toDate && $today >= $fromDate && $today <= $toDate) ||
+                                            ($fromDate && !$toDate && $today >= $fromDate)) { ?>
+                                            <?php if($sale) { echo $sale . '% off'; } else { echo __('Sale'); } ?>
+                                        <?php }
+                                    }
+                                ?>
+                            </span>
                         </div>
                         <?php  endif; ?>
                         <div class="product-item-info">
                             <a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>" class="product-item-photo">
                                 <?= $block->getImage($_item, $image)->toHtml() ?>
-                                <!--<span class="details teste4">COMPRAR</span>-->
                             </a>
                             <div class="product-item-details">
                                 <strong class="product-item-name">
@@ -76,14 +75,15 @@ use Magento\Framework\App\Action\Action;
                                         <?= $block->escapeHtml($_item->getName()) ?>
                                     </a>
                                 </strong>
-                                <?php if ($templateType) : ?>
-                                    <div class="summary-container">
-                                        <?= $block->getReviewsSummaryHtml($_item, $templateType) ?>
-                                    </div>
-                                <?php endif; ?>
+
+                                
 
                                 <?= $block->getProductPriceHtml($_item, $type) ?>
 
+                                <div class="summary-container">
+                                   <?php echo $block->getReviewsSummaryHtml($_item,"sort",true); ?>
+                                </div>
+                                
                                 <?= $block->getProductDetailsHtml($_item) ?>
 
                                 <?php if ($showWishlist || $showCompare || $showCart) : ?>
@@ -112,26 +112,16 @@ use Magento\Framework\App\Action\Action;
                                                     <?php endif; ?>
                                                 </div>
                                             <?php endif; ?>
-                                            <?php if ($showWishlist || $showCompare) : ?>
-                                                <div class="actions-secondary" data-role="add-to-links">
-                                                    <?php //phpcs:disable ?>
-                                                    <?php if ($this->helper(\Magento\Wishlist\Helper\Data::class)->isAllow() && $showWishlist) : ?>
-                                                    <?php //phpcs:enable ?>
-                                                        <a href="#"
-                                                           data-post='<?= /* @noEscape */ $block->getAddToWishlistParams($_item) ?>' class="action towishlist" data-action="add-to-wishlist" title="<?= $block->escapeHtmlAttr(__('Add to Wish List')) ?>">
-                                                            <span><?= $block->escapeHtml(__('Add to Wish List')) ?></span>
-                                                        </a>
-                                                    <?php endif; ?>
-                                                    <?php if ($block->getAddToCompareUrl() && $showCompare) : ?>
-                                                        <?php //phpcs:disable ?>
-                                                        <?php $compareHelper = $this->helper(\Magento\Catalog\Helper\Product\Compare::class);?>
-                                                        <?php //phpcs:enable ?>
-                                                        <a href="#" class="action tocompare" data-post='<?= /* @noEscape */ $compareHelper->getPostDataParams($_item) ?>' title="<?= $block->escapeHtmlAttr(__('Add to Compare')) ?>">
-                                                            <span><?= $block->escapeHtml(__('Add to Compare')) ?></span>
-                                                        </a>
-                                                    <?php endif; ?>
-                                                </div>
-                                            <?php endif; ?>
+                                            <div class="actions-secondary" data-role="add-to-links">
+                                                <a href="#"
+                                                    data-post='<?= /* @noEscape */ $block->getAddToWishlistParams($_item) ?>'
+                                                    class="action towishlist" 
+                                                    data-action="add-to-wishlist" 
+                                                    title="<?= $block->escapeHtmlAttr(__('Add to Wish List')) ?>">
+
+                                                    <span><?= $block->escapeHtml(__('Add to Wish List')) ?></span>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 <?php endif; ?>

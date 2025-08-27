@@ -1,0 +1,177 @@
+.custom-products-items {
+    .product-item {
+        position: relative;
+        width: 100%;
+
+        .product-item-photo {
+            box-shadow: 0px 4px 24px -1px #00000014;
+            border-radius: 16px;
+            padding: 8px;
+        }
+
+        .product-item-details {
+            padding-top: 16px;
+            display: flex;
+            flex-direction: column;
+
+            .special-price > span:first-child,
+            .old-price > span:first-child {
+                display: none;
+            }
+
+            .price-box {
+                height: 100%;
+                padding-top: 12px;
+                
+                &:has(.old-price) {
+                     .old-price {
+                        display: none !important;
+                    }
+
+                    .special-price {
+                        text-decoration: line-through;
+                    } 
+                }
+                
+                .price {
+                    font-family: 'Red Hat Display';
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 130%;
+                    color: #777777;
+                }
+            }
+            
+            .mm-price-parcels-grid {
+                margin-top: 8px;
+                order: 2;
+                font-family: 'Red Hat Display';
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 130%;
+                color: #777;
+            }
+            
+            #preco-a-vista-mm {
+                p {
+                    margin-top: 4px;
+                    display: flex;
+                    font-size: 0;
+                }
+                
+                .price {
+                    font-family: 'Red Hat Display';
+                    font-size: 23px;
+                    line-height: 130%;
+                    color: #000;
+                    font-weight: 800;
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+
+                    &:after {
+                        content: 'à vista no PIX';
+                        font-family: 'Red Hat Display';
+                        font-weight: 400;
+                        font-size: 14px;
+                        line-height: 130%;
+                    }
+                }
+            }
+
+            .product-item-name {
+                order: 0;
+            }
+            
+            .product-item-link {
+                font-family: 'Red Hat Display';
+                font-weight: 900 !important;
+                font-size: 20px;
+                line-height: 130%;
+                height: 100%;
+
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+
+            
+            .product-item-inner {
+                order: 3;
+                display: flex;
+            }
+        }
+
+        .product-item-actions {
+            width: 100%;
+            margin-top: 20px;
+            
+            .actions-primary {
+                .tocart {
+                    opacity: 1;
+                    border: 1px solid #000;
+                    border-radius: 52px !important;
+                    background: #FFF;
+                    color: #000;
+                    display: flex;
+                    gap: 8px;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 16px;
+
+                    &:before {
+                        content: url('/pub/media/website/icon/add-to-cart.svg');
+                    }
+
+                    &:hover {
+                        background: #000;
+                        color: #F8B408;
+                        border-color: #F8B408;
+
+                        &:before {
+                            content: url('/pub/media/website/icon/add-to-cart-yellow.svg');
+                        }
+                    }
+
+                    span {
+                        font-family: 'Red Hat Display';
+                        font-weight: 500;
+                        font-size: 16px;
+                        line-height: 130%;
+                        letter-spacing: 0%;
+                        text-transform: none;
+                    }
+                }
+            }
+
+            .actions-secondary {
+                .towishlist {
+                    position: absolute;
+                    top: 8px;
+                    right: 8px;
+                    background: #000000;
+                    border-radius: 100%;
+                    border: 1px solid #00000014;
+                    line-height: unset;
+                    height: 49px;
+                    width: 49px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    &:before {
+                        content: url('/pub/media/website/icon/wishlist.svg');
+                        width: unset;
+                    }
+
+                    &:hover {
+                        &:before {
+                            content: url('/pub/media/website/icon/wishlist-white.svg');
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
