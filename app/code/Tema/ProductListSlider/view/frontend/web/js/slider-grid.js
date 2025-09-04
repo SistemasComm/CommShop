@@ -6,11 +6,11 @@ define([
 
     return function(conf, elem) {
         $(elem).owlCarousel({
-            items: 5,
+            items: 4,
             margin: 20,
             nav: true,
             navText: ['', ''],
-            dots: true,
+            dots: false,
             responsive : {
                 0 : {
                     items : 2
@@ -22,7 +22,7 @@ define([
                     items : 4
                 },
                 960 : {
-                    items : 5
+                    items : 4
                 }
             }
         });

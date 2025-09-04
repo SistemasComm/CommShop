@@ -1,0 +1,36 @@
+<?php
+$_brand = $block->getCurrentBrand();
+$data = $this->helper('Ves\Brand\Helper\Data');
+$brand_layout_listing = $data->getConfig("product_view_page/brand_layout_listing");
+
+$_bgColor = $_brand->getData('custom_background_color') ?: '#ffffff';
+$_fontColor = $_brand->getData('font_color') ?: '#000000';
+$_img = '';
+if($_img = $_brand->getImageUrl()){ ?>
+<div class="brand-image">
+	<img src="<?php echo $_img ?>" alt="<?php echo $_brand->getName(); ?>" class="image"/>
+</div>
+<?php }
+?>
+<style>
+
+.header.content .brand-image img {
+    max-width: 170px;
+    margin-right: 45px;
+}
+.page-footer {
+    background-color: <?php echo $_bgColor ?>;
+}
+.page-footer * {
+  color: <?php echo $_fontColor ?>;
+}
+main#maincontent .brand-view {
+    display: none;
+}
+.magicmenu .nav-desktop .level-top a{
+    color: <?php echo $_fontColor ?>;
+}
+.sections.nav-sections {
+    background-color: <?php echo $_bgColor ?>;
+}
+</style>

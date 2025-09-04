@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="front_fieldset">
+        <field name="show_in_technical_sheet" sortOrder="90" formElement="checkbox">
+            <settings>
+                <dataType>boolean</dataType>
+                <label>Mostrar na Ficha Técnica</label>
+                <default>0</default>
+                <dataScope>show_in_technical_sheet</dataScope>
+                <notice>Marque "Sim" para exibir este atributo na Ficha Técnica.</notice>
+                <valueMap>
+                    <map name="true">1</map>
+                    <map name="false">0</map>
+                </valueMap>
+            </settings>
+        </field>
+    </fieldset>
+</form>

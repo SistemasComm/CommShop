@@ -2,54 +2,62 @@
 
 ini_set('memory_limit', '1024M');
 
-$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-$customerObj = $objectManager->create('Magento\Customer\Model\ResourceModel\Customer\Collection');
-$collection = $customerObj->addAttributeToSelect('taxvat')->load();
-//$collection = $collection->getFirstItem();
+use Magento\Framework\App\Bootstrap;
 
-$customerSession = $objectManager->create('Magento\Customer\Model\Session');
-$customerRepository = $objectManager->create('Magento\Customer\Api\CustomerRepositoryInterface');
+require __DIR__ . '/../app/bootstrap.php';
+
+$bootstrap = Bootstrap::create(BP, $_SERVER);
+$obj = $bootstrap->getObjectManager();
+
+$state = $obj->get('Magento\Framework\App\State');
+$state->setAreaCode('frontend');
+
+$customerSession = $obj->get('Magento\Customer\Model\Session');
+$customerRepository = $obj->get('Magento\Customer\Api\CustomerRepositoryInterface');
 
 if (isset($_REQUEST['atr_lbl']) && isset($_REQUEST['atr_value'])) {
-    $customerSession = $objectManager->create('Magento\Customer\Model\Session');
     if ($customerSession->isLoggedIn()) {
         $customer = $customerRepository->getById($customerSession->getCustomer()->getId());
         $customer->setCustomAttribute($_REQUEST['atr_lbl'], $_REQUEST['atr_value']);
         $customerRepository->save($customer);
     }
 } else {
+    $collection = $obj->create('Magento\Customer\Model\ResourceModel\Customer\Collection')
+        ->addAttributeToSelect('taxvat')
+        ->load();
 
-    $taxvat = array();
-    foreach ($collection as $item) 
-      $taxvat[] = soNumero($item->getTaxvat());
+    $taxvat = [];
+    foreach ($collection as $item) {
+        $taxvat[] = soNumero($item->getTaxvat());
     }
 
-    if (in_array(soNumero($_REQUEST['taxvat']), $taxvat)) {
-        $retorno = 1;
-        if ($customerSession->isLoggedIn()) {
-            if (soNumero($customerSession->getCustomer()->getTaxvat()) == soNumero($_REQUEST['taxvat'])) {
-                $retorno = 0;
+    $retorno = 0;
+
+    if (isset($_REQUEST['taxvat'])) {
+        $inputTaxvat = soNumero($_REQUEST['taxvat']);
+
+        if (in_array($inputTaxvat, $taxvat)) {
+            $retorno = 1;
+            if ($customerSession->isLoggedIn()) {
+                if (soNumero($customerSession->getCustomer()->getTaxvat()) == $inputTaxvat) {
+                    $retorno = 0;
+                }
             }
-        }
-    } else {
-        $retorno = 0;
-        if ($customerSession->isLoggedIn()) {
-            if (soNumero($customerSession->getCustomer()->getTaxvat()) != soNumero($_REQUEST['taxvat'])) {
-                $customerRepository = $objectManager->create('Magento\Customer\Api\CustomerRepositoryInterface');
-                $customer = $customerRepository->getById($customerSession->getCustomer()->getId());
-                $customer->setTaxvat($_REQUEST['taxvat']);
-                $customerRepository->save($customer);
+        } else {
+            if ($customerSession->isLoggedIn()) {
+                if (soNumero($customerSession->getCustomer()->getTaxvat()) != $inputTaxvat) {
+                    $customer = $customerRepository->getById($customerSession->getCustomer()->getId());
+                    $customer->setTaxvat($_REQUEST['taxvat']);
+                    $customerRepository->save($customer);
+                }
             }
         }
     }
+
     echo $retorno;
 }
+
 function soNumero($str)
 {
-
-    if ($str) {
-        return preg_replace("/[^0-9]/", "", $str);
-    }
-
-    return  '';
+    return $str ? preg_replace("/[^0-9]/", "", $str) : '';
 }

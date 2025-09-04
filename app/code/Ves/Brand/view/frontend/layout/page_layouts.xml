@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<page_layouts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_layouts.xsd">
+    <layout id="ves_category_custom">
+        <label translate="true">Ves Category Custom</label>
+        <template>Magento_Theme::page/ves_category_custom.phtml</template>
+    </layout>
+</page_layouts>
