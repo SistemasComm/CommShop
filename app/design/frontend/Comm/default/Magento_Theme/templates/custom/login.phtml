@@ -15,9 +15,9 @@ $logoutUrl = $urlInterface->getUrl('customer/account/logout');
     <span class="icon"></span>
     <div class="text" style="display: none;" data-bind="style: { display: customer().firstname || !customer().firstname ? 'block' : 'none' }">
         <!-- ko ifnot: customer().firstname -->
+        <p class="login-text-enter"><a href="<?= $createUrl ?>">Crie a sua conta</a></p>
         <p class="login-text"><a href="<?= $loginUrl ?>">Entre</a></p>
-        <p class="login-text-enter"><a href="<?= $createUrl ?>"> ou Cadastre-se</a></p>
-        <p class="extra-text">Para ver seus pedidos</p>
+        <p class="extra-text">Compras</p>
         <!-- /ko -->
         <!-- ko if: customer().firstname -->
         <p class="login-text">Bem vindo(a) <b data-bind="text: customer().firstname"></b>!</p>

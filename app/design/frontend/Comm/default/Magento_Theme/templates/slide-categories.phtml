@@ -1,0 +1,70 @@
+<?php
+
+/**
+ * Category view template
+ *
+ * @var $block \Magento\Catalog\Block\Category\View
+ */
+
+// **AVISO:** O uso direto do ObjectManager não é uma boa prática em Magento.
+// Considere usar Injeção de Dependência em um Block customizado.
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$categoryHelper = $objectManager->get('\Magento\Catalog\Helper\Category');
+$categories = $categoryHelper->getStoreCategories();
+ 
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$mediaUrl = $storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+ 
+if ($categories) { ?>
+    <div class="slide-category-list">
+    <?php foreach ($categories as $category) { 
+        $categoryModel = $objectManager->create('Magento\Catalog\Model\Category')->load($category->getId());
+
+
+        if (!$categoryModel->getIncludeInMenu()) {
+            continue;
+        }
+        
+        $thumbnail = $categoryModel->getImageUrl('icon_menu');
+ 
+        if ($thumbnail) {
+            $thumbnailUrl = $mediaUrl . 'catalog/category/' . basename($thumbnail);
+        } else {
+            $thumbnailUrl = '/pub/media/website/thumb_catalog_custom.png';
+        }
+        ?>
+        <div class="slide-category-item">
+            <a href="<?php echo $categoryModel->getUrl(); ?>">
+<div class="circle-category">                <img src="<?php echo $thumbnailUrl ?>" alt="<?php echo $category->getName(); ?>">
+               </div> <p> <?php echo $category->getName(); ?></p>
+            </a>
+        </div>
+    <?php } ?>
+    </div>
+<?php } ?> 
+
+<script>
+    require(['jquery', 'slick'], function ($) {
+        $(document).ready(function () {
+            $('.slide-category-list').slick({
+                infinite: true,
+                slidesToShow: 7,
+                slidesToScroll: 6,
+                arrows: false,
+                dots: false,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                responsive: [
+                    {
+                        breakpoint: 767,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 3
+                        }
+                    }
+                ]
+                
+            });
+        });
+    });
+</script>

@@ -54,11 +54,13 @@ $_helper = $this->helper(Magento\Catalog\Helper\Output::class);
                             $specialPriceToDate = $_product->getSpecialToDate();    
                             $today = time();
                             $price = $_product->getPrice();
-                            if($price){
+				$sale = null;
+                            if ($price > 0 && $specialprice > 0) {
+
                                 $sale = round((($price-$specialprice)/$price)*100);
                             }
                             
-                            if($sale < 100):
+                            if($sale !== null && $sale < 100):
                         ?>
                 <div class="widget discount">
                 <span>

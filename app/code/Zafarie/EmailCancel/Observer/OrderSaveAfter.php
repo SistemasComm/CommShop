@@ -40,7 +40,7 @@ class OrderSaveAfter implements ObserverInterface
                 ScopeInterface::SCOPE_STORE,
                 $order->getStoreId()
             );
-     $templateId = 18;
+     $templateId = 15;
             
             $templateVars = [
                 'order' => $order,
